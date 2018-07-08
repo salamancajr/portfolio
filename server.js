@@ -53,7 +53,7 @@ app.post("/api", upload.single("avatar"), (req, res)=>{
 app.get("/api", (req, res)=>{
 
 Entry.find({}).then((data)=>{
-    res.json(data)
+    res.send(data)
 
 })
 
