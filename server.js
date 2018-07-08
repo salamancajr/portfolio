@@ -1,6 +1,9 @@
+require("./config/config")
+
 const express = require("express");
 const mongoose = require("mongoose")
 const app = express();
+const port = process.env.PORT;
 var {Entry} = require("./models/entry.js")
 const bodyParser = require('body-parser');
 var fs = require("fs");
@@ -13,7 +16,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/PortfolioApp", (e)=>{
+mongoose.connect(process.env.MONGODB_URI, (e)=>{
     if(!e){
         console.log('Connected to mongo');
 
@@ -67,7 +70,7 @@ app.delete("/api/:id", (req, res)=>{
     })
 })
 
-app.listen(3000)
+app.listen(port)
 
 
 // app.get("/img", (req, res)=>{
