@@ -62,6 +62,18 @@ Entry.find({}).then((data)=>{
 
 })
 
+/////////GET a single post///////////////////////
+
+app.delete("/api/:id", (req, res)=>{
+    let title=req.params.id;
+
+
+    Entry.findOne({title}).then((data)=>{
+        res.send(data)
+    })
+})
+
+
 ///////delete the project log//////////////////////////
 
 app.delete("/api/:id", (req, res)=>{
