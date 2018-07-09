@@ -1,5 +1,5 @@
 require("./config/config")
-
+const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose")
 const app = express();
@@ -10,10 +10,13 @@ var fs = require("fs");
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
+
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, (e)=>{
@@ -69,6 +72,8 @@ app.delete("/api/:id", (req, res)=>{
         res.status(200).send()
     })
 })
+
+
 
 app.listen(port)
 
