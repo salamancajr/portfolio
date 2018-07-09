@@ -64,7 +64,7 @@ Entry.find({}).then((data)=>{
 
 /////////GET a single post///////////////////////
 
-app.delete("/api/:id", (req, res)=>{
+app.get("/api/:id", (req, res)=>{
     let title=req.params.id;
 
 
