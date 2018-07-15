@@ -36,10 +36,10 @@ app.get("/", (req, res)=>{
 })
 
 //////////////upload photo and descriptions///////////////////////
-app.post("/api", upload.single("avatar"), (req, res)=>{
+app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
 
-    var data = fs.readFileSync(req.file.path);
-    var contentType="image/jpg"
+    // var data = fs.readFileSync(req.file.path);
+    // var contentType="image/jpg"
 
 
 
