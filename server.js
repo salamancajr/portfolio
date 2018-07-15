@@ -47,6 +47,8 @@ app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
         title: req.body.title,
         description: req.body.description,
         link:req.body.link,
+        githubLink:req.body.githubLink,
+
         // img:{data, contentType}
     })
 
