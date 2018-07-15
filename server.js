@@ -10,11 +10,11 @@ var fs = require("fs");
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
-function errorHandler (err, req, res, next) {
-    res.status(500)
-    res.render('error', { error: err })
-  }
-app.use(errorHandler);
+// function errorHandler (err, req, res, next) {
+//     res.status(500)
+//     res.render('error', { error: err })
+//   }
+// app.use(errorHandler);
 app.use(bodyParser.urlencoded({
     extended: true
 }));
