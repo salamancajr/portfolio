@@ -47,7 +47,7 @@ app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
         title: req.body.title,
         description: req.body.description,
         link:req.body.link,
-        img:{data, contentType}
+        // img:{data, contentType}
     })
 
     entry.save().then(()=>{
