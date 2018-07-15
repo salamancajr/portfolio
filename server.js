@@ -41,6 +41,8 @@ app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
     // var data = fs.readFileSync(req.file.path);
     // var contentType="image/jpg"
 
+    var data = fs.readFileSync(req.body.imageData);
+    var contentType="image/jpg"
 
 
     var entry = new Entry({
@@ -49,7 +51,7 @@ app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
         link:req.body.link,
         githubLink:req.body.githubLink,
 
-        // img:{data, contentType}
+        img:{data, contentType}
     })
 
     entry.save().then((data)=>{
