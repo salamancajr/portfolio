@@ -1,7 +1,8 @@
 require("./config/config")
 const cors = require('cors');
 const express = require("express");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const request = require("request");
 const app = express();
 const port = process.env.PORT;
 var {Entry} = require("./models/entry.js")
@@ -36,27 +37,42 @@ app.get("/", (req, res)=>{
 })
 
 //////////////upload photo and descriptions///////////////////////
-app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
+app.post("/api",  upload.single("avatar"), (req, res)=>{
+/**/
 
-    // var data = fs.readFileSync(req.file.path);
+    // request("https://images.unsplash.com/photo-1531502428148-e5b0ee6d923a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=99a135435cb8603e8e92903dbad77c3d&auto=format&fit=crop&w=1049&q=80.png").pipe(fs.createWriteStream("./uploads"))
+
+request.get(req.body.imageData, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        var data =  "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+
+        var contentType="image/jpg"
+
+
+        var entry = new Entry({
+            title: req.body.title,
+            description: req.body.description,
+            link:req.body.link,
+            githubLink:req.body.githubLink,
+
+            img:{data, contentType}
+        })
+
+        entry.save().then((data)=>{
+            res.status(200).send(data)
+        })
+
+
+
+
+
+    }
+});
+    //     var data = fs.readFileSync(__dirname+"/uploads");
     // var contentType="image/jpg"
 
-    var data = fs.readFileSync(req.body.imageData);
-    var contentType="image/jpg"
+    // var data = fs.readFileSync(req.body.imageData);
 
-
-    var entry = new Entry({
-        title: req.body.title,
-        description: req.body.description,
-        link:req.body.link,
-        githubLink:req.body.githubLink,
-
-        img:{data, contentType}
-    })
-
-    entry.save().then((data)=>{
-        res.status(200).send(data)
-    })
 })
 
 ////////////////////return all photos////////////////////////
