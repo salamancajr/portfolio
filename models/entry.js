@@ -13,6 +13,12 @@ var Entry = mongoose.model("Entry", {
         minlength: 1,
         trim: true
     },
+    githubLink: {
+        type: "string",
+        required: true,
+        minlength: 1,
+        trim: true
+    },
     description: {
         type: "string",
         required: true,
