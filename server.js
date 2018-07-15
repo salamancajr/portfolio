@@ -50,8 +50,8 @@ app.post("/api", /*upload.single("avatar"),*/ (req, res)=>{
         // img:{data, contentType}
     })
 
-    entry.save().then(()=>{
-        res.status(200).redirect("/api")
+    entry.save().then((data)=>{
+        res.status(200).send(data)
     })
 })
 
