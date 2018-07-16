@@ -43,7 +43,7 @@ app.get("/", (req, res)=>{
 
 //////////////upload photo and descriptions///////////////////////
 app.post("/api",  upload.single("avatar"), (req, res)=>{
-console.log(req.body.imageData)
+
 
         var data= req.body.image;
 
