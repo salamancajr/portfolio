@@ -10,16 +10,22 @@ var {Entry} = require("./models/entry.js")
 const bodyParser = require('body-parser');
 var fs = require("fs");
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
 
-// function errorHandler (err, req, res, next) {
-//     res.status(500)
-//     res.render('error', { error: err })
-//   }
-// app.use(errorHandler);
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, "./uploads/")
+    },
+    filename:function(req, file, cb){
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+})
+var upload = multer({ storage: storage})
+var path = require('path')
+
+
 
 app.use(bodyParser.json({limit: '50mb'}));
-
+app.use("/uploads", express.static("uploads"))
 app.use(bodyParser.urlencoded({
     limit: '50mb',
     extended: true
@@ -48,22 +54,22 @@ app.post("/api", upload.single("avatar"), (req, res)=>{
         // var data= req.body.image;
         // var data = fs.readFileSync(__dirname+"/uploads")
         // var contentType="image/jpg";
-console.log(req.body);
+console.log(req.file);
+
 
 // var file = fs.readFileSync(__dirname+`/${req.file.path}`)
-        // var entry = new Entry({
-        //     title: req.body.title,
-        //     description: req.body.description,
-        //     link:req.body.link,
-        //     githubLink:github,
+        var entry = new Entry({
+            title: req.body.title,
+            description: req.body.description,
+            link:req.body.link,
+            githubLink:req.body.githubLink,
+            img:req.file.path
+        })
 
-        //     img:{data, contentType}
-        // })
+        entry.save().then((data)=>{
+            res.status(200).send(data)
+        })
 
-        // entry.save().then((data)=>{
-        //     res.status(200).send(data)
-        // })
-res.send(req.body)
 
 
 
