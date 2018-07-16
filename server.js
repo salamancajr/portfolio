@@ -63,7 +63,7 @@ console.log(req.body);
         // entry.save().then((data)=>{
         //     res.status(200).send(data)
         // })
-res.send(req.file, req.formData)
+res.send(req.file)
 
 
 
