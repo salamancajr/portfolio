@@ -42,9 +42,9 @@ app.get("/", (req, res)=>{
 })
 
 //////////////upload photo and descriptions///////////////////////
-app.post("/api",  upload.single("avatar"), (req, res)=>{
+app.post("/api", (req, res)=>{
 
-
+        var github = typeof req.body.githubLink;
         var data= req.body.image;
 
         var contentType="image/jpg";
@@ -54,7 +54,7 @@ app.post("/api",  upload.single("avatar"), (req, res)=>{
             title: req.body.title,
             description: req.body.description,
             link:req.body.link,
-            githubLink:req.body.githubLink,
+            githubLink:github,
 
             img:{data, contentType}
         })
