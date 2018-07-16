@@ -14,10 +14,10 @@ var Entry = mongoose.model("Entry", {
         trim: true
     },
     githubLink: {
-        type: "object",
+        type: "binData",
         required: true,
-        minlength: 1,
-        trim: true
+        // minlength: 1,
+        // trim: true
     },
     description: {
         type: "string",
