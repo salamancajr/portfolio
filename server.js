@@ -48,6 +48,7 @@ app.post("/api", upload.single("avatar"), (req, res)=>{
         // var data= req.body.image;
         // var data = fs.readFileSync(__dirname+"/uploads")
         // var contentType="image/jpg";
+console.log(req.body);
 
 // var file = fs.readFileSync(__dirname+`/${req.file.path}`)
         // var entry = new Entry({
@@ -62,7 +63,7 @@ app.post("/api", upload.single("avatar"), (req, res)=>{
         // entry.save().then((data)=>{
         //     res.status(200).send(data)
         // })
-res.send(req.file)
+res.send(req.file, req.formData)
 
 
 
