@@ -22,7 +22,10 @@ const storage = multer.diskStorage({
 var upload = multer({ storage: storage})
 var path = require('path')
 
-
+app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })
 
 app.use(bodyParser.json({limit: '50mb'}));
 app.use("/uploads", express.static("uploads"))
