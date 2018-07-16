@@ -14,8 +14,8 @@ var Entry = mongoose.model("Entry", {
         trim: true
     },
     githubLink: {
-        type: "binData",
-        required: true,
+        // type: "binData",
+        // required: true,
         // minlength: 1,
         // trim: true
     },
