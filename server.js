@@ -43,8 +43,8 @@ app.post("/api",  upload.single("avatar"), (req, res)=>{
 // request.get(req.body.imageData, function (error, response, body) {
 //     if (!error && response.statusCode == 200) {
 //         var data =  "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-var data = req.body.imageData;
-         var contentType="image/jpg"
+// var data = req.body.imageData;
+//          var contentType="image/jpg"
 
 
         var entry = new Entry({
@@ -53,7 +53,7 @@ var data = req.body.imageData;
             link:req.body.link,
             githubLink:req.body.githubLink,
 
-            img:{data, contentType}
+            // img:{data, contentType}
         })
 
         entry.save().then((data)=>{
