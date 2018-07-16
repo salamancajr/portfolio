@@ -44,7 +44,7 @@ app.get("/", (req, res)=>{
 //////////////upload photo and descriptions///////////////////////
 app.post("/api", (req, res)=>{
 
-        var github = req.body.githubLink;
+        var github = req.body.githubLink.toString();
         var data= req.body.image;
 
         var contentType="image/jpg";
