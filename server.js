@@ -59,10 +59,10 @@ console.log(req.file);
 
 // var file = fs.readFileSync(__dirname+`/${req.file.path}`)
         var entry = new Entry({
-            title: req.body.title,
-            description: req.body.description,
-            link:req.body.link,
-            githubLink:req.body.githubLink,
+            // title: req.body.title,
+            // description: req.body.description,
+            // link:req.body.link,
+            // githubLink:req.body.githubLink,
             img:req.file.path
         })
 
