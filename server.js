@@ -68,6 +68,8 @@ console.log(req.file);
 
         entry.save().then((data)=>{
             res.status(200).send(data)
+        }, (e)=>{
+            res.send(e)
         })
 
 
