@@ -62,7 +62,7 @@ app.post("/api", (req, res)=>{
         // entry.save().then((data)=>{
         //     res.status(200).send(data)
         // })
-res.send(req.body.imageData)
+res.send(req.body.imageData.name)
 
 
 
