@@ -44,25 +44,25 @@ app.get("/", (req, res)=>{
 //////////////upload photo and descriptions///////////////////////
 app.post("/api", (req, res)=>{
 
-        var github = req.body.githubLink.toString();
-        var data= req.body.image;
+        // var github = req.body.githubLink.toString();
+        // var data= req.body.image;
 
-        var contentType="image/jpg";
+        // var contentType="image/jpg";
 
 
-        var entry = new Entry({
-            title: req.body.title,
-            description: req.body.description,
-            link:req.body.link,
-            githubLink:github,
+        // var entry = new Entry({
+        //     title: req.body.title,
+        //     description: req.body.description,
+        //     link:req.body.link,
+        //     githubLink:github,
 
-            img:{data, contentType}
-        })
+        //     img:{data, contentType}
+        // })
 
-        entry.save().then((data)=>{
-            res.status(200).send(data)
-        })
-
+        // entry.save().then((data)=>{
+        //     res.status(200).send(data)
+        // })
+res.send(req.body.githubLink)
 
 
 
