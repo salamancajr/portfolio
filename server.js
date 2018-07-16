@@ -1,4 +1,5 @@
 require("./config/config")
+const download = require('image-downloader')
 const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
@@ -42,13 +43,11 @@ app.get("/", (req, res)=>{
 
 //////////////upload photo and descriptions///////////////////////
 app.post("/api",  upload.single("avatar"), (req, res)=>{
+console.log(req.body.imageData)
 
+        var data= req.body.image;
 
-// request.get(req.body.imageData, function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//         var data =  "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-// var data = req.body.imageData;
-//          var contentType="image/jpg"
+        var contentType="image/jpg";
 
 
         var entry = new Entry({
@@ -57,7 +56,7 @@ app.post("/api",  upload.single("avatar"), (req, res)=>{
             link:req.body.link,
             githubLink:req.body.githubLink,
 
-            // img:{data, contentType}
+            img:{data, contentType}
         })
 
         entry.save().then((data)=>{
@@ -68,8 +67,7 @@ app.post("/api",  upload.single("avatar"), (req, res)=>{
 
 
 
-//     }
-// });
+
     //     var data = fs.readFileSync(__dirname+"/uploads");
     // var contentType="image/jpg"
 
@@ -112,7 +110,10 @@ app.delete("/api/:id", (req, res)=>{
 
 
 
-app.listen(port)
+app.listen(port, ()=>{
+    console.log(`No connected on port ${port}`);
+
+})
 
 
 // app.get("/img", (req, res)=>{
