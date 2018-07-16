@@ -14,7 +14,7 @@ var Entry = mongoose.model("Entry", {
         trim: true
     },
     githubLink: {
-        type: "string",
+        type: "object",
         required: true,
         minlength: 1,
         trim: true
