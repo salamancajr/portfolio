@@ -38,15 +38,13 @@ app.get("/", (req, res)=>{
 
 //////////////upload photo and descriptions///////////////////////
 app.post("/api",  upload.single("avatar"), (req, res)=>{
-/**/
 
-    // request("https://images.unsplash.com/photo-1531502428148-e5b0ee6d923a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=99a135435cb8603e8e92903dbad77c3d&auto=format&fit=crop&w=1049&q=80.png").pipe(fs.createWriteStream("./uploads"))
 
-request.get(req.body.imageData, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        var data =  "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
-
-        var contentType="image/jpg"
+// request.get(req.body.imageData, function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//         var data =  "data:" + response.headers["content-type"] + ";base64," + new Buffer(body).toString('base64');
+var data = req.body.imageData;
+         var contentType="image/jpg"
 
 
         var entry = new Entry({
@@ -66,8 +64,8 @@ request.get(req.body.imageData, function (error, response, body) {
 
 
 
-    }
-});
+//     }
+// });
     //     var data = fs.readFileSync(__dirname+"/uploads");
     // var contentType="image/jpg"
 
