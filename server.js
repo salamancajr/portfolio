@@ -42,14 +42,14 @@ app.get("/", (req, res)=>{
 })
 
 //////////////upload photo and descriptions///////////////////////
-app.post("/api", (req, res)=>{
+app.post("/api", upload.single("avatar"), (req, res)=>{
 
         // var github = req.body.githubLink.toString();
         // var data= req.body.image;
-
+        // var data = fs.readFileSync(__dirname+"/uploads")
         // var contentType="image/jpg";
-
-
+console.log(typeof req.body.avatar)
+var file = fs.readFileSync(__dirname+`/${req.file.path}`)
         // var entry = new Entry({
         //     title: req.body.title,
         //     description: req.body.description,
@@ -62,7 +62,7 @@ app.post("/api", (req, res)=>{
         // entry.save().then((data)=>{
         //     res.status(200).send(data)
         // })
-res.send(req.body.imageData.name)
+res.send(file)
 
 
 
