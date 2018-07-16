@@ -16,10 +16,14 @@ var upload = multer({ dest: 'uploads/' })
 //     res.render('error', { error: err })
 //   }
 // app.use(errorHandler);
+
+app.use(bodyParser.json({limit: '50mb'}));
+
 app.use(bodyParser.urlencoded({
+    limit: '50mb',
     extended: true
 }));
-app.use(bodyParser.json());
+
 app.use(cors());
 
 mongoose.Promise = global.Promise;
