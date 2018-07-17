@@ -1,20 +1,18 @@
 require("./config/config")
-const download = require('image-downloader')
 const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
-const request = require("request");
 const app = express();
 const port = process.env.PORT;
 var {Entry} = require("./models/entry.js")
 const bodyParser = require('body-parser');
-var fs = require("fs");
 var multer = require('multer')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "./uploads/")
     },
+
     filename: function (req, file, cb) {
         cb(null, new Date().toISOString() + file.originalname)
     }
@@ -39,6 +37,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(cors());
+
+app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI, (e) => {
