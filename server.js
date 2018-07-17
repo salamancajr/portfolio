@@ -63,13 +63,14 @@ app.get("/", (req, res) => {
 // link:req.body.link,
 // githubLink:req.body.githubLink,
 app.post("/api", upload.single("avatar"), (req, res) => {
+var imageUrl = `${req.protocol}://${req.get('host')}/`;
 
     var entry = new Entry({
         title:req.body.title,
         link:req.body.link,
         githubLink:req.body.githubLink,
         description:req.body.description,
-        img: req.file.path
+        img: imageUrl+req.file.path
     })
 
     entry.save().then((data) => {
