@@ -68,7 +68,7 @@ app.post("/api", upload.single("avatar"), (req, res) => {
         link:req.body.link,
         githubLink:req.body.githubLink,
         description:req.body.description,
-        img: req.file.path
+        // img: req.file.path
     })
 
     entry.save().then((data) => {
