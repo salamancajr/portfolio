@@ -6,28 +6,34 @@ const mongoose = require("mongoose");
 const request = require("request");
 const app = express();
 const port = process.env.PORT;
-var {Entry} = require("./models/entry.js")
+var {
+    Entry
+} = require("./models/entry.js")
 const bodyParser = require('body-parser');
 var fs = require("fs");
-var multer  = require('multer')
+var multer = require('multer')
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
+    destination: function (req, file, cb) {
         cb(null, "./uploads/")
     },
-    filename:function(req, file, cb){
+    filename: function (req, file, cb) {
         cb(null, new Date().toISOString() + file.originalname)
     }
 })
-var upload = multer({ storage: storage})
+var upload = multer({
+    storage: storage
+})
 var path = require('path')
 
 app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(500).send('Something broke!')
-  })
+})
 
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
 app.use("/uploads", express.static("uploads"))
 app.use(bodyParser.urlencoded({
     limit: '50mb',
@@ -37,73 +43,60 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, (e)=>{
-    if(!e){
+mongoose.connect(process.env.MONGODB_URI, (e) => {
+    if (!e) {
         console.log('Connected to mongo');
 
-    }
-    else{console.log(e);
+    } else {
+        console.log(e);
     }
 })
 ///////////////for the forms page////////////////////////////////////
-app.get("/", (req, res)=>{
+app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html")
 })
 
 //////////////upload photo and descriptions///////////////////////
-app.post("/api", upload.single("avatar"), (req, res)=>{
+// title: req.body.title,
+// description: req.body.description,
+// link:req.body.link,
+// githubLink:req.body.githubLink,
+app.post("/api", upload.single("avatar"), (req, res) => {
 
-        // var github = req.body.githubLink.toString();
-        // var data= req.body.image;
-        // var data = fs.readFileSync(__dirname+"/uploads")
-        // var contentType="image/jpg";
-console.log(req.file);
+    var entry = new Entry({
+        title:req.body.title,
+        link:req.body.link,
+        githubLink:req.body.githubLink,
+        description:req.body.description,
+        // img: req.file.path
+    })
 
-
-// var file = fs.readFileSync(__dirname+`/${req.file.path}`)
-        var entry = new Entry({
-            // title: req.body.title,
-            // description: req.body.description,
-            // link:req.body.link,
-            // githubLink:req.body.githubLink,
-            img:req.file.path
-        })
-
-        entry.save().then((data)=>{
-            res.status(200).send(data)
-        }, (e)=>{
-            res.send(e)
-        })
-
-
-
-
-
-
-    //     var data = fs.readFileSync(__dirname+"/uploads");
-    // var contentType="image/jpg"
-
-    // var data = fs.readFileSync(req.body.imageData);
-
+    entry.save().then((data) => {
+        res.status(200).send(data)
+    }, (e) => {
+        res.send(e)
+    })
 })
 
 ////////////////////return all photos////////////////////////
-app.get("/api", (req, res)=>{
+app.get("/api", (req, res) => {
 
-Entry.find({}).then((data)=>{
-    res.send(data)
+    Entry.find({}).then((data) => {
+        res.send(data)
 
-})
+    })
 
 })
 
 /////////GET a single post///////////////////////
 
-app.get("/api/:id", (req, res)=>{
-    let title=req.params.id;
+app.get("/api/:id", (req, res) => {
+    let title = req.params.id;
 
 
-    Entry.findOne({title}).then((data)=>{
+    Entry.findOne({
+        title
+    }).then((data) => {
         res.send(data)
     })
 })
@@ -111,18 +104,20 @@ app.get("/api/:id", (req, res)=>{
 
 ///////delete the project log//////////////////////////
 
-app.delete("/api/:id", (req, res)=>{
-    let title=req.params.id;
+app.delete("/api/:id", (req, res) => {
+    let title = req.params.id;
     console.log(title);
 
-    Entry.findOneAndRemove({title}).then((data)=>{
+    Entry.findOneAndRemove({
+        title
+    }).then((data) => {
         res.status(200).send()
     })
 })
 
 
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`No connected on port ${port}`);
 
 })
@@ -139,4 +134,3 @@ app.listen(port, ()=>{
 //     })
 
 // })
-
