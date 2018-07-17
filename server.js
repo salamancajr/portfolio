@@ -6,9 +6,7 @@ const mongoose = require("mongoose");
 const request = require("request");
 const app = express();
 const port = process.env.PORT;
-var {
-    Entry
-} = require("./models/entry.js")
+var {Entry} = require("./models/entry.js")
 const bodyParser = require('body-parser');
 var fs = require("fs");
 var multer = require('multer')
@@ -24,7 +22,7 @@ const storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 })
-var path = require('path')
+
 
 app.use(function (err, req, res, next) {
     console.error(err.stack)
@@ -68,7 +66,7 @@ app.post("/api", upload.single("avatar"), (req, res) => {
         link:req.body.link,
         githubLink:req.body.githubLink,
         description:req.body.description,
-        img: req.file.path
+        // img: req.file.path
     })
 
     entry.save().then((data) => {
