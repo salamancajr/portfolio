@@ -7,7 +7,7 @@ const port = process.env.PORT;
 var {Entry} = require("./models/entry.js")
 const bodyParser = require('body-parser');
 var multer = require('multer')
-
+var fs = require("fs");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "./uploads")
@@ -63,14 +63,16 @@ app.get("/", (req, res) => {
 // link:req.body.link,
 // githubLink:req.body.githubLink,
 app.post("/api", upload.single("avatar"), (req, res) => {
-var imageUrl = `${req.protocol}s://${req.get('host')}/`;
+// var imageUrl = `${req.protocol}s://${req.get('host')}/`;
+var file = fs.readFileSync(req.file.path)
 
     var entry = new Entry({
         title:req.body.title,
         link:req.body.link,
         githubLink:req.body.githubLink,
         description:req.body.description,
-        img: imageUrl+req.file.path
+        img:file
+        // img: imageUrl+req.file.path
     })
 
     entry.save().then((data) => {

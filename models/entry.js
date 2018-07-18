@@ -25,14 +25,14 @@ var Entry = mongoose.model("Entry", {
         minlength: 1,
         trim: true
     },
-    // img: {
-    //     data: Buffer,
-    //     contentType: String
-    // }
     img: {
-        type:String,
-        required:true
+        data: Buffer,
+        // contentType: String
     }
+    // img: {
+    //     type:String,
+    //     required:true
+    // }
 
 })
 
