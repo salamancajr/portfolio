@@ -64,14 +64,17 @@ app.get("/", (req, res) => {
 // githubLink:req.body.githubLink,
 app.post("/api", upload.single("avatar"), (req, res) => {
 // var imageUrl = `${req.protocol}s://${req.get('host')}/`;
-var file = fs.readFileSync(req.file.path)
+console.log(req.file.path)
+var data = fs.readFileSync(req.file.path)
+var contentType = "image/png"
+// console.log(file);
 
     var entry = new Entry({
         title:req.body.title,
         link:req.body.link,
         githubLink:req.body.githubLink,
         description:req.body.description,
-        img:file
+        img:{data, contentType}
         // img: imageUrl+req.file.path
     })
 

@@ -27,7 +27,8 @@ var Entry = mongoose.model("Entry", {
     },
     img: {
         data: Buffer,
-        // contentType: String
+        contentType: String
+
     }
     // img: {
     //     type:String,
