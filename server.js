@@ -5,12 +5,18 @@ const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT;
 var {Entry} = require("./models/entry.js")
+var {Blog} = require("./models/blog")
 const bodyParser = require('body-parser');
 var multer = require('multer')
 var fs = require("fs");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./uploads")
+        if(file.fieldname==="blogImg"){
+            cb(null, "./blogUploads")
+        }
+        else{
+            cb(null, "./uploads")
+        }
     },
 
     filename: function (req, file, cb) {
@@ -58,16 +64,13 @@ app.get("/", (req, res) => {
 })
 
 //////////////upload photo and descriptions///////////////////////
-// title: req.body.title,
-// description: req.body.description,
-// link:req.body.link,
-// githubLink:req.body.githubLink,
+
 app.post("/api", upload.single("avatar"), (req, res) => {
 // var imageUrl = `${req.protocol}s://${req.get('host')}/`;
-console.log(req.file.path)
+
 var data = fs.readFileSync(req.file.path)
 var contentType = "image/png"
-// console.log(file);
+
 
     var entry = new Entry({
         title:req.body.title,
@@ -122,22 +125,52 @@ app.delete("/api/:id", (req, res) => {
     })
 })
 
-
-
-app.listen(port, () => {
-    console.log(`No connected on port ${port}`);
-
+/////////GET Blog//////////////////////
+app.get("/blog", (req, res)=>{
+    Blog.find({}).then((data)=>{
+        res.send(data)
+    })
 })
 
 
-// app.get("/img", (req, res)=>{
-//     Entry.findById("5b3cf99bb8b18d0448dbb093").then((dat)=>{
+app.get("/blogform", (req, res)=>{
+    res.sendFile(__dirname+"/index2.html")
+})
+///////delete the project log//////////////////////////
 
-//     var vals = new Buffer(dat.img.data).toString('base64');
+app.delete("/blog/:id", (req, res) => {
+    let title = req.params.id;
+    console.log(title);
+
+    Entry.findOneAndRemove({
+        title
+    }).then((data) => {
+        res.status(200).send(data)
+    })
+})
+
+//////////Blog Post Route/////////////////
+app.post("/blog", upload.single("blogImg"),(req, res)=>{
 
 
-//         res.send(`<div><img style='width:50%' src='data:image/jpeg;base64, ${vals}'</div>`)
-//     }, (e)=>{console.log(e);
-//     })
+    var data = fs.readFileSync(req.file.path)
+var contentType = "image/png"
+console.log(req.file);
 
-// })
+    var blog = new Blog({
+        title:req.body.title,
+        text:req.body.text,
+        likes:req.body.likes,
+        img:{data, contentType}
+    })
+
+    blog.save().then((data)=>{
+        res.send(data)
+    })
+})
+
+
+app.listen(port, () => {
+    console.log(`Now connected on port ${port}`);
+
+})
