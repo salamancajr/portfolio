@@ -121,7 +121,9 @@ app.delete("/api/:id", (req, res) => {
     Entry.findOneAndRemove({
         title
     }).then((data) => {
-        res.status(200).send()
+        console.log(data);
+
+        res.status(200).send(data)
     })
 })
 
@@ -136,14 +138,14 @@ app.get("/blog", (req, res)=>{
 app.get("/blogform", (req, res)=>{
     res.sendFile(__dirname+"/index2.html")
 })
-///////delete the project log//////////////////////////
+///////delete the blog log//////////////////////////
 
 app.delete("/blog/:id", (req, res) => {
-    let title = req.params.id;
-    console.log(title);
+    let _id = req.params.id;
 
-    Entry.findOneAndRemove({
-        title
+
+    Blog.findOneAndRemove({
+        _id
     }).then((data) => {
         res.status(200).send(data)
     })
