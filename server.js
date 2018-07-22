@@ -115,11 +115,11 @@ app.get("/api/:id", (req, res) => {
 ///////delete the project log//////////////////////////
 
 app.delete("/api/:id", (req, res) => {
-    let title = req.params.id;
+    let _id = req.params.id;
     console.log(title);
 
     Entry.findOneAndRemove({
-        title
+        _id
     }).then((data) => {
         console.log(data);
 
@@ -147,6 +147,8 @@ app.delete("/blog/:id", (req, res) => {
     Blog.findOneAndRemove({
         _id
     }).then((data) => {
+        console.log(data);
+
         res.status(200).send(data)
     })
 })
