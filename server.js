@@ -116,7 +116,7 @@ app.get("/api/:id", (req, res) => {
 
 app.delete("/api/:id", (req, res) => {
     let _id = req.params.id;
-    console.log(title);
+
 
     Entry.findOneAndRemove({
         _id
