@@ -173,6 +173,17 @@ console.log(req.file);
     })
 })
 
+/////////////GET BLOG BY TITLE////////////////
+app.get("/blog/:id", (req, res) => {
+    let title = req.params.id;
+
+
+    Entry.findOne({
+        title
+    }).then((data) => {
+        res.send(data)
+    })
+})
 
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
