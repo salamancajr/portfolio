@@ -137,10 +137,11 @@ app.patch("/api/:id", (req, res)=>{
     },
     {
         $set:req.body
-    },{
-        new:true
-    }).then((data)=>{
-        res.send(data)
+    }).then(()=>{
+
+        Entry.find({}).then((data)=>{
+            res.send(data)
+        })
     })
 })
 
