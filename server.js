@@ -127,6 +127,24 @@ app.delete("/api/:id", (req, res) => {
     })
 })
 
+//////////update project/////////////////////////////////
+app.patch("/api/:id", (req, res)=>{
+    var _id = req.params.id;
+    console.log(req.body);
+
+    Entry.findOneAndUpdate({
+        _id
+    },
+    {
+        $set:req.body
+    },{
+        new:true
+    }).then((data)=>{
+        res.send(data)
+    })
+})
+
+
 /////////GET Blog//////////////////////
 app.get("/blog", (req, res)=>{
     Blog.find({}).then((data)=>{
@@ -187,6 +205,23 @@ app.get("/blog/:id", (req, res) => {
         res.send(data)
     })
 })
+////////////UPDATE BLOG////////////////////////
+app.patch("/blog/:id", (req, res)=>{
+    var _id = req.params.id;
+    console.log(req.body);
+
+    Blog.findOneAndUpdate({
+        _id
+    },
+    {
+        $set:req.body
+    },{
+        new:true
+    }).then((data)=>{
+        res.send(data)
+    })
+})
+
 
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
