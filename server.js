@@ -215,10 +215,10 @@ app.patch("/blog/:id", (req, res)=>{
     },
     {
         $set:req.body
-    },{
-        new:true
-    }).then((data)=>{
-        res.send(data)
+    }).then(()=>{
+        Blog.find({}).then((data)=>{
+            res.send(data)
+        })
     })
 })
 
