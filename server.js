@@ -121,9 +121,9 @@ app.delete("/api/:id", (req, res) => {
     Entry.findOneAndRemove({
         _id
     }).then((data) => {
-        console.log(data);
+         Entry.find({}).then((data)=>{res.status(200).send(data)})
 
-        res.status(200).send(data)
+
     })
 })
 
@@ -147,9 +147,9 @@ app.delete("/blog/:id", (req, res) => {
     Blog.findOneAndRemove({
         _id
     }).then((data) => {
-        console.log(data);
 
-        res.status(200).send(data)
+        Blog.find({}).then((data)=>{res.status(200).send(data)})
+
     })
 })
 
