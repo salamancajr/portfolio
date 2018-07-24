@@ -2,13 +2,17 @@ require("./config/config")
 const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
+const {ObjectID} = require("mongodb")
 const app = express();
 const port = process.env.PORT;
 var {Entry} = require("./models/entry.js")
 var {Blog} = require("./models/blog")
+var {User} = require("./models/users.js")
+const {authenticate} = require("./middleware/authenticate");
 const bodyParser = require('body-parser');
 var multer = require('multer')
 var fs = require("fs");
+const _ = require("lodash");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if(file.fieldname==="blogImg"){
@@ -223,17 +227,46 @@ app.patch("/blog/:id", (req, res)=>{
     })
 })
 
+app.post("/signup", async (req, res)=>{
 
-app.post("/signin", (req, res)=>{
-console.log(req.body);
+    try{
+        var body = _.pick(req.body, ["email", "password"])
 
+        var user = new User(body);
 
-    if(req.body.email==="salamancajr@gmail.com" && req.body.password==="hellokitty123"){
-        res.send({token:"1234567"})
+        await user.save()
+        const token = await user.generateAuthToken();
+        res.header("x-auth", token).send(user);
+
+    }catch(e){
+        res.status(400).send(e.message)
     }
-    else{
-        res.status(500).send("wrong email or password")
+
+})
+
+
+
+app.post("/signin", async (req, res)=>{
+
+    try{
+        var email = req.body.email;
+        var password = req.body.password;
+        const user = await User.findByCredentials(email, password);
+        const token = await user.generateAuthToken();
+        res.header("x-auth", token).send(user);
+    } catch(e){
+        console.log(e);
+        res.status(400).send();
+
     }
+
+
+    // if(req.body.email==="salamancajr@gmail.com" && req.body.password==="hellokitty123"){
+    //     res.send({token:"1234567"})
+    // }
+    // else{
+    //     res.status(500).send("wrong email or password")
+    // }
 })
 
 app.listen(port, () => {
