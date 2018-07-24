@@ -224,6 +224,16 @@ app.patch("/blog/:id", (req, res)=>{
 })
 
 
+app.get("/signin", (req, res)=>{
+
+    if(req.body.email==="salamancajr@gmail.com" && req.body.password==="hellokitty123"){
+        res.send({token:"1234567"})
+    }
+    else{
+        res.status(500).send()
+    }
+})
+
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
 
