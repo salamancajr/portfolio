@@ -224,10 +224,11 @@ app.patch("/blog/:id", (req, res)=>{
 })
 
 
-app.get("/signin", (req, res)=>{
+app.post("/signin", (req, res)=>{
+console.log(req.body);
 
 
-    if(req.headers["email"]==="salamancajr@gmail.com" && req.headers["password"]==="hellokitty123"){
+    if(req.body.email==="salamancajr@gmail.com" && req.body.password==="hellokitty123"){
         res.send({token:"1234567"})
     }
     else{
