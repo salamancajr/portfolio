@@ -273,6 +273,10 @@ app.post("/signin", async (req, res)=>{
     // }
 })
 
+app.get("/authenticate", authenticate, (req, res)=>{
+    res.status(200).send("authentication passed")
+})
+
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
 
