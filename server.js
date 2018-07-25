@@ -132,7 +132,7 @@ app.delete("/api/:id", (req, res) => {
 })
 
 //////////update project/////////////////////////////////
-app.patch("/api/:id", (req, res)=>{
+app.patch("/api/:id", authenticate, (req, res)=>{
     var _id = req.params.id;
     console.log(req.body);
 
@@ -163,7 +163,7 @@ app.get("/blogform", (req, res)=>{
 })
 ///////delete the blog log//////////////////////////
 
-app.delete("/blog/:id", (req, res) => {
+app.delete("/blog/:id", authenticate, (req, res) => {
     let _id = req.params.id;
 
 
@@ -177,7 +177,7 @@ app.delete("/blog/:id", (req, res) => {
 })
 
 //////////Blog Post Route/////////////////
-app.post("/blog", upload.single("blogImg"),(req, res)=>{
+app.post("/blog", upload.single("blogImg"), authenticate, (req, res)=>{
 
 
     var data = fs.readFileSync(req.file.path)
@@ -211,7 +211,7 @@ app.get("/blog/:id", (req, res) => {
     })
 })
 ////////////UPDATE BLOG////////////////////////
-app.patch("/blog/:id", (req, res)=>{
+app.patch("/blog/:id", authenticate, (req, res)=>{
     var _id = req.params.id;
     console.log(req.body);
 
