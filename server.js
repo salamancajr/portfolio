@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 var multer = require('multer')
 var fs = require("fs");
 const _ = require("lodash");
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if(file.fieldname==="blogImg"){
@@ -27,6 +28,7 @@ const storage = multer.diskStorage({
         cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
     }
 })
+
 var upload = multer({
     storage: storage
 })
@@ -118,7 +120,7 @@ app.get("/api/:id", (req, res) => {
 
 ///////delete the project log//////////////////////////
 
-app.delete("/api/:id", (req, res) => {
+app.delete("/api/:id", authenticate, (req, res) => {
     let _id = req.params.id;
 
 
@@ -177,7 +179,7 @@ app.delete("/blog/:id", authenticate, (req, res) => {
 })
 
 //////////Blog Post Route/////////////////
-app.post("/blog", upload.single("blogImg"), authenticate, (req, res)=>{
+app.post("/blog", upload.single("blogImg"), (req, res)=>{
 
 
     var data = fs.readFileSync(req.file.path)
