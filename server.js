@@ -236,6 +236,7 @@ app.post("/signup", async (req, res)=>{
 
         await user.save()
         const token = await user.generateAuthToken();
+        res.header('Access-Control-Expose-Headers', "x-auth");
         res.header("x-auth", token).send(user);
 
     }catch(e){
@@ -253,6 +254,7 @@ app.post("/signin", async (req, res)=>{
         var password = req.body.password;
         const user = await User.findByCredentials(email, password);
         const token = await user.generateAuthToken();
+        res.header('Access-Control-Expose-Headers', "x-auth");
         res.header("x-auth", token).send(user);
     } catch(e){
         console.log(e);
