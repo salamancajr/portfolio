@@ -71,7 +71,7 @@ app.get("/", (req, res) => {
 
 //////////////upload photo and descriptions///////////////////////
 
-app.post("/api", upload.single("avatar"), (req, res) => {
+app.post("/api", upload.single("avatar"), authenticate, (req, res) => {
 // var imageUrl = `${req.protocol}s://${req.get('host')}/`;
 
 var data = fs.readFileSync(req.file.path)
@@ -179,7 +179,7 @@ app.delete("/blog/:id", authenticate, (req, res) => {
 })
 
 //////////Blog Post Route/////////////////
-app.post("/blog", upload.single("blogImg"), (req, res)=>{
+app.post("/blog", upload.single("blogImg"), authenticate, (req, res)=>{
 
 
     var data = fs.readFileSync(req.file.path)
