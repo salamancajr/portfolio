@@ -1,0 +1,134 @@
+.projects-container {
+    display: grid;
+    height: 90%;
+    position: relative;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
+    grid-column-gap: 30px; //grid-row-gap: 30px;
+    transition: all .5s;
+    overflow: hidden;
+    min-width: 50rem;
+    max-width: 50rem;
+    min-height: 28rem;
+    max-height: 28rem;
+    backface-visibility: hidden;
+    -webkit-animation-fill-mode: forwards;
+    /* Chrome 16+, Safari 4+ */
+    -moz-animation-fill-mode: forwards;
+    /* FF 5+ */
+    -o-animation-fill-mode: forwards;
+    /* Not implemented yet */
+    -ms-animation-fill-mode: forwards;
+    /* IE 10+ */
+    animation-fill-mode: forwards;
+    &>a {
+        -webkit-animation-fill-mode: forwards;
+        /* Chrome 16+, Safari 4+ */
+        -moz-animation-fill-mode: forwards;
+        /* FF 5+ */
+        -o-animation-fill-mode: forwards;
+        /* Not implemented yet */
+        -ms-animation-fill-mode: forwards;
+        /* IE 10+ */
+        animation-fill-mode: forwards;
+    }
+    @include respond(tab-land) {
+        min-width: 70rem;
+        max-width: 70rem;
+        min-height: 39rem;
+        max-height: 39rem;
+    }
+    @include respond(tab-port) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
+        min-width: 50rem;
+        max-width: 50rem;
+        min-height: 37rem;
+        max-height: 37rem;
+    }
+    @include respond(phone) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%; // grid-row-gap: 20%;
+        min-width: 40rem;
+        max-width: 40rem;
+        min-height: 45rem;
+        max-height: 45rem;
+    }
+    @include respond(small-phone) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%; //grid-row-gap: 5%;
+        min-width: 30rem;
+        max-width: 30rem;
+        min-height: 43rem;
+        max-height: 43rem;
+    }
+    @include respond(big-desktop) {
+        grid-template-rows: 25% 25% 25% 25%;
+        min-width: 70rem;
+        max-width: 70rem;
+        min-height: 50rem;
+        max-height: 50rem;
+    }
+    &__label {
+        cursor: pointer;
+    }
+    &__project {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: relative;
+        overflow: hidden;
+        background-color: black;
+        color: rgba(255, 255, 255, 0.829);
+        animation-fill-mode: forwards;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    &__heading-tertiary {
+        background-color: rgb(40, 40, 40);
+        padding-top: 4px;
+        font-size: .8rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20%;
+        width: 100%;
+        transition: opacity .2s;
+    }
+    &__img {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 20%;
+        left: 0;
+        transition: opacity .2s;
+        backface-visibility: hidden;
+        object-fit: cover;
+        transform: scale(1.17);
+    }
+    &__checkbox {
+        display: none;
+        &:checked~.description-box {
+            transform: translateX(0);
+            box-shadow: 0 2rem 4rem rgba(black, .2);
+            opacity: 1;
+            border-radius: 5px;
+        }
+    }
+    .up {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: purple;
+        color: white;
+        z-index: 100000000000;
+    }
+    .down {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: purple;
+        color: white;
+        z-index: 100000000000;
+    }
+}

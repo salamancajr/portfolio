@@ -1,0 +1,62 @@
+#selfie {
+    max-width: 20rem;
+    max-height: 15rem;
+    border-color: purple;
+    border-width: .5rem;
+    border-style: solid;
+    border-radius: 40%;
+}
+
+.about_check{
+position:absolute;
+display:none;
+}
+
+.body__container-column{
+
+    &--about-me{
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        transition:all .5s;
+        font-size:1rem;
+
+        @include respond (tab-port){
+            font-size:1.2rem;
+            // p{
+            //     width:70vw;
+            // }
+        }
+        @include respond (tab-land){
+            font-size:1.2rem;
+
+        }
+
+    }
+
+    &--about-page{
+        position:absolute;
+        left:150%;
+        transform:translateX(-50%);
+        transition:all .5s;
+        font-size:1rem;
+
+    }
+}
+
+#about-button{
+    transition: all .5s;
+}
+
+.about_check:checked ~ .body__container-column--about-page{
+    transform:translateX(-150%);
+
+}
+.about_check:checked ~ .body__container-column--about-me{
+    transform:translateX(-150%);
+
+}
+// .about_check:checked ~ #about-button{
+//     transform:rotate(360deg);
+
+// }

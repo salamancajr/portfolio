@@ -1,0 +1,33 @@
+#form{
+    & *{
+        display:block;
+        margin:auto;
+    }
+    
+    & input{
+       
+       padding-left:.5rem;
+       width:20rem;
+       
+    }
+    
+    & [type="text"]{
+        border:none;
+           
+    } 
+        
+    & [type="file"]{
+        display:none;
+    }
+    
+    & [for="upload"]{
+        bottom:5rem;
+        
+        i{
+            // display:inline-block;
+            float:left;
+            margin-right:.2rem;
+            
+        }
+    }
+}

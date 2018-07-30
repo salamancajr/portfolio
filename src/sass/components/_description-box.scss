@@ -1,0 +1,106 @@
+    .description-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(100%);
+        width: 100%;
+        height: 100%;
+        background-color: rgb(96, 22, 119);
+        z-index: 1;
+        transition: all .5s;
+        animation-fill-mode: forwards;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "words image" "words icon";
+
+        @include respond(phone){
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: ". image image icon" "words words words words" "words words words words";
+        }
+
+        &__arrow{
+            @include smallScale;
+            color:red;
+            position:absolute;
+            font-size:50px;
+            cursor:pointer;
+        }
+
+        &__img-container {
+            position: relative;
+            grid-area: image;
+
+
+            img {
+                width: 85%;
+                max-height: 90%;
+
+                top: 50%;
+                left:50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                border-radius: 5px;
+            }
+        }
+
+        &__text {
+
+            text-align: left !important;
+            grid-area: words;
+            margin-top:2rem;
+            justify-self: center;
+            font-size: 1rem;
+            color: rgb(214, 205, 205);
+            p{
+                max-width:80%;
+                margin:auto;
+            }
+            h3{
+                margin:0rem 4rem;
+                font-size: 2rem;
+                text-align:center;
+                border-bottom: 1px solid white;
+                margin-bottom:1.2rem;
+            }
+            @include respond(phone){
+                margin-top:0;
+                font-size:1rem;
+                h3{
+                    margin:0rem 4rem;
+                }
+            }
+
+
+
+        }
+        &__icons-container {
+
+            font-size: 8rem;
+            align-self: center;
+            justify-self: center;
+            grid-area: icon;
+            color: rgba(255, 254, 254, 0.904);
+            text-align:center;
+
+            i{
+                @include smallScale;
+            }
+            a:not(:last-child){
+                margin-right:2rem;
+            }
+            @include respond(phone){
+
+                    font-size:3rem;
+
+                a{
+                    display:block;
+                    &:not(:last-child){
+                        margin-right:0;
+
+                    }
+                }
+            }
+        }
+    }
