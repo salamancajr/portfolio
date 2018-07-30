@@ -553,6 +553,25 @@ a:hover {
   transform: translateX(-50%);
   transition: all .5s;
   font-size: 1rem; }
+  .body__container-column--about-page p {
+    max-width: 60%;
+    display: table-cell;
+    -moz-column-count: 2;
+    -moz-column-gap: 4rem;
+    -moz-column-rule: 1px solid black;
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid black;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto; }
+  @media (max-width: 56.25em) {
+    .body__container-column--about-page p {
+      max-width: 70%; } }
+  @media (max-width: 37.5em) {
+    .body__container-column--about-page p {
+      max-width: 90%; } }
 
 #about-button {
   transition: all .5s; }

@@ -15,6 +15,7 @@ display:none;
 .body__container-column{
 
     &--about-me{
+
         position:absolute;
         left:50%;
         transform:translateX(-50%);
@@ -35,12 +36,37 @@ display:none;
     }
 
     &--about-page{
+
         position:absolute;
         left:150%;
         transform:translateX(-50%);
         transition:all .5s;
         font-size:1rem;
+        p{
+            max-width:60%;
+            display: table-cell;
+            -moz-column-count: 2;
+            -moz-column-gap: 4rem;
+            -moz-column-rule: 1px solid black;
 
+            column-count: 2;
+            column-gap: 4rem;
+            column-rule: 1px solid black;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+        @include respond (tab-port){
+            p{
+                max-width:70%;
+            }
+        }
+        @include respond (phone){
+            p{
+                max-width:90%;
+            }
+        }
     }
 }
 
