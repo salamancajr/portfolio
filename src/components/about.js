@@ -24,16 +24,16 @@ export default function (){
        About this webpage
      </h1>
 
-    <p>This web app was created using react, redux and react-router. The layout design of each
-    route was configured using flexbox and css grid. There was no bootstrap or UI frameworks used to create this  other than for the navigation bar.
+    <p>This single page application was created using react, redux and react-router. The layout design of each
+    route was configured using flexbox and css grid. There was no bootstrap or UI frameworks used to create this page other than for the navigation bar.
     SCSS was used to compile the CSS code for this project. All of the blogs in the blog route and the projects in the
     portfolio route are fetched from an API created with node.js and express that can be viewed
-    <a href="https://quiet-taiga-43727.herokuapp.com/api" target="_blank"rel="noopener noreferrer"> here</ a>. Because all the images were saved
+    <a href="https://quiet-taiga-43727.herokuapp.com/api" target="_blank"rel="noopener noreferrer"> here</ a>. All the blog content is parsed with a <a href="https://www.npmjs.com/package/marked" target="_blank"rel="noopener noreferrer">markdown compiler</a> that allows for easier formatting of blog articles with headlines, lists, images, etc. directly from the input field of the admin route. Because all the images were saved
     as binary code, it may take a minute or two for the link to load and a JSON viewer extension is strongly recommended
-    if you will be visiting this link. Testing of
-    the different GET, POST, PATCH and DELETE routes was programmed using mocha.js. MongoDB was selected as the database to store all API data, from
-    blog content to portfolio jpeg files. The administrator authentication was created using a few NPM modules, namely JWT and...I created this page with the
-    intention of incorporating as much as I could of what I have learned so far.</p>
+    if you will be visiting this link. MongoDB was used to store all API data, from
+    blog content to portfolio jpeg files. The administrator authentication was created using a few NPM modules, namely <a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank"rel="noopener noreferrer">JSONWEBTOKEN</a> and <a href="https://www.npmjs.com/package/bcryptjs" target="_blank"rel="noopener noreferrer">BCRYPTJS.</a> I created this page with the
+    intention of incorporating as much as I could of what I have learned so far. This page will be useful for posting new projects and blogs. Future additions will include adding functionality to the "likes" and "share" button on the blogs page and adding video functionality so I can upload videos directly from the admin route of the page. Also,testing of
+    the different GET, POST, PATCH and DELETE routes will be added in the future and will be programmed using mocha.js.</p>
     </div>
     <label htmlFor="about">
         <div className="admin-login" id="about-button" onClick={(e)=>{e.target.innerHTML==="About this page"?e.target.innerHTML="About me":e.target.innerHTML="About this page"}}>
