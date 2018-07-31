@@ -23,7 +23,7 @@ class Blog extends Component{
     renderBlogs(){
 
         return _.map(this.props.blog, blog=>{
-            var subString = blog.text.substr(0, 380)+"...";
+            var subString = blog.text.substr(0, 200)+"...";
 
 
             let src =`data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`

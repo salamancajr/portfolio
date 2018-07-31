@@ -715,6 +715,8 @@ a:hover {
     padding: 3rem 0;
     padding-bottom: 8rem;
     max-width: 60rem; }
+    .blog-story__text img {
+      max-width: 100%; }
     .blog-story__text p {
       max-width: 100%; }
   @media (max-width: 75em) {

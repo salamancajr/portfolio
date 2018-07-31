@@ -4,7 +4,7 @@
     height:100%;
     width:80%;
     background:white;
-     margin:auto;
+    margin:auto;
 
 
     &__heading{
@@ -33,6 +33,10 @@
         padding:3rem 0;
         padding-bottom:8rem;
         max-width:60rem;
+
+        img{
+            max-width:100%;
+        }
         p{
             //margin:auto;
 
