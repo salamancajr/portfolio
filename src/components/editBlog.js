@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {patchItem} from "../actions"
 import {connect} from "react-redux";
-import _ from "lodash";
 
 class EditBlog extends Component{
 
@@ -18,7 +17,6 @@ class EditBlog extends Component{
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps', nextProps);
 
         if (nextProps.name==="blog"){
             this.setState({

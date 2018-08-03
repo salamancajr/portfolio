@@ -7,7 +7,6 @@ import {Link} from "react-router-dom";
 import ProjectList from "./admin-project-list";
 import BlogList from "./admin-blog-list";
 import EditBlog from "./editBlog";
-import _ from "lodash";
 
 class Admin extends Component {
 
@@ -47,7 +46,7 @@ class Admin extends Component {
                                 <span className="pointer" style={{color:this.props.adminChart==="blog"?"#007bff":""}} id="projects" onClick={(e)=>this.props.handleAdminChart(e)}>Projects</span>
                                 /
                                 <span className="pointer" style={{color:this.props.adminChart==="projects"?"#007bff":""}}id="blog" onClick={(e)=>this.props.handleAdminChart(e)}>Blog</span>
-                                {this.props.adminChart==="blog"?<Link style={{float:"right"}}to="/NewBlogEntry"><i class="fas fa-plus"></i></Link>:<Link style={{float:"right"}}to="/NewProject"><i class="fas fa-plus"></i></Link>}
+                                {this.props.adminChart==="blog"?<Link style={{float:"right"}}to="/NewBlogEntry"><i className="fas fa-plus"></i></Link>:<Link style={{float:"right"}}to="/NewProject"><i className="fas fa-plus"></i></Link>}
                                 </th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -59,7 +58,7 @@ class Admin extends Component {
 
                     <EditBlog
                         name={this.props.adminChart}
-                        item={this.props.adminChart=="blog"?this.props.selectedBlog._id:this.props.selectedProject._id}
+                        item={this.props.adminChart==="blog"?this.props.selectedBlog._id:this.props.selectedProject._id}
                      />
 
                 </div>
@@ -70,7 +69,6 @@ class Admin extends Component {
     }
 
 function mapStateToProps(state){
-    console.log("check", state.editName);
 
     return {
         selectedBlog:state.selectedBlog,

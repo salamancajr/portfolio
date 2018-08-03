@@ -18,10 +18,9 @@ handleClick(e){
 }
     renderBlogList(){
         return _.map(this.props.blog, blog=>{
-            console.log("blog", blog);
 
             return (
-                <tr>
+                <tr key={blog._id}>
                     <th>{blog.title}</th>
                     <th>
 

@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import Navbar from "./navbar";
-import {fetchBlog} from "../actions";
+import {fetchBlog, likedBlog, selectedBlog} from "../actions";
 import {connect} from "react-redux";
 import _ from "lodash";
-import {selectedBlog} from "../actions";
-import {Link} from 'react-router-dom';
 
 class Blog extends Component{
 
@@ -13,11 +11,14 @@ class Blog extends Component{
     }
 
     goToBlog(e){
-        console.log("id", e.target.id);
 
         this.props.selectedBlog(e.target.id, ()=>{
            this.props.history.push("/BlogEntry")
         })
+    }
+
+    handleClickLike(e){
+        this.props.likedBlog(e.target.id)
     }
 
     renderBlogs(){
@@ -28,7 +29,7 @@ class Blog extends Component{
 
             let src =`data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`
             return (
-                    <div  className="blog-entry">
+                    <div key={blog._id} className="blog-entry">
                         <div className="blog-entry__header">
                             <div className="blog-entry__header--column-1">
 
@@ -38,16 +39,18 @@ class Blog extends Component{
                             </div>
                             <div className="blog-entry__header--column-2">
                                 <div className="blog-entry__icon">
-                                    <i className="far fa-star"></i>
+                                    <i id={blog._id} className="far fa-star pointer" onClick={this.handleClickLike.bind(this)}></i>
                                 </div>
                                 <div className="blog-entry__icon">
 
-                                    <i className="fas fa-share"></i>
+                                    <a href={`https://twitter.com/intent/tweet?text=Visit https://www.georgesalamanca.com/BlogEntry?${blog._id} to read more about ${blog.title}`} target="_blank">
+                                        <i className="fas fa-share pointer" ></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
-                        <img className="blog-entry__img" src={src}>
+                        <img className="blog-entry__img" src={src} alt={blog.title}>
 
                         </img>
                         <div className="blog-entry__snippet">
@@ -80,4 +83,4 @@ function mapStateToProps(state){
 
 }
 
-export default connect(mapStateToProps, {fetchBlog, selectedBlog})(Blog);
+export default connect(mapStateToProps, {fetchBlog, likedBlog, selectedBlog})(Blog);

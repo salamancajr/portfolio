@@ -6,7 +6,7 @@ export default function (){
     return(
     <nav className="ml-auto navbar navbar-expand-sm navbar-dark rounded-0 navy">
         <div className="ml-auto container">
-            <h1 className="navbar-brand" href="#">George's Web Developer Page</h1>
+            <h1 className="navbar-brand" style={{opacity:window.location.pathname=="/"?0:1}}href="#">George's Web Developer Page</h1>
             <div className="ml-auto">
                 <button className="ml-auto navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                     Menu

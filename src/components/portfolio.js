@@ -4,7 +4,6 @@ import Description from "./description";
 import _ from 'lodash';
 import {fetchProjects } from "../actions";
 import {connect} from 'react-redux';
-import {Link} from "react-router-dom";
 
 let pickedProject;
 
@@ -12,8 +11,7 @@ class Portfolio extends Component {
     constructor(props){
         super(props);
         this.state = {
-            down:0,
-            up:0
+            shift:0
         }
     }
 
@@ -29,35 +27,38 @@ class Portfolio extends Component {
         });
     }
 
-    handleClick2(){
+    handleClickDown(){
         var a = document.getElementsByClassName("projects-container__project");
         var b = document.getElementsByClassName("projects-container")[0];
-        console.log("grid",b);
+
 
         _.map(a, (project)=>{
-            console.log(project.scrollHeight);
 
             this.setState({
 
-                up:this.state.up-b.offsetHeight
-            }, ()=>{project.style.top = +this.state.up+"px"})
+                shift:this.state.shift-b.offsetHeight
+            }, ()=>{
+                project.style.top = +this.state.shift+"px"
+             })
 
 
         });
     }
-        handleClick3(){
+        handleClickUp(){
         var a = document.getElementsByClassName("projects-container__project");
         var b = document.getElementsByClassName("projects-container")[0];
-
+        if(this.state.shift!==0){
         _.map(a, (project)=>{
+
             this.setState({
 
-                up:this.state.up+b.offsetHeight
-            }, ()=>{project.style.top = +this.state.up+"px"})
+                shift:this.state.shift+b.offsetHeight
+            }, ()=>{project.style.top = +this.state.shift+"px"})
 
 
 
         });
+        }
     }
 
     renderProjects(){
@@ -93,7 +94,7 @@ class Portfolio extends Component {
             <hr />
             <p>Here you will find a variety of projects I have undertaken.</p>
             <hr />
-            <a className="up"onClick={this.handleClick3.bind(this)}><i class="fas fa-chevron-up"></i></a>
+            <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift"></i></a>
              <div className="projects-container">
                 <input type="checkbox" className="projects-container__checkbox" id="chex" />
                 {this.renderProjects()}
@@ -105,7 +106,7 @@ class Portfolio extends Component {
 
 
             </div>
-            <a className="down" onClick={this.handleClick2.bind(this)}><i class="fas fa-chevron-down"></i></a>
+            <a className="down" onClick={this.handleClickDown.bind(this)}><i className="fas fa-chevron-down shift"></i></a>
         </div>
 
     </div>);

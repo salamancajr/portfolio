@@ -1,17 +1,16 @@
 import React, {Component} from "react";
 import Navbar from "./navbar";
 import {loginAuth} from "../actions";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux"
+import {connect} from "react-redux";
 
 class Login extends Component{
     componentWillMount(){
-        localStorage.getItem("token")?this.props.history.push("/Admin"):""
+        localStorage.getItem("token")?this.props.history.push("/Admin"):"";
     }
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.loginAuth(()=>this.props.history.push("/Admin"))
+        this.props.loginAuth(()=>this.props.history.push("/Admin"));
     }
 
     render(){
@@ -29,8 +28,8 @@ class Login extends Component{
                 <input className="admin-login"type="submit"/>
                 </form>
             </div>
-        </div>)
+        </div>);
     }
 }
 
-export default connect(null, {loginAuth})(Login)
+export default connect(null, {loginAuth})(Login);

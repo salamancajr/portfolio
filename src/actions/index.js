@@ -14,14 +14,13 @@ export const UPDATED_PROJECTS = "updated_projects";
 export const LOGIN_AUTH = "login_auth";
 export const AUTHENTICATE_ROUTE = "authenticate_route";
 export const ADMIN_LOGOUT = "admin_logout";
+export const LIKED = "LIKED";
 const PROJECTS_URL = "https://quiet-taiga-43727.herokuapp.com/api";
 const BLOG_URL = "https://quiet-taiga-43727.herokuapp.com/blog";
 const LOGIN_URL = "https://quiet-taiga-43727.herokuapp.com/signin";
 const SIGNUP_URL = "https://quiet-taiga-43727.herokuapp.com/signup";
 const AUTHENTICATE_URL = "https://quiet-taiga-43727.herokuapp.com/authenticate";
 const SIGN_OUT = "https://quiet-taiga-43727.herokuapp.com/token";
-
-
 
 export function fetchProjects() {
     const request = axios.get(PROJECTS_URL);
@@ -240,4 +239,8 @@ export function adminLogout(cb){
         type:ADMIN_LOGOUT,
         payload:"logged out"
     }
+}
+
+export function likedBlog(){
+    console.log("hello")
 }

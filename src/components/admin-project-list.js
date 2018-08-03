@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {deleteProject, handleEdit, selectedProject} from "../actions";
-import {Link} from "react-router-dom";
+import {deleteProject, selectedProject} from "../actions";
 import _ from "lodash";
 
 class ProjectList extends Component{
@@ -13,10 +12,9 @@ callToDeleteProject(e){
 
     renderProjectList(e){
         return _.map(this.props.projects, project=>{
-            console.log("projectingBaby", project._id);
 
             return (
-                <tr>
+                <tr key={project._id}>
                     <th>{project.title}</th>
                     <th
 

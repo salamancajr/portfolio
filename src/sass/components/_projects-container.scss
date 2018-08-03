@@ -1,9 +1,10 @@
 .projects-container {
+
     display: grid;
     height: 90%;
     position: relative;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
+        @include gridRows;
     grid-column-gap: 30px; //grid-row-gap: 30px;
     transition: all .5s;
     overflow: hidden;
@@ -21,6 +22,7 @@
     -ms-animation-fill-mode: forwards;
     /* IE 10+ */
     animation-fill-mode: forwards;
+
     &>a {
         -webkit-animation-fill-mode: forwards;
         /* Chrome 16+, Safari 4+ */
@@ -40,7 +42,7 @@
     }
     @include respond(tab-port) {
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
+        @include gridRows;
         min-width: 50rem;
         max-width: 50rem;
         min-height: 37rem;
@@ -48,7 +50,7 @@
     }
     @include respond(phone) {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%; // grid-row-gap: 20%;
+        @include gridRows;
         min-width: 40rem;
         max-width: 40rem;
         min-height: 45rem;
@@ -63,11 +65,11 @@
         max-height: 43rem;
     }
     @include respond(big-desktop) {
-        grid-template-rows: 25% 25% 25% 25%;
+        @include gridRows;
         min-width: 70rem;
         max-width: 70rem;
-        min-height: 50rem;
-        max-height: 50rem;
+        min-height: 40rem;
+        max-height: 40rem;
     }
     &__label {
         cursor: pointer;
@@ -113,22 +115,33 @@
             border-radius: 5px;
         }
     }
-    .up {
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: purple;
-        color: white;
-        z-index: 100000000000;
-    }
-    .down {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: purple;
-        color: white;
-        z-index: 100000000000;
-    }
+
+    // .up {
+    //     position: absolute;
+    //     bottom: 100%;
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     background: purple;
+    //     color: white;
+    //     z-index: 100000000000;
+    // }
+    // .down {
+    //     position: absolute;
+    //     top: 100%;
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     background: purple;
+    //     color: white;
+    //     z-index: 100000000000;
+
+    // }
+
+    // .shift{
+    //     color: red;
+    // }
+}
+
+.shift{
+    color:purple;
+    font-size:2rem;
 }

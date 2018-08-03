@@ -28,6 +28,16 @@
         opacity: 1;
     }
 }
+@keyframes slideUpHome {
+    0% {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0rem) scale(1.2);
+        opacity: 1;
+    }
+}
 
 .moveRight {
     animation: moveToRight 2s;

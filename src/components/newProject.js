@@ -54,7 +54,7 @@ class NewProject extends Component{
 
                     <Field label="link" name="link" type="text" component={this.renderField}/>
                     <label className="admin-login" htmlFor="upload">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i className="fas fa-cloud-upload-alt"></i>
                         upload
                     </label>
                     <input type="file"  onChange ={this.fileChangedHandler} name="" label="upload" id="upload"/>

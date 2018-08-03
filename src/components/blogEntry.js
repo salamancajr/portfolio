@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-// import {selectedBlog} from "../actions";
+import {selectedBlog} from "../actions";
 import Navbar from "./navbar"
 import {connect} from "react-redux";
 import marked from "marked";
@@ -9,15 +9,24 @@ let vals="";
 let src="";
 class BlogEntry extends Component{
 
-    componentWillMount(){
-        try{console.log(this.props.selectedBlog.img.data==="")}
-        catch(e){this.props.history.push("/Blog")}
 
-    }
+    componentDidMount(){
+
+        if (window.location.search.slice(1)){
+          this.props.selectedBlog(window.location.search.slice(1), ()=>{console.log("done")})
+
+        }
+        else{
+            try{console.log(this.props.selectBlog.img.data==="")}
+            catch(e){this.props.history.push("/Blog")}
+        }
+
+
+   }
     render(){
         try{
-            selected = this.props.selectedBlog;
-            vals = new Buffer(selected.img.data).toString('base64'),
+            selected = this.props.selectBlog;
+            vals = new Buffer(selected.img.data).toString('base64');
             src = `data:image/jpeg;base64, ${vals}`;
 
             return (
@@ -26,15 +35,10 @@ class BlogEntry extends Component{
                 <div className="blog-story">
                     <h2 className=" blog-story__heading">{selected.title?selected.title:""}</h2>
                     <div style={{background:"purple"}}>
-                    <img className=" blog-story__img" src={src?src:""}/>
+                    <img className=" blog-story__img" src={src?src:""} alt={selected.title}/>
                     </div >
                     <div className=" blog-story__text" dangerouslySetInnerHTML={{__html: marked(selected.text)}}>
                     </div>
-                    {/* <p className=" blog-story__text">{selected.text}</p> */}
-                    {/* <div className=" blog-story__text" id="content"> */}
-                    {/* {selected.text} */}
-                    {/* {marked('# Marked in the browser\n\nRendered by **marked**.')} */}
-                    {/* </div> */}
                 </div>
                 <Navbar/>
                 </div>
@@ -48,10 +52,9 @@ class BlogEntry extends Component{
     }
 }
 function mapStateToProps(state){
-    console.log(state.selectedBlog);
 
     return {
-        selectedBlog:state.selectedBlog
+        selectBlog:state.selectedBlog
     };
 }
-export default connect(mapStateToProps, {})(BlogEntry)
+export default connect(mapStateToProps, {selectedBlog})(BlogEntry)

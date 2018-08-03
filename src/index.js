@@ -4,7 +4,7 @@ import './css/style.css';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './components/home';
 import About from "./components/about";
 import Contact from "./components/contact";
@@ -19,26 +19,7 @@ import EditProject from "./components/editProject";
 import reducers from './reducers';
 import promise from "redux-promise";
 
-// const fakeAuth = {
-//   isAuthenticated:false,
-//   authenticate(cb){
-//     this.isAuthenticated = true
-//     setTimeout(cb, 100)//fake async
-//   },
-//   signout(cb){
-//     this.isAuthenticated = false
-//     setTimeout(cb, 100)
-//   }
-// }
-
-
-
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-// const PrivateRoute = ({component:Component, ...rest})=>(
-//   <Route {...rest} render={()=>(
-//     fakeAuth.isAuthenticated === true?<Component {...props}/>:<Redirect to="/Login"/>
-//   )}/>
-// )
 
 ReactDOM.render(
 

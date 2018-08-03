@@ -20,7 +20,7 @@ html {
 }
 
 .body {
-    min-height: 650px;
+    min-height: 680px;
     @include respond (tab-land){
         min-height: 750px;
     }
@@ -29,9 +29,9 @@ html {
     }
 
     @include respond (big-desktop){
-        min-height: 1200px;
+        min-height: 970px;
     }
-    background-image: linear-gradient( to right bottom, rgba(198, 221, 194, 0.678), rgba(248, 252, 251, 0.822)), url(../img/desk.jpeg);
+    background-image: linear-gradient( to right bottom, rgba(229, 241, 227, 0.678), rgba(248, 252, 251, 0.822)), url(../img/desk.jpeg);
     background-size: cover;
     background-position: top;
     position: absolute;

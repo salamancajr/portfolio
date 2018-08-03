@@ -53,7 +53,7 @@ class NewBlogEntry extends Component{
                     <Field label="link" name="likes" type="number" component={this.renderField}/>
 
                     <label className="admin-login" htmlFor="upload">
-                        <i class="fas fa-cloud-upload-alt"></i>
+                        <i className="fas fa-cloud-upload-alt"></i>
                         upload
                     </label>
                     <input type="file"  onChange ={this.fileChangedHandler} name="blogImg" label="blogupload" id="blogupload"/>
