@@ -143,8 +143,8 @@ app.patch("/api/:id", authenticate, (req, res)=>{
     },
     {
         $set:req.body
-    }, {new:true}).then(()=>{
-        res.send(data)
+    }).then(()=>{
+        Blog.find({}).then(data=>res.send(data))
     })
 })
 
@@ -235,9 +235,9 @@ app.patch("/blog/:id", authenticate, (req, res)=>{
                         $set:req.body
                 }
             }
-            return Blog.findOneAndUpdate({_id}, check, {new:true})
-        }).then((data)=>{
-                res.send(data)
+            return Blog.findOneAndUpdate({_id}, check)
+        }).then(()=>{
+                Blog.find({}).then(data=>res.send(data))
     })
 })
 
