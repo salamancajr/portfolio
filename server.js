@@ -215,7 +215,7 @@ app.patch("/blog/:id", authenticate, (req, res)=>{
     let _id = req.params.id;
         Blog.findById({_id}).then((data)=>{
             if(req.body.likes){
-                if(data.likes.indexOf(req.body.likes)>-1){
+                if(data.likes.indexOf(req.headers["x-forwarded-for"])>-1){
                     check = {
                         $pull:{
                             likes:{$in:req.headers["x-forwarded-for"]}
