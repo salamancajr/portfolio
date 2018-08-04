@@ -218,14 +218,14 @@ app.patch("/blog/:id", authenticate, (req, res)=>{
                 if(data.likes.indexOf(req.body.likes)>-1){
                     check = {
                         $pull:{
-                            likes:req.body.likes
+                            likes:req.headers["x-forwarded-for"]
                          }
                     }
                 }
                 else{
                     check = {
                         $push:{
-                            likes:req.body.likes
+                            likes:req.headers["x-forwarded-for"]
                         }
                     }
                 }
