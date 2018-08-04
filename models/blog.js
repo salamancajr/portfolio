@@ -20,6 +20,10 @@ var Blog = mongoose.model("Blog", {
     likes:{
         type:Array,
         default:null
+    },
+    time:{
+        type:String,
+        required:true
     }
 
 })

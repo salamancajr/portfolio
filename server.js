@@ -4,14 +4,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const {ObjectID} = require("mongodb")
 const app = express();
+const moment = require("moment");
 const port = process.env.PORT;
-var {Entry} = require("./models/entry.js")
-var {Blog} = require("./models/blog")
-var {User} = require("./models/users.js")
+let {Entry} = require("./models/entry.js")
+let {Blog} = require("./models/blog")
+let {User} = require("./models/users.js")
 const {authenticate} = require("./middleware/authenticate");
 const bodyParser = require('body-parser');
-var multer = require('multer')
-var fs = require("fs");
+let multer = require('multer')
+let fs = require("fs");
 const _ = require("lodash");
 
 const storage = multer.diskStorage({
@@ -29,7 +30,7 @@ const storage = multer.diskStorage({
     }
 })
 
-var upload = multer({
+let upload = multer({
     storage: storage
 })
 
@@ -72,13 +73,13 @@ app.get("/", (req, res) => {
 //////////////upload photo and descriptions///////////////////////
 
 app.post("/api", upload.single("avatar"), authenticate, (req, res) => {
-// var imageUrl = `${req.protocol}s://${req.get('host')}/`;
+// let imageUrl = `${req.protocol}s://${req.get('host')}/`;
 
-var data = fs.readFileSync(req.file.path)
-var contentType = "image/png"
+let data = fs.readFileSync(req.file.path)
+let contentType = "image/png"
 
 
-    var entry = new Entry({
+    let entry = new Entry({
         title:req.body.title,
         link:req.body.link,
         githubLink:req.body.githubLink,
@@ -135,7 +136,7 @@ app.delete("/api/:id", authenticate, (req, res) => {
 
 //////////update project/////////////////////////////////
 app.patch("/api/:id", authenticate, (req, res)=>{
-    var _id = req.params.id;
+    let _id = req.params.id;
 
 
     Entry.findOneAndUpdate({
@@ -179,14 +180,15 @@ app.delete("/blog/:id", authenticate, (req, res) => {
 app.post("/blog", upload.single("blogImg"), (req, res)=>{
 
 
-    var data = fs.readFileSync(req.file.path)
-var contentType = "image/png"
-console.log(req.file);
+    let data = fs.readFileSync(req.file.path)
+    let contentType = "image/png";
+    let time = moment().format("MMMM Do YYYY, h:mm:ss a");
 
-    var blog = new Blog({
+    let blog = new Blog({
         title:req.body.title,
         text:req.body.text,
         likes:req.body.likes,
+        time,
         img:{data, contentType}
     })
 
@@ -244,9 +246,9 @@ app.patch("/blog/:id", authenticate, (req, res)=>{
 app.post("/signup", async (req, res)=>{
 
     try{
-        var body = _.pick(req.body, ["email", "password"])
+        let body = _.pick(req.body, ["email", "password"])
 
-        var user = new User(body);
+        let user = new User(body);
 
         await user.save()
         const token = await user.generateAuthToken();
@@ -264,8 +266,8 @@ app.post("/signup", async (req, res)=>{
 app.post("/signin", async (req, res)=>{
 
     try{
-        var email = req.body.email;
-        var password = req.body.password;
+        let email = req.body.email;
+        let password = req.body.password;
         const user = await User.findByCredentials(email, password);
         const token = await user.generateAuthToken();
         res.header('Access-Control-Expose-Headers', "x-auth");
