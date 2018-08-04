@@ -56,7 +56,7 @@ app.use(function (err, req, res, next) {
   })
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI, (e) => {
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
     if (!e) {
         console.log('Connected to mongo');
 
@@ -136,18 +136,15 @@ app.delete("/api/:id", authenticate, (req, res) => {
 //////////update project/////////////////////////////////
 app.patch("/api/:id", authenticate, (req, res)=>{
     var _id = req.params.id;
-    console.log(req.body);
+
 
     Entry.findOneAndUpdate({
         _id
     },
     {
         $set:req.body
-    }).then(()=>{
-
-        Entry.find({}).then((data)=>{
-            res.send(data)
-        })
+    }, {new:true}).then(()=>{
+        res.send(data)
     })
 })
 
@@ -179,7 +176,7 @@ app.delete("/blog/:id", authenticate, (req, res) => {
 })
 
 //////////Blog Post Route/////////////////
-app.post("/blog", upload.single("blogImg"), authenticate, (req, res)=>{
+app.post("/blog", upload.single("blogImg"), (req, res)=>{
 
 
     var data = fs.readFileSync(req.file.path)
@@ -214,18 +211,33 @@ app.get("/blog/:id", (req, res) => {
 })
 ////////////UPDATE BLOG////////////////////////
 app.patch("/blog/:id", authenticate, (req, res)=>{
-    var _id = req.params.id;
-    console.log(req.body);
-
-    Blog.findOneAndUpdate({
-        _id
-    },
-    {
-        $set:req.body
-    }).then(()=>{
-        Blog.find({}).then((data)=>{
-            res.send(data)
-        })
+    let check;
+    let _id = req.params.id;
+        Blog.findById({_id}).then((data)=>{
+            if(req.body.likes){
+                if(data.likes.indexOf(req.body.likes)>-1){
+                    check = {
+                        $pull:{
+                            likes:req.body.likes
+                         }
+                    }
+                }
+                else{
+                    check = {
+                        $push:{
+                            likes:req.body.likes
+                        }
+                    }
+                }
+            }
+            else{
+                check = {
+                        $set:req.body
+                }
+            }
+            return Blog.findOneAndUpdate({_id}, check, {new:true})
+        }).then((data)=>{
+                res.send(data)
     })
 })
 
@@ -263,14 +275,6 @@ app.post("/signin", async (req, res)=>{
         res.status(400).send();
 
     }
-
-
-    // if(req.body.email==="salamancajr@gmail.com" && req.body.password==="hellokitty123"){
-    //     res.send({token:"1234567"})
-    // }
-    // else{
-    //     res.status(500).send("wrong email or password")
-    // }
 })
 
 app.get("/authenticate", authenticate, (req, res)=>{

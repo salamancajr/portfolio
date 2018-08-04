@@ -18,9 +18,8 @@ var Blog = mongoose.model("Blog", {
 
     },
     likes:{
-        type:Number,
-        default:0,
-        required:true
+        type:Array,
+        default:null
     }
 
 })
