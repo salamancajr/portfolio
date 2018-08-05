@@ -145,7 +145,7 @@ app.patch("/api/:id", authenticate, (req, res)=>{
     {
         $set:req.body
     }).then(()=>{
-        Blog.find({}).then(data=>res.send(data))
+        Entry.find({}).then(data=>res.send(data))
     })
 })
 
