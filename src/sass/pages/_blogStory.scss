@@ -24,6 +24,10 @@
         height:60vh;
         margin:auto;
     }
+    &__time{
+        font-weight:bold;
+        color:grey;
+    }
     &__text{
         text-align: left;
 
@@ -41,6 +45,9 @@
             //margin:auto;
 
             max-width:100%;
+        }
+        a{
+            color:blue;
         }
     }
     @include respond(tab-land){

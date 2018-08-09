@@ -4,7 +4,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="body">
+      <div className="body" style={{minHeight:"500px"}}>
         <Navbar />
         <div className="body__container-row">
           <div className="column-1"></div>

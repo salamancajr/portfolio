@@ -1,0 +1,30 @@
+.warning{
+    color:red;
+    background: white;
+    border:4px solid red !important;
+    border-radius: 1rem;
+    position:absolute;
+    top:50%;
+    left:50%;
+    z-index:3000;
+    padding:1rem 2rem !important;
+    text-align:center;
+    transform: translate(-50%, -50%);
+    display:none;
+    h3{
+        font-size: 1rem;
+    }
+
+    &__button{
+        margin-top: .5rem;
+        background:red;
+        color:white;
+        border: none;
+        margin-right:3px;
+    }
+    &__span{
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+    }
+}

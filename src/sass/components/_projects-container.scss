@@ -1,5 +1,5 @@
 .projects-container {
-
+    //margin-top:-4rem;
     display: grid;
     height: 90%;
     position: relative;
@@ -115,33 +115,12 @@
             border-radius: 5px;
         }
     }
-
-    // .up {
-    //     position: absolute;
-    //     bottom: 100%;
-    //     left: 50%;
-    //     transform: translateX(-50%);
-    //     background: purple;
-    //     color: white;
-    //     z-index: 100000000000;
-    // }
-    // .down {
-    //     position: absolute;
-    //     top: 100%;
-    //     left: 50%;
-    //     transform: translateX(-50%);
-    //     background: purple;
-    //     color: white;
-    //     z-index: 100000000000;
-
-    // }
-
-    // .shift{
-    //     color: red;
-    // }
 }
 
 .shift{
     color:purple;
     font-size:2rem;
+}
+.star{
+    color:yellow !important;
 }

@@ -49,9 +49,6 @@ class NewBlogEntry extends Component{
                     <Field label="title" name="title" type="text" component={this.renderField}/>
 
                     <textarea label="text" name="text" type="textarea" rows="10"cols="100"/>
-
-                    <Field label="link" name="likes" type="number" component={this.renderField}/>
-
                     <label className="admin-login" htmlFor="upload">
                         <i className="fas fa-cloud-upload-alt"></i>
                         upload

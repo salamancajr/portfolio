@@ -1,11 +1,10 @@
 import React, {Component} from "react";
 import Navbar from "./navbar";
-import {fetchBlog, likedBlog, selectedBlog} from "../actions";
+import {fetchBlog, patchItem, selectedBlog} from "../actions";
 import {connect} from "react-redux";
 import _ from "lodash";
 
 class Blog extends Component{
-
     componentDidMount(){
         this.props.fetchBlog();
     }
@@ -18,11 +17,11 @@ class Blog extends Component{
     }
 
     handleClickLike(e){
-        this.props.likedBlog(e.target.id)
+        this.props.patchItem(e)
     }
 
     renderBlogs(){
-
+    try{
         return _.map(this.props.blog, blog=>{
             var subString = blog.text.substr(0, 200)+"...";
 
@@ -35,16 +34,17 @@ class Blog extends Component{
 
                                 <h3 id={blog._id} onClick={this.goToBlog.bind(this)}>{blog.title}</h3>
 
-                                <span className="blog-entry__time">12:00pm</span>
+                                <span className="blog-entry__time">Created {blog.time?blog.time:""}</span>
                             </div>
                             <div className="blog-entry__header--column-2">
-                                <div className="blog-entry__icon">
-                                    <i id={blog._id} className="far fa-star pointer" onClick={this.handleClickLike.bind(this)}></i>
+                                <div id={blog._id} className="blog-entry__icon">
+                                    <i id={blog._id} className="fas fa-star pointer star" onClick={this.handleClickLike.bind(this)}></i>
+                                    <span>{blog.likes.length}</span>
                                 </div>
                                 <div className="blog-entry__icon">
 
                                     <a href={`https://twitter.com/intent/tweet?text=Visit https://www.georgesalamanca.com/BlogEntry?${blog._id} to read more about ${blog.title}`} target="_blank">
-                                        <i className="fas fa-share pointer" ></i>
+                                        <i className="fas fa-share pointer share" style={{color:"blue"}}></i>
                                     </a>
                                 </div>
                             </div>
@@ -62,6 +62,10 @@ class Blog extends Component{
 
             )
         })
+    }
+    catch(e){
+        return <div>Loading...</div>
+    }
     }
 
 render(){
@@ -83,4 +87,4 @@ function mapStateToProps(state){
 
 }
 
-export default connect(mapStateToProps, {fetchBlog, likedBlog, selectedBlog})(Blog);
+export default connect(mapStateToProps, {fetchBlog, patchItem, selectedBlog})(Blog);

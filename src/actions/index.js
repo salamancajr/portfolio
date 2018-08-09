@@ -9,12 +9,11 @@ export const DELETE_BLOG = "delete_blog";
 export const ADMIN_CHART = "admin_chart";
 export const ADD_BLOG = "add_blog";
 export const EDIT_NAME = "edit_name";
-export const UPDATED_BLOG = "upadated_blog";
+export const UPDATED_BLOG = "updated_blog";
 export const UPDATED_PROJECTS = "updated_projects";
 export const LOGIN_AUTH = "login_auth";
 export const AUTHENTICATE_ROUTE = "authenticate_route";
 export const ADMIN_LOGOUT = "admin_logout";
-export const LIKED = "LIKED";
 const PROJECTS_URL = "https://quiet-taiga-43727.herokuapp.com/api";
 const BLOG_URL = "https://quiet-taiga-43727.herokuapp.com/blog";
 const LOGIN_URL = "https://quiet-taiga-43727.herokuapp.com/signin";
@@ -23,8 +22,12 @@ const AUTHENTICATE_URL = "https://quiet-taiga-43727.herokuapp.com/authenticate";
 const SIGN_OUT = "https://quiet-taiga-43727.herokuapp.com/token";
 
 export function fetchProjects() {
-    const request = axios.get(PROJECTS_URL);
-     return {
+    const request = axios.get(PROJECTS_URL, {
+        onUploadProgress: progressEvent => {
+            console.log(progressEvent.loaded / progressEvent.total)
+        }
+    });
+    return {
         type: FETCH_PROJECTS,
         payload: request
     };
@@ -55,9 +58,9 @@ export function addProject(values, callback) {
         url: PROJECTS_URL,
         data: bodyFormData,
         headers: {
-                'Content-Type': 'multipart/form-data',
-                'x-auth': localStorage.getItem("token")
-            }
+            'Content-Type': 'multipart/form-data',
+            'x-auth': localStorage.getItem("token")
+        }
 
     }).then(() => {
         callback()
@@ -105,7 +108,7 @@ export function deleteBlog(id) {
 }
 
 export function handleAdminChart(e) {
-
+    console.log(e.target.id)
     return {
         type: ADMIN_CHART,
         payload: e.target.id
@@ -121,11 +124,13 @@ export function addBlog(values, callback) {
     for (var pair of bodyFormData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
     }
-    const request = axios.post(BLOG_URL,bodyFormData,{headers: {'x-auth': localStorage.getItem("token")}
+    const request = axios.post(BLOG_URL, bodyFormData, {
+        headers: {
+            'x-auth': localStorage.getItem("token")
+        }
     }).then(() => {
         callback()
     });
-
 
     return {
         type: ADD_BLOG,
@@ -141,7 +146,7 @@ export function selectedProject(id, callback) {
 
         callback()
     })
-console.log("req", request)
+    console.log("req", request)
     return {
         type: SELECTED_PROJECT,
         payload: request
@@ -150,23 +155,49 @@ console.log("req", request)
 }
 
 export function patchItem(e) {
-    var form = document.getElementById(e.target.id)
 
-    var bodyFormData = new FormData(form);
-    var key = [];
-    for (var pair of bodyFormData.entries()) {
+    if (e.target.id == "blogForm" || e.target.id == "projectsForm") {
+        var form = document.getElementById(e.target.id)
+        var bodyFormData = new FormData(form);
+        var key = [];
+        for (var pair of bodyFormData.entries()) {
+            key.push(pair[1]);
+        }
+        var body = {
+            [key[0]]: key[1]
+        };
+        if (e.target.id === "blogForm") {
 
-        key.push(pair[1]);
-    }
-     var body = {
-        [key[0]]: key[1]
-    };
+            const requestBlog = axios.patch(`${BLOG_URL}/${e.target.name}`, body, {
+                headers: {
+                    'x-auth': localStorage.getItem("token")
+                }
+            })
 
-console.log("testin 7/27", e.target.name)
+            return {
+                type: UPDATED_BLOG,
+                payload: requestBlog
+            }
+        } else {
 
-    if (e.target.id === "blogForm") {
 
-        const request = axios.patch(`${BLOG_URL}/${e.target.name}`, body, {
+            const requestProjects = axios.patch(`${PROJECTS_URL}/${e.target.name}`, body, {
+                headers: {
+                    'x-auth': localStorage.getItem("token")
+                }
+            })
+
+
+            return {
+                type: UPDATED_PROJECTS,
+                payload: requestProjects
+            }
+        }
+    } else {
+
+        const request = axios.patch(`${BLOG_URL}/${e.target.id}`, {
+            "likes": "fernando"
+        }, {
             headers: {
                 'x-auth': localStorage.getItem("token")
             }
@@ -174,17 +205,6 @@ console.log("testin 7/27", e.target.name)
 
         return {
             type: UPDATED_BLOG,
-            payload: request
-        }
-    } else {
-        const request = axios.patch(`${PROJECTS_URL}/${e.target.name}`, body, {
-            headers: {
-                'x-auth': localStorage.getItem("token")
-            }
-        })
-
-        return {
-            type: UPDATED_PROJECTS,
             payload: request
         }
     }
@@ -205,7 +225,9 @@ export function loginAuth(cb) {
         })
         .then((data) => {
             return localStorage.setItem("token", data.headers["x-auth"])
-        }).then(()=>{cb()});
+        }).then(() => {
+            cb()
+        });
 
     return {
         type: LOGIN_AUTH,
@@ -213,12 +235,16 @@ export function loginAuth(cb) {
     }
 }
 
-export function authenticateRoute(cb){
-    const request = axios.get(AUTHENTICATE_URL, {headers:{"x-auth":localStorage.getItem("token")}}).then((data)=>{
-        console.log("status","OK");
-}, (data)=>{  cb()
-}
-)
+export function authenticateRoute(cb) {
+    const request = axios.get(AUTHENTICATE_URL, {
+        headers: {
+            "x-auth": localStorage.getItem("token")
+        }
+    }).then((data) => {
+        console.log("status", "OK");
+    }, (data) => {
+        cb()
+    })
     console.log('authrequest', request);
     return {
         type: AUTHENTICATE_ROUTE,
@@ -227,20 +253,20 @@ export function authenticateRoute(cb){
 
 }
 
-export function adminLogout(cb){
+export function adminLogout(cb) {
 
-    axios.delete(SIGN_OUT, {headers:{"x-auth":localStorage.getItem("token")}}).then(()=>{
+    axios.delete(SIGN_OUT, {
+        headers: {
+            "x-auth": localStorage.getItem("token")
+        }
+    }).then(() => {
         console.log("logged out")
         cb();
         localStorage.removeItem("token");
     })
 
-    return{
-        type:ADMIN_LOGOUT,
-        payload:"logged out"
+    return {
+        type: ADMIN_LOGOUT,
+        payload: "logged out"
     }
-}
-
-export function likedBlog(){
-    console.log("hello")
 }

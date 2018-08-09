@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from "./navbar";
 import Description from "./description";
-import _ from 'lodash';
+ import _ from 'lodash';
 import {fetchProjects } from "../actions";
 import {connect} from 'react-redux';
 
@@ -69,7 +69,7 @@ class Portfolio extends Component {
             return (
 
                 <a href={"#"} key={project.title} id={project.title} className="projects-container__project" >
-                 <label htmlFor="chex"  className="projects-container__label" onClick={this.handleClick.bind(this)}>
+                 <label for="chex"  className="projects-container__label" onClick={this.handleClick.bind(this)}>
               <img id={project.title} className="projects-container__img" src={src?src:""} alt={project.title}/>
                 <h3 id={project.title} className="projects-container__heading-tertiary">
                 {project.title}
@@ -79,6 +79,7 @@ class Portfolio extends Component {
                  </a>
             );
         });
+
     }
 
 
@@ -89,26 +90,20 @@ class Portfolio extends Component {
 
     <div className="body">
         <Navbar />
-        <div className="body__container-portfolio">
-            <h1> Portfolio Page</h1>
-            <hr />
-            <p>Here you will find a variety of projects I have undertaken.</p>
-            <hr />
-            <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift"></i></a>
-             <div className="projects-container">
-                <input type="checkbox" className="projects-container__checkbox" id="chex" />
-                {this.renderProjects()}
 
-                <Description pickedProject={pickedProject}/>
-
-
-
-
-
+            <div className="body__container-portfolio">
+                <h1> Portfolio Page</h1>
+                <hr />
+                <p>Here you will find a variety of projects I have undertaken.</p>
+                <hr />
+                <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift"></i></a>
+                    <div className="projects-container">
+                        <input type="checkbox" className="projects-container__checkbox" id="chex" />
+                        {this.renderProjects()}
+                        <Description pickedProject={pickedProject}/>
+                    </div>
+                <a className="down" onClick={this.handleClickDown.bind(this)}><i className="fas fa-chevron-down shift"></i></a>
             </div>
-            <a className="down" onClick={this.handleClickDown.bind(this)}><i className="fas fa-chevron-down shift"></i></a>
-        </div>
-
     </div>);
 }
 }

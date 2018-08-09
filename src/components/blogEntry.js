@@ -37,7 +37,8 @@ class BlogEntry extends Component{
                     <div style={{background:"purple"}}>
                     <img className=" blog-story__img" src={src?src:""} alt={selected.title}/>
                     </div >
-                    <div className=" blog-story__text" dangerouslySetInnerHTML={{__html: marked(selected.text)}}>
+                    <span className="blog-story__time">{selected.time}</span>
+                    <div className="blog-story__text" dangerouslySetInnerHTML={{__html: marked(selected.text)}}>
                     </div>
                 </div>
                 <Navbar/>

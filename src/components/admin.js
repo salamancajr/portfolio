@@ -39,7 +39,7 @@ class Admin extends Component {
             <div className="body">
                 <Navbar />
                 <div className="body__container-portfolio">
-                     <table className="projects-table">
+                     <table id="fetchTable"className="projects-table">
                         <thead className="projects-table__head">
                             <tr>
                             <th>
@@ -55,7 +55,6 @@ class Admin extends Component {
                          {this.props.adminChart==="blog"?<BlogList blog={this.props.blog} link={this.props.history}/>:<ProjectList projects={this.props.projects} link={this.props.history.push}/>}
 
                     </table>
-
                     <EditBlog
                         name={this.props.adminChart}
                         item={this.props.adminChart==="blog"?this.props.selectedBlog._id:this.props.selectedProject._id}
@@ -69,6 +68,8 @@ class Admin extends Component {
     }
 
 function mapStateToProps(state){
+    console.log("shitting",state.adminChart)
+    console.log('crapping', state.projects);
 
     return {
         selectedBlog:state.selectedBlog,

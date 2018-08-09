@@ -123,19 +123,25 @@
     &__icon {
         height: 50%;
         position: relative;
-        i {
-            position: absolute;
-            display: block;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
+        display:flex;
+        flex-direction:row;
+        text-align:center;
+        align-items:center;
+        justify-content:center;
+        .star{
+
+             text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         }
+         span{
+             font-weight:bold;
+             margin-left:.3rem;
+
+         }
     }
     &__time {
         font-weight: 700;
         color: grey;
-    } // &__likes{
-    // }
+    }
     &__img {
         height: 65%;
         object-fit: cover;

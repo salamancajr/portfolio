@@ -5,7 +5,7 @@ import _ from "lodash";
 
 class ProjectList extends Component{
 
-callToDeleteProject(e){
+callToDelete(e){
 
     this.props.deleteProject(e.target.id)
 }
@@ -34,9 +34,23 @@ callToDeleteProject(e){
                     <th>
                         <i
                         id={project._id}
-                        onClick={(this.callToDeleteProject.bind(this))}
+                        onClick={()=>document.getElementById(`warning${project._id}`).style.display = "block"}
                         className="fas fa-trash pointer">
                         </i>
+                    </th>
+                    <th id={`warning${project._id}`} className="warning">
+                        <h3>
+                            Are you sure you want to delete <span className="warning__span">{project.title}?</span>
+                        </h3>
+                        <button
+                            id={project._id}
+                            onClick={this.callToDelete.bind(this)}
+                            className="warning__button pointer">
+                            Delete
+                        </button>
+                        <button onClick={()=>document.getElementById(`warning${project._id}`).style.display = "none"} className="warning__button pointer">
+                            Cancel
+                        </button>
                     </th>
                 </tr>
             );

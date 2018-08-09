@@ -34,7 +34,7 @@
         background:white;
 
 
-        th:not(:last-child){
+        th:not(:nth-last-child(2)){
             border-right:1px solid purple;
             }
 
