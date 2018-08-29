@@ -89,6 +89,7 @@ let contentType = "image/png"
     })
 
     entry.save().then((data) => {
+
         res.status(200).send(data)
     }, (e) => {
         res.send(e)
@@ -163,17 +164,22 @@ app.get("/blogform", (req, res)=>{
 })
 ///////delete the blog log//////////////////////////
 
-app.delete("/blog/:id", authenticate, (req, res) => {
+app.delete("/blog/:id", (req, res) => {
     let _id = req.params.id;
 
 
-    Blog.findOneAndRemove({
-        _id
-    }).then((data) => {
-
+    Blog.removeAndReduceByOne(_id).then(()=>{
         Blog.find({}).then((data)=>{res.status(200).send(data)})
 
     })
+
+    // Blog.findOneAndRemove({
+    //     _id
+    // }).then((data) => {
+
+    //     Blog.find({}).then((data)=>{res.status(200).send(data)})
+
+    // })
 })
 
 //////////Blog Post Route/////////////////
@@ -184,17 +190,24 @@ app.post("/blog", upload.single("blogImg"), (req, res)=>{
     let contentType = "image/png";
     let time = moment().format("MMMM Do YYYY, h:mm:ss a");
 
-    let blog = new Blog({
-        title:req.body.title,
-        text:req.body.text,
-        likes:req.body.likes,
-        time,
-        img:{data, contentType}
+    Blog.find({}).then((data)=>{
+        let orderNum = data.length
+        let blog = new Blog({
+            title:req.body.title,
+            text:req.body.text,
+            likes:req.body.likes,
+            time,
+            img:{data, contentType},
+            orderNum
+        })
+
+        blog.save().then((data)=>{
+            res.send(data)
+        })
+
     })
 
-    blog.save().then((data)=>{
-        res.send(data)
-    })
+
 })
 
 /////////////GET BLOG BY TITLE////////////////
@@ -206,11 +219,11 @@ app.get("/blog/:id", (req, res) => {
     Blog.findById({
         _id
     }).then((data) => {
-        console.log("data", data);
 
         res.send(data)
     })
 })
+
 ////////////UPDATE BLOG////////////////////////
 app.patch("/blog/:id", authenticate, (req, res)=>{
     let check;
@@ -261,8 +274,6 @@ app.post("/signup", async (req, res)=>{
 
 })
 
-
-
 app.post("/signin", async (req, res)=>{
 
     try{
@@ -297,3 +308,5 @@ app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
 
 })
+
+module.exports = {app}
