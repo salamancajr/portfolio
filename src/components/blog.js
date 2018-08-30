@@ -27,6 +27,8 @@ class Blog extends Component{
 
 
             let src =`data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`
+            console.log(src);
+
             return (
                     <div key={blog._id} className="blog-entry">
                         <div className="blog-entry__header">

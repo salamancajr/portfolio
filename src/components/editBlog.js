@@ -13,15 +13,24 @@ class EditBlog extends Component{
             link:"",
             githubLink:"",
             option:"text",
+            orderNum:"",
         }
     }
 
     componentWillReceiveProps(nextProps) {
+            let orderNum = null;
+            if(nextProps.selectedBlog.orderNum){
+                orderNum = nextProps.selectedBlog.orderNum
+            }
+            else{
+                orderNum =""
+            }
 
         if (nextProps.name==="blog"){
             this.setState({
                 text:nextProps.selectedBlog.text,
                 title:nextProps.selectedBlog.title,
+                orderNum
             });
         }
 
@@ -55,6 +64,7 @@ class EditBlog extends Component{
                         <select onChange={(e)=>{this.setState({option:e.target.value})}}id="updatedBlog" name="updateBlog">
                             <option value="title">Title</option>
                             <option value="text">Text</option>
+                            <option value="orderNum">Order Number</option>
                             <option value="description">Description</option>
                             <option value="link">link</option>
                             <option value="githubLink">Github Link</option>
