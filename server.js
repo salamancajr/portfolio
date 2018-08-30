@@ -197,8 +197,8 @@ app.post("/blog", upload.single("blogImg"), (req, res)=>{
             text:req.body.text,
             likes:req.body.likes,
             time,
-            img:{data, contentType},
-            orderNum
+            orderNum,
+            img:{data, contentType}
         })
 
         blog.save().then((data)=>{
