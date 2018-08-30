@@ -245,6 +245,10 @@ a:hover {
       border-right: 1px solid white; }
   .projects-table__body {
     background: white; }
+    .projects-table__body th {
+      cursor: grab; }
+      .projects-table__body th:active {
+        cursor: grabbing; }
     .projects-table__body th:not(:nth-last-child(2)) {
       border-right: 1px solid purple; }
 

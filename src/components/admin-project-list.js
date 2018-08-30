@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {deleteProject, selectedProject} from "../actions";
+import Sortable from "react-sortablejs";
 import _ from "lodash";
 
 class ProjectList extends Component{
@@ -59,9 +60,9 @@ callToDelete(e){
 
     render(){
     return(
-        <tbody className="projects-table__body">
+        <Sortable tag="tbody" className="projects-table__body">
             {this.renderProjectList()}
-        </tbody>
+        </Sortable>
         );
     }
 }

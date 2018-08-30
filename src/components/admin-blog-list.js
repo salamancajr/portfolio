@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {deleteBlog, selectedBlog} from "../actions"
+import {deleteBlog, selectedBlog} from "../actions";
+import Sortable from "react-sortablejs";
 import _ from "lodash";
 
 class BlogList extends Component{
@@ -59,9 +60,9 @@ handleClick(e){
 
     render(){
     return(
-        <tbody className="projects-table__body">
+        <Sortable tag="tbody" className="projects-table__body">
             {this.renderBlogList()}
-        </tbody>
+        </Sortable>
         );
     }
 }

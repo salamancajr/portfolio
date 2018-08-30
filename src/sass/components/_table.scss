@@ -32,7 +32,12 @@
 
     &__body{
         background:white;
-
+        th{
+            cursor:grab;
+            &:active{
+                cursor:grabbing;
+            }
+        }
 
         th:not(:nth-last-child(2)){
             border-right:1px solid purple;
