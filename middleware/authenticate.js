@@ -2,7 +2,7 @@ var {User} = require("./../models/users");
 
 var authenticate = (req, res, next)=>{
     if (req.body.likes){
-        next();
+        return next();
     }
     var token = req.header("x-auth");
 
