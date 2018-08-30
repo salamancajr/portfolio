@@ -190,8 +190,8 @@ app.post("/blog", upload.single("blogImg"), (req, res)=>{
     let contentType = "image/png";
     let time = moment().format("MMMM Do YYYY, h:mm:ss a");
 
-    Blog.find({}).then((data)=>{
-        let orderNum = data.length
+    Blog.find({}).then((dataBlog)=>{
+        let orderNum = dataBlog.length
         let blog = new Blog({
             title:req.body.title,
             text:req.body.text,
