@@ -68,8 +68,7 @@ handleClick(e){
 }
 
 function mapStateToProps(state){
-    console.log(state.blog)
-    return{
+     return{
         blog:state.blog
     }
 }

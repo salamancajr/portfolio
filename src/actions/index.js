@@ -14,6 +14,9 @@ export const UPDATED_PROJECTS = "updated_projects";
 export const LOGIN_AUTH = "login_auth";
 export const AUTHENTICATE_ROUTE = "authenticate_route";
 export const ADMIN_LOGOUT = "admin_logout";
+export const UI_START_LOADING = "UI_START_LOADING";
+export const UI_STOP_LOADING = "UI_STOP_LOADING";
+
 const PROJECTS_URL = "https://quiet-taiga-43727.herokuapp.com/api";
 const BLOG_URL = "https://quiet-taiga-43727.herokuapp.com/blog";
 const LOGIN_URL = "https://quiet-taiga-43727.herokuapp.com/signin";
@@ -21,12 +24,22 @@ const SIGNUP_URL = "https://quiet-taiga-43727.herokuapp.com/signup";
 const AUTHENTICATE_URL = "https://quiet-taiga-43727.herokuapp.com/authenticate";
 const SIGN_OUT = "https://quiet-taiga-43727.herokuapp.com/token";
 
+
+export function uiStartLoading(){
+    return{
+        type:UI_START_LOADING
+    }
+}
+
+export function uiStopLoading(){
+    return{
+        type:UI_STOP_LOADING
+    }
+}
+
 export function fetchProjects() {
-    const request = axios.get(PROJECTS_URL, {
-        onUploadProgress: progressEvent => {
-            console.log(progressEvent.loaded / progressEvent.total)
-        }
-    });
+    const request = axios.get(PROJECTS_URL
+    );
     return {
         type: FETCH_PROJECTS,
         payload: request
@@ -73,11 +86,13 @@ export function addProject(values, callback) {
 }
 
 export function fetchBlog() {
-    const request = axios.get(BLOG_URL);
+    return dispatch=>{
+        const request = axios.get(BLOG_URL)
 
-    return {
-        type: FETCH_BLOG,
-        payload: request
+        return {
+            type: FETCH_BLOG,
+            payload: request
+        };
     };
 }
 
@@ -108,8 +123,7 @@ export function deleteBlog(id) {
 }
 
 export function handleAdminChart(e) {
-    console.log(e.target.id)
-    return {
+     return {
         type: ADMIN_CHART,
         payload: e.target.id
     };
@@ -139,15 +153,13 @@ export function addBlog(values, callback) {
 }
 
 export function selectedProject(id, callback) {
-    console.log(id)
-    const request = axios.get(`${PROJECTS_URL}/${id}`)
+     const request = axios.get(`${PROJECTS_URL}/${id}`)
 
     request.then(() => {
 
         callback()
     })
-    console.log("req", request)
-    return {
+     return {
         type: SELECTED_PROJECT,
         payload: request
     };
@@ -270,3 +282,4 @@ export function adminLogout(cb) {
         payload: "logged out"
     }
 }
+

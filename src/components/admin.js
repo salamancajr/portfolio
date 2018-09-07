@@ -68,8 +68,7 @@ class Admin extends Component {
     }
 
 function mapStateToProps(state){
-    console.log("shitting",state.adminChart)
-    console.log('crapping', state.projects);
+
 
     return {
         selectedBlog:state.selectedBlog,

@@ -27,7 +27,6 @@ class Blog extends Component{
 
 
             let src =`data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`
-            console.log(src);
 
             return (
                     <div key={blog._id} className="blog-entry">
@@ -65,9 +64,9 @@ class Blog extends Component{
             )
         })
     }
-    catch(e){
-        return <div>Loading...</div>
-    }
+        catch(e){
+            return <div style={{color:"blue", width:"100vw", height:"100vh"}}></div>
+        }
     }
 
 render(){

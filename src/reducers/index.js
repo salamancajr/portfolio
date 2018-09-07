@@ -5,13 +5,15 @@ import BlogReducer from "./reducer_blog";
 import SelectedBlogReducer from "./reducer_selectedBlog";
 import AdminReducer from "./reducer_adminChart";
 import SelectedProjectReducer from "./reducer_selectedProject";
+import UIReducer from "./reducer_ui"
  const rootReducer = combineReducers({
   projects:ProjectsReducer,
   blog:BlogReducer,
   selectedBlog:SelectedBlogReducer,
   form: formReducer,
   adminChart:AdminReducer,
-  selectedProject:SelectedProjectReducer
+  selectedProject:SelectedProjectReducer,
+   ui:UIReducer
  });
 
 export default rootReducer;

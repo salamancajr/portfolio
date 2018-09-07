@@ -18,8 +18,9 @@ import BlogEntry from "./components/blogEntry";
 import EditProject from "./components/editProject";
 import reducers from './reducers';
 import promise from "redux-promise";
+import thunk from "redux-thunk";
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 
 ReactDOM.render(
 

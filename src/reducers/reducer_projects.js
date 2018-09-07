@@ -10,7 +10,6 @@ export default function(state={}, action){
             return action.payload.data;
 
         case UPDATED_PROJECTS:
-        console.log("crappy baby", action.payload.data);
 
             return action.payload.data;
         default:
