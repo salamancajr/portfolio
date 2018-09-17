@@ -86,14 +86,14 @@ export function addProject(values, callback) {
 }
 
 export function fetchBlog() {
-    return dispatch=>{
+
         const request = axios.get(BLOG_URL)
 
         return {
             type: FETCH_BLOG,
             payload: request
         };
-    };
+
 }
 
 export function selectedBlog(id, callback) {
