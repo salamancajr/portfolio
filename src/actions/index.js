@@ -37,9 +37,12 @@ export function uiStopLoading(){
     }
 }
 
-export function fetchProjects() {
+export function fetchProjects(cb) {
     const request = axios.get(PROJECTS_URL
-    );
+    ).then((data)=>{
+        cb()
+        return data
+    });
     return {
         type: FETCH_PROJECTS,
         payload: request
@@ -85,15 +88,16 @@ export function addProject(values, callback) {
     };
 }
 
-export function fetchBlog() {
-
-        const request = axios.get(BLOG_URL)
-
+export function fetchBlog(cb) {
+    const request = axios.get(BLOG_URL
+        ).then((data)=>{
+            cb()
+            return data
+        });
         return {
             type: FETCH_BLOG,
             payload: request
         };
-
 }
 
 export function selectedBlog(id, callback) {

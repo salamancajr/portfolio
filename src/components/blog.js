@@ -3,10 +3,14 @@ import Navbar from "./navbar";
 import {fetchBlog, patchItem, selectedBlog} from "../actions";
 import {connect} from "react-redux";
 import _ from "lodash";
+import Loading from './Loading';
 
 class Blog extends Component{
+    state={
+        isLoaded:false
+    }
     componentDidMount(){
-        this.props.fetchBlog();
+        this.props.fetchBlog(()=>this.setState({isLoaded:true}));
     }
 
     goToBlog(e){
@@ -21,7 +25,7 @@ class Blog extends Component{
     }
 
     renderBlogs(){
-    try{
+    //try{
         return _.map(this.props.blog, blog=>{
             var subString = blog.text.substr(0, 200)+"...";
 
@@ -63,18 +67,20 @@ class Blog extends Component{
 
             )
         })
-    }
-        catch(e){
-            return <div style={{color:"blue", width:"100vw", height:"100vh"}}></div>
-        }
+    // }
+    //     catch(e){
+    //         return <div style={{color:"blue", width:"100vw", height:"100vh"}}></div>
+    //     }
     }
 
 render(){
     return (
-        <div className="blog-body">
+        <div className="blog-body" style={this.state.isLoaded?null:{width:"100vw", height:"100vh" }}>
+            {this.state.isLoaded?
 
-
-            {this.renderBlogs()}
+            this.renderBlogs()
+        :
+            <Loading/>}
 
              <Navbar />
         </div>);

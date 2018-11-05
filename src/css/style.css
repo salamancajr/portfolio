@@ -108,6 +108,21 @@ a:hover {
 .pointer {
   cursor: pointer; }
 
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: purple;
+  animation: spin .9s ease forwards infinite; }
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg); }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); } }
+
 .projects-container {
   display: grid;
   height: 90%;
