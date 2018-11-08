@@ -306,12 +306,10 @@ app.delete("/token", authenticate, (req, res)=>{
 })
 
 app.post("/blogOrder", (req, res)=>{
-    let prom = new Promise((resolve, reject)=>{
-        resolve(req.body.order.map(item=>{
+    Promise.all([req.body.order.map(item=>{
             Blog.findOneAndUpdate({_id:item.id}, {$set:{orderNum:item.orderNum}})
-        }))
-    })
-    prom.then(()=>res.sendStatus(200))
+        })
+    ]).then(()=>res.sendStatus(200))
 
 })
 
