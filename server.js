@@ -309,7 +309,7 @@ app.post("/blogOrder", (req, res)=>{
     console.log('req.body for blogOrder', req.body.order);
 
     Promise.all([req.body.order.map(item=>{
-            Blog.findOneAndUpdate({_id:item.id}, {$set:{orderNum:item.orderNum}})
+            Blog.findOneAndUpdate({_id:item.id}, {$set:{orderNum:item.orderNum}}, {new:true}).then((data)=>console.log("data",data))
         })
     ]).then(()=>res.sendStatus(200))
 
@@ -317,7 +317,6 @@ app.post("/blogOrder", (req, res)=>{
 
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
-
 })
 
 module.exports = {app}
