@@ -306,6 +306,8 @@ app.delete("/token", authenticate, (req, res)=>{
 })
 
 app.post("/blogOrder", (req, res)=>{
+    console.log('req.body for blogOrder', req.body.order);
+
     Promise.all([req.body.order.map(item=>{
             Blog.findOneAndUpdate({_id:item.id}, {$set:{orderNum:item.orderNum}})
         })
