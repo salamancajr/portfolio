@@ -305,6 +305,13 @@ app.delete("/token", authenticate, (req, res)=>{
 
 })
 
+app.post("/blogOrder", (req, res)=>{
+    req.body.order.map(item=>{
+        Blog.findOneAndUpdate({id:item.id}, {$set:{orderNum:item.orderNum}})
+    })
+    res.sendStatus(200)
+})
+
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
 
