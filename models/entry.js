@@ -34,6 +34,10 @@ var Entry = mongoose.model("Entry", {
         type:"string",
         minlength:4,
         default:"no link"
+    },
+    orderNum:{
+        type:Number,
+
     }
     // img: {
     //     type:String,
