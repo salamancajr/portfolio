@@ -154,7 +154,7 @@ app.patch("/api/:id", authenticate, (req, res)=>{
 
 /////////GET Blog//////////////////////
 app.get("/blog", (req, res)=>{
-    Blog.find({}, {sort:{orderNum:+1}}).then((data)=>{
+    Blog.find({}).sort({orderNum:+1}).then((data)=>{
         res.send(data)
     })
 })
