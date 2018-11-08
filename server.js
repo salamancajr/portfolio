@@ -100,7 +100,7 @@ let contentType = "image/png"
 ////////////////////return all photos////////////////////////
 app.get("/api", (req, res) => {
 
-    Entry.find({}).then((data) => {
+    Entry.find({}).sort({orderNum:+1}).then((data) => {
         res.send(data)
 
     })
