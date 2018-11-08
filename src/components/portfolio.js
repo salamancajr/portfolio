@@ -61,6 +61,10 @@ class Portfolio extends Component {
         });
         }
     }
+        handleClickExitVideo=()=>{
+            let iframe = document.querySelector(".iframe__container")
+            iframe.style.display="none"
+        }
 
     renderProjects(){
 
@@ -69,10 +73,11 @@ class Portfolio extends Component {
             let src =`data:image/jpeg;base64, ${vals}`;
             return (
                 <a
+
                     href={"#"}
                     key={project.title}
                     id={project.title}
-                    className="projects-container__project" >
+                    className="projects-container__project projects-container__a" >
                     <label
                         htmlFor="chex"
                         className="projects-container__label"
@@ -104,13 +109,33 @@ class Portfolio extends Component {
         <Navbar />
 
             <div className="body__container-portfolio">
+
+            <div className="iframe__container">
+            <label  htmlFor="description__checkbox">
+                <span onClick={this.handleClickExitVideo} className="iframe__container__exit pointer scale">&times;</span>
+                </label>
+            <input
+                type="checkbox"
+                className="description__checkbox"
+                id="description__checkbox"/>
+                <iframe
+                    className="description-box__video"
+                    title="luvtipp-video"
+                    width="460"
+                    height="240" src={pickedProject?pickedProject[0].youtubeLink:null} frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen>
+                </iframe>
+            </div>
                 <h1> Portfolio Page</h1>
                 <hr />
                 <p>Here you will find a variety of projects I have undertaken.</p>
                 <hr />
-                <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift"></i></a>
+                <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift pointer"></i></a>
                     <div className="projects-container">
-                        <input type="checkbox" className="projects-container__checkbox" id="chex" />
+                        <input
+                            type="checkbox" className="projects-container__checkbox"
+                            id="chex" />
                         {
                             this.state.isLoaded?
 
@@ -120,7 +145,7 @@ class Portfolio extends Component {
                         }
                         <Description pickedProject={pickedProject}/>
                     </div>
-                <a className="down" onClick={this.handleClickDown.bind(this)}><i className="fas fa-chevron-down shift"></i></a>
+                <a className="down" onClick={this.handleClickDown.bind(this)}><i className="fas fa-chevron-down shift pointer scale"></i></a>
             </div>
     </div>);
 }

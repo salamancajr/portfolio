@@ -10,33 +10,48 @@ callToDelete(e){
 
     this.props.deleteProject(e.target.id)
 }
+handleDrag = (e) => {
+    let order = []
+    let array = e.target.parentElement.childNodes;
+    for(let i = 0; i<array.length;i++){
+        order.push({orderNum:i, id:array[i].id})
+    }
+    fetch("https://quiet-taiga-43727.herokuapp.com/projectOrder", {
+        method:"POST",
+        headers:{"Content-type":"application/json"},
+        body:JSON.stringify({order})
+    }).then(data=>console.log('data', data)
+    )
+
+}
 
     renderProjectList(e){
         return _.map(this.props.projects, project=>{
 
             return (
-                <tr key={project._id}>
+                <tr key={project._id}
+                id={project._id}
+                draggable="true"
+                onDragEndCapture={(e)=>this.handleDrag(e)}
+                >
                     <th>{project.title}</th>
-                    <th
-
-                    >
-                        <label
-
-                        htmlFor="blogListCheck">
+                    <th>
+                        <label htmlFor="blogListCheck">
                             <i
-                            name={project.title}
-                            id={project.title}
-                            onClick={(e)=>this.props.selectedProject(e.target.id, ()=>{console.log("testing")})}
-                            className="fas fa-edit pointer"
-                            ></i>
+                                name={project.title}
+                                id={project.title}
+                                onClick={(e)            =>this.props.selectedProject(e.target.id, ()=>{console.log("testing")})}
+                                className="fas fa-edit pointer"
+                            >
+                            </i>
                         </label>
 
                     </th>
                     <th>
                         <i
-                        id={project._id}
-                        onClick={()=>document.getElementById(`warning${project._id}`).style.display = "block"}
-                        className="fas fa-trash pointer">
+                            id={project._id}
+                            onClick={()=>document.getElementById(`warning${project._id}`).style.display = "block"}
+                            className="fas fa-trash pointer">
                         </i>
                     </th>
                     <th id={`warning${project._id}`} className="warning">

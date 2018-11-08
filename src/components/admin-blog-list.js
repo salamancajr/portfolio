@@ -12,6 +12,21 @@ this.props.deleteBlog(e.target.id, ()=>{window.location.reload()})
 
 }
 
+handleDrag = (e) => {
+    let order = []
+    let array = e.target.parentElement.childNodes;
+    for(let i = 0; i<array.length;i++){
+        order.push({orderNum:i, id:array[i].id})
+    }
+    fetch("https://quiet-taiga-43727.herokuapp.com/blogOrder", {
+        method:"POST",
+        headers:{"Content-type":"application/json"},
+        body:JSON.stringify({order})
+    }).then(data=>console.log('data', data)
+    )
+
+}
+
 handleClick(e){
 
     this.props.selectedBlog(e.target.id, ()=>{console.log("testing")})
@@ -20,8 +35,15 @@ handleClick(e){
         return _.map(this.props.blog, blog=>{
 
             return (
-                <tr key={blog._id}>
-                    <th>{blog.title}</th>
+                <tr
+                    draggable="true"
+                    onDragEndCapture={(e)=>this.handleDrag(e)}
+                    key={blog._id}
+                    id={blog._id}
+                    >
+
+                    <th>{blog.title}
+                    </th>
                     <th>
                         <label  htmlFor="blogListCheck">
                             <i

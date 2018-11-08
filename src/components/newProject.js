@@ -44,15 +44,34 @@ class NewProject extends Component{
         <div className="body">
             <Navbar />
             <div className="body__container-column">
-                <form id="form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <form
+                    id="form"
+                    onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
-                    <Field label="title" name="title" type="text" component={this.renderField}/>
-
-                    <Field label="description" name="description" type="textarea" component={this.renderField}/>
-
-                    <Field label="githubLink" name="githubLink" type="text" component={this.renderField}/>
-
-                    <Field label="link" name="link" type="text" component={this.renderField}/>
+                    <Field
+                        label="title"
+                        name="title"
+                        type="text"
+                        component={this.renderField}
+                    />
+                    <Field
+                        label="description"
+                        name="description"
+                        type="textarea"
+                        component={this.renderField}
+                    />
+                    <Field
+                        label="githubLink"
+                        name="githubLink"
+                        type="text"
+                        component={this.renderField}
+                    />
+                    <Field
+                        label="link"
+                        name="link"
+                        type="text"
+                        component={this.renderField}
+                    />
                     <label className="admin-login" htmlFor="upload">
                         <i className="fas fa-cloud-upload-alt"></i>
                         upload

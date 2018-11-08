@@ -68,6 +68,7 @@ class EditBlog extends Component{
                             <option value="description">Description</option>
                             <option value="link">link</option>
                             <option value="githubLink">Github Link</option>
+                            <option value="youtubeLink">Youtube Link</option>
                         </select>
                         <textarea onChange={(e)=>{this.setState({[this.state.option]:e.target.value})}}id="area"name="text" rows="10" cols="50" value={this.state[this.state.option]}></textarea>
                         <input type="submit"/>

@@ -20,22 +20,9 @@ export const UI_STOP_LOADING = "UI_STOP_LOADING";
 const PROJECTS_URL = "https://quiet-taiga-43727.herokuapp.com/api";
 const BLOG_URL = "https://quiet-taiga-43727.herokuapp.com/blog";
 const LOGIN_URL = "https://quiet-taiga-43727.herokuapp.com/signin";
-const SIGNUP_URL = "https://quiet-taiga-43727.herokuapp.com/signup";
+// const SIGNUP_URL = "https://quiet-taiga-43727.herokuapp.com/signup";
 const AUTHENTICATE_URL = "https://quiet-taiga-43727.herokuapp.com/authenticate";
 const SIGN_OUT = "https://quiet-taiga-43727.herokuapp.com/token";
-
-
-export function uiStartLoading(){
-    return{
-        type:UI_START_LOADING
-    }
-}
-
-export function uiStopLoading(){
-    return{
-        type:UI_STOP_LOADING
-    }
-}
 
 export function fetchProjects(cb) {
     const request = axios.get(PROJECTS_URL
@@ -163,6 +150,7 @@ export function selectedProject(id, callback) {
 
         callback()
     })
+
      return {
         type: SELECTED_PROJECT,
         payload: request

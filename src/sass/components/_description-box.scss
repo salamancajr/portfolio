@@ -20,6 +20,8 @@
             grid-template-areas: ". image image icon" "words words words words" "words words words words";
         }
 
+
+
         &__arrow{
             @include smallScale;
             color:red;
@@ -29,9 +31,20 @@
         }
 
         &__img-container {
+
             position: relative;
             grid-area: image;
 
+            i{
+                color:$color-primary;
+                font-size:5rem;
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%, -50%);
+                z-index:100000;
+
+            }
 
             img {
                 width: 85%;
@@ -132,3 +145,11 @@
             }
         }
     }
+
+    .description__checkbox{
+        display:none;
+        &:checked ~ .description-box__video{
+            transform:translate(-50%, -50%) scale(1)
+        }
+    }
+
