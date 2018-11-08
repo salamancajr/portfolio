@@ -29,6 +29,11 @@ var Entry = mongoose.model("Entry", {
         data: Buffer,
         contentType: String
 
+    },
+    youtubeLink:{
+        type:"string",
+        minlength:4,
+        default:"no link"
     }
     // img: {
     //     type:String,

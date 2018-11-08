@@ -84,6 +84,7 @@ let contentType = "image/png"
         link:req.body.link,
         githubLink:req.body.githubLink,
         description:req.body.description,
+        youtubeLink:req.body.youtubeLink,
         img:{data, contentType}
         // img: imageUrl+req.file.path
     })
