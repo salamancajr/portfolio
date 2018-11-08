@@ -311,7 +311,7 @@ app.post("/blogOrder", (req, res)=>{
             Blog.findOneAndUpdate({_id:item.id}, {$set:{orderNum:item.orderNum}})
         }))
     })
-    prom().then(()=>res.sendStatus(200))
+    prom.then(()=>res.sendStatus(200))
 
 })
 
