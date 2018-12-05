@@ -69,6 +69,9 @@
             justify-self: center;
             font-size: 1rem;
             color: rgb(214, 205, 205);
+            margin-top:1rem; 
+             
+            
             p{
                 max-width:90%;
                 margin:auto;
@@ -84,7 +87,7 @@
                 display:inline-block;
              }
              @include respond(tab-land){
-                 margin-top:1.2rem;
+                 
                 p{
                     font-size:1.2rem;
                     max-width:93%;
@@ -113,8 +116,15 @@
                     font-size: .9rem;
                 }
             }
-
-
+            @include respond(big-desktop){
+                margin-top:1.5rem;
+                p{
+                    font-size:1.2rem
+                }
+                h3{
+                    font-size:2.35rem
+                }
+            }
         }
         &__icons-container {
 

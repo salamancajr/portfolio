@@ -7,6 +7,7 @@ let text;
 let img;
 let vals;
 let src;
+let youtubeLink;
 export default class Description extends Component {
 
  handleChecks(){
@@ -32,7 +33,7 @@ render(){
         githubLink = this.props.pickedProject[0].githubLink;
         title = this.props.pickedProject[0].title;
         text = this.props.pickedProject[0].description;
-
+        youtubeLink = this.props.pickedProject[0].youtubeLink;
      }
 
         catch(e){
@@ -41,8 +42,10 @@ render(){
             title="";
             text="";
             img="";
+            youtubeLink=""
         }
-
+        console.log("props", this.props.pickedProject);
+        
     return (
 
         <div className="description-box">
@@ -50,10 +53,16 @@ render(){
             <i
                 onClick={this.handleChecks.bind(this)}className="fas fa-angle-double-right description-box__arrow"></i>
             <div className="description-box__img-container">
+            {youtubeLink!=="no link"?
                 <label onClick={this.handleClick} htmlFor="description__checkbox">
                 <i className="fas fa-play-circle pointer scale"></i>
                 <img src={src?src:""} alt={title} className="pointer"/>
                 </label>
+                :
+                
+                <img src={src?src:""} alt={title} className="pointer"/>
+              
+            }
             </div>
             <div className="description-box__text">
                 <h3>{title}</h3>

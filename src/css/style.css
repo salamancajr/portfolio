@@ -392,7 +392,8 @@ a:hover {
     margin-top: .5rem;
     justify-self: center;
     font-size: 1rem;
-    color: #d6cdcd; }
+    color: #d6cdcd;
+    margin-top: 1rem; }
     .description-box__text p {
       max-width: 90%;
       margin: auto;
@@ -406,12 +407,10 @@ a:hover {
       margin-bottom: .9rem;
       display: inline-block; }
     @media (max-width: 75em) {
-      .description-box__text {
-        margin-top: 1.2rem; }
-        .description-box__text p {
-          font-size: 1.2rem;
-          max-width: 93%;
-          margin: auto; } }
+      .description-box__text p {
+        font-size: 1.2rem;
+        max-width: 93%;
+        margin: auto; } }
     @media (max-width: 56.25em) {
       .description-box__text p {
         max-width: 95%;
@@ -430,6 +429,13 @@ a:hover {
         .description-box__text p {
           max-width: 85%;
           font-size: .9rem; } }
+    @media (min-width: 112.5em) {
+      .description-box__text {
+        margin-top: 1.5rem; }
+        .description-box__text p {
+          font-size: 1.2rem; }
+        .description-box__text h3 {
+          font-size: 2.35rem; } }
   .description-box__icons-container {
     font-size: 8rem;
     align-self: center;
