@@ -14,11 +14,16 @@ class Blog extends Component{
     }
 
     goToBlog(e){
-
-        this.props.selectedBlog(e.target.id, ()=>{
-           this.props.history.push("/BlogEntry")
+         
+        let prom = new Promise((resolve, reject)=>{
+            resolve(this.props.selectedBlog(e.target.id))
         })
-    }
+        
+        prom.then(()=>{
+            this.props.history.push("/BlogEntry")
+        })   
+       
+    } 
 
     handleClickLike(e){
         this.props.patchItem(e)

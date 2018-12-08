@@ -87,13 +87,10 @@ export function fetchBlog(cb) {
         };
 }
 
-export function selectedBlog(id, callback) {
-    const request = axios.get(`${BLOG_URL}/${id}`)
-
-    request.then(() => {
-        callback()
-    })
-
+export const selectedBlog = async (id, callback) => {
+    const request = await axios.get(`${BLOG_URL}/${id}`)
+    //setTimeout(()=>{callback()}, 000) 
+   
     return {
         type: SELECTED_BLOG,
         payload: request
