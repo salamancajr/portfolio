@@ -131,13 +131,13 @@
                     font-size:1.13rem
                 }
             }
-            // @include respond(small-phone){
-            //     margin-top: -17px;
-            //     p{
-            //         max-width:85%;
-            //         font-size: .9rem;
-            //     }
-            // }
+            @include respond(small-phone){
+                margin-top: -17px;
+                p{
+                    max-width:85%;
+                    font-size: .9rem;
+                }
+            }
             @include respond(big-desktop){
                 margin-top:1.5rem;
                 p{
