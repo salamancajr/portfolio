@@ -178,6 +178,14 @@ a:hover {
       max-width: 40rem;
       min-height: 47rem;
       max-height: 47rem; } }
+  @media (max-width: 25em) {
+    .projects-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%;
+      min-width: 30rem;
+      max-width: 30rem;
+      min-height: 43rem;
+      max-height: 43rem; } }
   @media (min-width: 112.5em) {
     .projects-container {
       grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
@@ -429,6 +437,12 @@ a:hover {
         .description-box__text p {
           max-width: 80%;
           font-size: 1.13rem; } }
+    @media (max-width: 25em) {
+      .description-box__text {
+        margin-top: -17px; }
+        .description-box__text p {
+          max-width: 85%;
+          font-size: .9rem; } }
     @media (min-width: 112.5em) {
       .description-box__text {
         margin-top: 1.5rem; }
