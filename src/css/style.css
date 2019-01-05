@@ -242,7 +242,7 @@ a:hover {
 
 .iframe__container {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: rgba(0, 0, 0, 0.8);
   position: absolute;
   top: 0;
@@ -411,6 +411,10 @@ a:hover {
       font-size: .85rem;
       text-align: justify; }
     .description-box__text h3 {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      color: purple;
+      padding: 0 1rem;
+      background-color: white;
       margin: 0rem 4rem;
       font-size: 2rem;
       text-align: center;
