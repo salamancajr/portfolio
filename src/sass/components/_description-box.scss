@@ -13,22 +13,24 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-template-areas: "words image" "words icon";
+        grid-template-areas:
+        "words image"
+        "words icon";
 
         @include respond(phone){
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-areas:
 
-            ".  image image image image icon"
-            ".  image image image image icon"
-            ".  image image image image icon"
+            ". . image image image image icon ."
+            ". exit  image image image image icon ."
+            ". . image image image image icon ."
 
-            "words words words words words words"
-            "words words words words words words"
-            "words words words words words words"
-            "words words words words words words"
-            "words words words words words words";
+            "words words words words words words words words"
+            "words words words words words words words words"
+            "words words words words words words words words"
+            "words words words words words words words words"
+            "words words words words words words words words";
         }
 
 
@@ -39,7 +41,11 @@
             position:absolute;
             font-size:3rem;
             cursor:pointer;
-            margin-left:.6rem
+            margin-left:.6rem;
+            @include respond(phone){
+                grid-area: exit;
+                position: relative;
+            }
         }
 
         &__img-container {
@@ -77,6 +83,7 @@
                 }
             }
         }
+
 
         &__text {
 
@@ -120,6 +127,9 @@
                     max-width:100%;
                     font-size: 1rem
 
+                }
+                h3{
+                    margin-top:1rem
                 }
             }
             @include respond(phone){
@@ -188,3 +198,8 @@
         }
     }
 
+    .fa-chevron-up, .fa-chevron-down{
+        @include respond(phone){
+            font-size: 4rem
+        }
+    }

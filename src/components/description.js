@@ -12,6 +12,10 @@ let youtubeLink;
 export default class Description extends Component {
 
     handleChecks(){
+        let projectsContainer = document.querySelector(".projects-container")
+
+        projectsContainer.style.boxShadow = "none";
+        projectsContainer.style.borderRadius = "0px";
 
         let project_items = document.getElementsByClassName("projects-container__project projects-container__a")
         for (let i = 0;i<project_items.length;i++){

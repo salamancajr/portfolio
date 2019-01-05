@@ -203,8 +203,7 @@ a:hover {
     color: rgba(255, 255, 255, 0.829);
     animation-fill-mode: forwards;
     text-align: center;
-    margin-bottom: 1rem;
-    transition: all .2s; }
+    margin-bottom: 1rem; }
   .projects-container__heading-tertiary {
     background-color: #282828;
     padding-top: 4px;
@@ -362,9 +361,9 @@ a:hover {
   grid-template-areas: "words image" "words icon"; }
   @media (max-width: 37.5em) {
     .description-box {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-areas: ".  image image image image icon" ".  image image image image icon" ".  image image image image icon"  "words words words words words words" "words words words words words words" "words words words words words words" "words words words words words words" "words words words words words words"; } }
+      grid-template-areas: ". . image image image image icon ." ". exit  image image image image icon ." ". . image image image image icon ."  "words words words words words words words words" "words words words words words words words words" "words words words words words words words words" "words words words words words words words words" "words words words words words words words words"; } }
   .description-box__arrow {
     transition: all .2s;
     color: white;
@@ -374,6 +373,10 @@ a:hover {
     margin-left: .6rem; }
     .description-box__arrow:hover {
       transform: scale(1.1); }
+    @media (max-width: 37.5em) {
+      .description-box__arrow {
+        grid-area: exit;
+        position: relative; } }
   .description-box__img-container {
     position: relative;
     grid-area: image;
@@ -428,7 +431,9 @@ a:hover {
     @media (max-width: 56.25em) {
       .description-box__text p {
         max-width: 100%;
-        font-size: 1rem; } }
+        font-size: 1rem; }
+      .description-box__text h3 {
+        margin-top: 1rem; } }
     @media (max-width: 37.5em) {
       .description-box__text {
         margin-top: 0;
@@ -480,6 +485,10 @@ a:hover {
   display: none; }
   .description__checkbox:checked ~ .description-box__video {
     transform: translate(-50%, -50%) scale(1); }
+
+@media (max-width: 37.5em) {
+  .fa-chevron-up, .fa-chevron-down {
+    font-size: 4rem; } }
 
 #form * {
   display: block;

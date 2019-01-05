@@ -20,11 +20,20 @@ class Portfolio extends Component {
         this.props.fetchProjects(()=>this.setState({isLoaded:true}));}
 
     handleClick(e){
+        let boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
 
-        let project_items = document.getElementsByClassName("projects-container__project projects-container__a")
-        for (let i = 0;i<project_items.length;i++){
-            project_items[i].style.opacity = 0
-        }
+        setTimeout(()=>{
+            let projectsContainer = document.querySelector(".projects-container")
+            projectsContainer.style.boxShadow = boxShadow;
+            projectsContainer.style.borderRadius = "5px"
+            // let project_items = document.getElementsByClassName("projects-container__project projects-container__a")
+            // for (let i = 0;i<project_items.length;i++){
+            //     project_items[i].style.opacity = 0
+            // }
+
+
+        }, 900)
+
 
         document.getElementsByClassName("up")[0].style.opacity= 0
         document.getElementsByClassName("down")[0].style.opacity= 0
