@@ -176,16 +176,8 @@ a:hover {
       grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
       min-width: 40rem;
       max-width: 40rem;
-      min-height: 45rem;
-      max-height: 45rem; } }
-  @media (max-width: 25em) {
-    .projects-container {
-      grid-template-columns: 1fr;
-      grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%;
-      min-width: 30rem;
-      max-width: 30rem;
-      min-height: 43rem;
-      max-height: 43rem; } }
+      min-height: 47rem;
+      max-height: 47rem; } }
   @media (min-width: 112.5em) {
     .projects-container {
       grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
@@ -367,7 +359,7 @@ a:hover {
       grid-template-areas: ".  image image image image icon" ".  image image image image icon" ".  image image image image icon"  "words words words words words words" "words words words words words words" "words words words words words words" "words words words words words words" "words words words words words words"; } }
   .description-box__arrow {
     transition: all .2s;
-    color: #d6cdcd;
+    color: white;
     position: absolute;
     font-size: 3rem;
     cursor: pointer;
@@ -403,13 +395,12 @@ a:hover {
     margin-top: .5rem;
     justify-self: center;
     font-size: 1rem;
-    color: #d6cdcd;
+    color: white;
     margin-top: 1rem; }
     .description-box__text p {
       max-width: 90%;
       margin: auto;
-      font-size: .85rem;
-      text-align: justify; }
+      font-size: .85rem; }
     .description-box__text h3 {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       color: purple;
@@ -438,12 +429,6 @@ a:hover {
         .description-box__text p {
           max-width: 80%;
           font-size: 1.13rem; } }
-    @media (max-width: 25em) {
-      .description-box__text {
-        margin-top: -17px; }
-        .description-box__text p {
-          max-width: 85%;
-          font-size: .9rem; } }
     @media (min-width: 112.5em) {
       .description-box__text {
         margin-top: 1.5rem; }
@@ -456,12 +441,12 @@ a:hover {
     align-self: center;
     justify-self: center;
     grid-area: icon;
-    color: rgba(255, 254, 254, 0.904);
+    color: white;
     text-align: center;
     padding: .5rem; }
     .description-box__icons-container i {
       text-shadow: 1px 1px 1px black;
-      color: #d6cdcd;
+      color: white;
       transition: all .2s; }
       .description-box__icons-container i:hover {
         transform: scale(1.1); }

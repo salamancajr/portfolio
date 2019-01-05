@@ -35,7 +35,7 @@
 
         &__arrow{
             @include smallScale;
-            color:#d6cdcd;
+            color:white;
             position:absolute;
             font-size:3rem;
             cursor:pointer;
@@ -85,7 +85,7 @@
             margin-top:.5rem;
             justify-self: center;
             font-size: 1rem;
-            color: rgb(214, 205, 205);
+            color: white;
             margin-top:1rem;
 
 
@@ -93,7 +93,7 @@
                 max-width:90%;
                 margin:auto;
                 font-size: .85rem;
-                text-align: justify;
+                //text-align: justify;
             }
             h3{
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -131,13 +131,13 @@
                     font-size:1.13rem
                 }
             }
-            @include respond(small-phone){
-                margin-top: -17px;
-                p{
-                    max-width:85%;
-                    font-size: .9rem;
-                }
-            }
+            // @include respond(small-phone){
+            //     margin-top: -17px;
+            //     p{
+            //         max-width:85%;
+            //         font-size: .9rem;
+            //     }
+            // }
             @include respond(big-desktop){
                 margin-top:1.5rem;
                 p{
@@ -154,12 +154,12 @@
             align-self: center;
             justify-self: center;
             grid-area: icon;
-            color: rgba(255, 254, 254, 0.904);
+            color: white;
             text-align:center;
             padding:.5rem;
             i{
                 text-shadow: 1px 1px 1px black;
-                color:#d6cdcd;
+                color:white;
                 @include smallScale;
             }
             a:not(:last-child){
