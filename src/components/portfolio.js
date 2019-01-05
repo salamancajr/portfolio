@@ -20,6 +20,15 @@ class Portfolio extends Component {
         this.props.fetchProjects(()=>this.setState({isLoaded:true}));}
 
     handleClick(e){
+
+        let project_items = document.getElementsByClassName("projects-container__project projects-container__a")
+        for (let i = 0;i<project_items.length;i++){
+            project_items[i].style.opacity = 0
+        }
+
+        document.getElementsByClassName("up")[0].style.opacity= 0
+        document.getElementsByClassName("down")[0].style.opacity= 0
+
         var a = document.getElementById(e.target.id);
 
         a.click();

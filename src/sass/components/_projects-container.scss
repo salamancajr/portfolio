@@ -43,8 +43,8 @@
     @include respond(tab-port) {
         grid-template-columns: 1fr 1fr 1fr;
         @include gridRows;
-        min-width: 50rem;
-        max-width: 50rem;
+        min-width: 55rem;
+        max-width: 55rem;
         min-height: 37rem;
         max-height: 37rem;
     }
@@ -83,6 +83,7 @@
         animation-fill-mode: forwards;
         text-align: center;
         margin-bottom: 1rem;
+        transition:all .2s
     }
     &__heading-tertiary {
         background-color: rgb(40, 40, 40);
@@ -149,7 +150,17 @@
         left:50%;
         transform:translate(-50%, -50%) scale(0);
         width:80%;
-        height:75%;
+        height:83%;
+
+        @include respond(tab-port){
+            width:95%;
+            height:75%
+        }
+
+        @include respond(phone){
+            width:95%;
+            height:47%
+        }
 
     }
 }

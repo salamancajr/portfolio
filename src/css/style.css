@@ -166,8 +166,8 @@ a:hover {
     .projects-container {
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
-      min-width: 50rem;
-      max-width: 50rem;
+      min-width: 55rem;
+      max-width: 55rem;
       min-height: 37rem;
       max-height: 37rem; } }
   @media (max-width: 37.5em) {
@@ -203,7 +203,8 @@ a:hover {
     color: rgba(255, 255, 255, 0.829);
     animation-fill-mode: forwards;
     text-align: center;
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    transition: all .2s; }
   .projects-container__heading-tertiary {
     background-color: #282828;
     padding-top: 4px;
@@ -262,7 +263,15 @@ a:hover {
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     width: 80%;
-    height: 75%; }
+    height: 83%; }
+    @media (max-width: 56.25em) {
+      .iframe__container iframe {
+        width: 95%;
+        height: 75%; } }
+    @media (max-width: 37.5em) {
+      .iframe__container iframe {
+        width: 95%;
+        height: 47%; } }
 
 .projects-table {
   position: absolute;
@@ -343,7 +352,7 @@ a:hover {
   transform: translateX(100%);
   width: 100%;
   height: 100%;
-  background-color: #601677;
+  background-color: purple;
   z-index: 1;
   transition: all .5s;
   animation-fill-mode: forwards;
@@ -353,20 +362,24 @@ a:hover {
   grid-template-areas: "words image" "words icon"; }
   @media (max-width: 37.5em) {
     .description-box {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      grid-template-areas: ". image image icon" "words words words words" "words words words words"; } }
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-areas: ".  image image image image icon" ".  image image image image icon" ".  image image image image icon"  "words words words words words words" "words words words words words words" "words words words words words words" "words words words words words words" "words words words words words words"; } }
   .description-box__arrow {
     transition: all .2s;
-    color: red;
+    color: #d6cdcd;
     position: absolute;
-    font-size: 50px;
-    cursor: pointer; }
+    font-size: 3rem;
+    cursor: pointer;
+    margin-left: .6rem; }
     .description-box__arrow:hover {
       transform: scale(1.1); }
   .description-box__img-container {
     position: relative;
-    grid-area: image; }
+    grid-area: image;
+    transition: all .2s; }
+    .description-box__img-container:hover {
+      transform: scale(1.04); }
     .description-box__img-container i {
       color: purple;
       font-size: 5rem;
@@ -376,6 +389,7 @@ a:hover {
       transform: translate(-50%, -50%);
       z-index: 100000; }
     .description-box__img-container img {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       width: 85%;
       max-height: 90%;
       top: 50%;
@@ -383,9 +397,6 @@ a:hover {
       position: absolute;
       transform: translate(-50%, -50%);
       border-radius: 5px; }
-      @media (max-width: 37.5em) {
-        .description-box__img-container img {
-          width: 100%; } }
   .description-box__text {
     text-align: center;
     grid-area: words;
@@ -413,8 +424,8 @@ a:hover {
         margin: auto; } }
     @media (max-width: 56.25em) {
       .description-box__text p {
-        max-width: 95%;
-        font-size: .85rem; } }
+        max-width: 100%;
+        font-size: 1rem; } }
     @media (max-width: 37.5em) {
       .description-box__text {
         margin-top: 0;
@@ -422,7 +433,7 @@ a:hover {
         text-align: center; }
         .description-box__text p {
           max-width: 80%;
-          font-size: 1.1rem; } }
+          font-size: 1.13rem; } }
     @media (max-width: 25em) {
       .description-box__text {
         margin-top: -17px; }
@@ -442,8 +453,11 @@ a:hover {
     justify-self: center;
     grid-area: icon;
     color: rgba(255, 254, 254, 0.904);
-    text-align: center; }
+    text-align: center;
+    padding: .5rem; }
     .description-box__icons-container i {
+      text-shadow: 1px 1px 1px black;
+      color: #d6cdcd;
       transition: all .2s; }
       .description-box__icons-container i:hover {
         transform: scale(1.1); }
@@ -451,7 +465,9 @@ a:hover {
       margin-right: 2rem; }
     @media (max-width: 37.5em) {
       .description-box__icons-container {
-        font-size: 3rem; }
+        font-size: 4rem;
+        background-color: transparent;
+        width: 100%; }
         .description-box__icons-container a {
           display: block; }
           .description-box__icons-container a:not(:last-child) {
