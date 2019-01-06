@@ -25,7 +25,10 @@ html {
         min-height: 750px;
     }
     @include respond (tab-port){
-        min-height: 650px;
+        min-height: 655px;
+    }
+    @include respond (small-phone){
+        min-height: 620px;
     }
 
     @include respond (big-desktop){

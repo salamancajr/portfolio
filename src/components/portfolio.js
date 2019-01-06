@@ -129,13 +129,13 @@ class Portfolio extends Component {
             <div className="body__container-portfolio">
 
             <div className="iframe__container">
-            <label  htmlFor="description__checkbox">
-                <span onClick={this.handleClickExitVideo} className="iframe__container__exit pointer scale">&times;</span>
+                <label  htmlFor="description__checkbox">
+                    <span onClick={this.handleClickExitVideo} className="iframe__container__exit pointer scale">&times;</span>
                 </label>
-            <input
-                type="checkbox"
-                className="description__checkbox"
-                id="description__checkbox"/>
+                <input
+                    type="checkbox"
+                    className="description__checkbox"
+                    id="description__checkbox"/>
                 <iframe
                     className="description-box__video"
                     title="luvtipp-video"
@@ -147,7 +147,7 @@ class Portfolio extends Component {
             </div>
                 <h1> Portfolio Page</h1>
                 <hr />
-                <p>Here you will find a variety of projects I have undertaken.</p>
+                <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
                 <hr />
                 <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift pointer"></i></a>
                     <div className="projects-container">

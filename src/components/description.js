@@ -83,7 +83,7 @@ export default class Description extends Component {
                     />}
                 </div>
                 <div className="description-box__text">
-                    <h3>{title}</h3>
+                    <h3><span>{title}</span></h3>
                     <p>{text}</p>
                 </div>
                 <div className="description-box__icons-container">

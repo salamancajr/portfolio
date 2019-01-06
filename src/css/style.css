@@ -71,7 +71,10 @@ html {
       min-height: 750px; } }
   @media (max-width: 56.25em) {
     .body {
-      min-height: 650px; } }
+      min-height: 655px; } }
+  @media (max-width: 25em) {
+    .body {
+      min-height: 620px; } }
   @media (min-width: 112.5em) {
     .body {
       min-height: 970px; } }
@@ -124,6 +127,8 @@ a:hover {
     transform: translate(-50%, -50%) rotate(360deg); } }
 
 .projects-container {
+  position: absolute;
+  margin-top: -.4rem;
   display: grid;
   height: 90%;
   position: relative;
@@ -231,6 +236,8 @@ a:hover {
       box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
       opacity: 1;
       border-radius: 5px; }
+  .projects-container__info {
+    margin-top: -1rem; }
 
 .shift {
   color: purple;
@@ -271,6 +278,9 @@ a:hover {
       .iframe__container iframe {
         width: 95%;
         height: 47%; } }
+
+.down, .up {
+  margin-top: -.8rem; }
 
 .projects-table {
   position: absolute;
@@ -351,7 +361,7 @@ a:hover {
   transform: translateX(100%);
   width: 100%;
   height: 100%;
-  background-color: purple;
+  background-color: rgba(128, 0, 128, 0.9);
   z-index: 1;
   transition: all .5s;
   animation-fill-mode: forwards;
@@ -381,8 +391,6 @@ a:hover {
     position: relative;
     grid-area: image;
     transition: all .2s; }
-    .description-box__img-container:hover {
-      transform: scale(1.04); }
     .description-box__img-container i {
       color: purple;
       font-size: 5rem;
@@ -415,14 +423,15 @@ a:hover {
     .description-box__text h3 {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       color: purple;
-      padding: 0 1rem;
+      padding: 0 1.2rem;
       background-color: white;
       margin: 0rem 4rem;
       font-size: 2rem;
       text-align: center;
       border-bottom: 1px solid white;
       margin-bottom: .9rem;
-      display: inline-block; }
+      display: inline-block;
+      transform: rotate(2deg); }
     @media (max-width: 75em) {
       .description-box__text p {
         font-size: 1.2rem;

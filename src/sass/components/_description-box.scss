@@ -5,7 +5,7 @@
         transform: translateX(100%);
         width: 100%;
         height: 100%;
-        background-color: $color-primary;
+        background-color: rgba($color-primary, .9);
         //rgb(96, 22, 119);
         z-index: 1;
         transition: all .5s;
@@ -53,9 +53,9 @@
             position: relative;
             grid-area: image;
             transition:all .2s;
-            &:hover{
-                transform:scale(1.04)
-            }
+            // &:hover{
+            //     transform:scale(1.04)
+            // }
             i{
                 color:$color-primary;
                 font-size:5rem;
@@ -105,7 +105,7 @@
             h3{
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 color:$color-primary;
-                padding:0 1rem;
+                padding:0 1.2rem;
                 background-color: white;
                 margin:0rem 4rem;
                 font-size: 2rem;
@@ -113,6 +113,11 @@
                 border-bottom: 1px solid white;
                 margin-bottom:.9rem;
                 display:inline-block;
+                transform: rotate(2deg);
+                // span{
+                //     display:inline-block;
+                //     transform:rotate(-3deg)
+                // }
              }
              @include respond(tab-land){
 
@@ -140,6 +145,7 @@
                     max-width:80%;
                     font-size:1.13rem
                 }
+
             }
             @include respond(small-phone){
                 margin-top: -17px;
@@ -199,7 +205,11 @@
     }
 
     .fa-chevron-up, .fa-chevron-down{
+
         @include respond(phone){
             font-size: 4rem
         }
     }
+    // .fa-chevron-up{
+    //     margin-top:-1.5rem;
+    // }
