@@ -2,6 +2,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        padding:0;
         transform: translateX(100%);
         width: 100%;
         height: 100%;
@@ -16,7 +17,21 @@
         grid-template-areas:
         "words image"
         "words icon";
+        // @include respond(phone){
+        //     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        //     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        //     grid-template-areas:
 
+        //     ". . image image image image icon ."
+        //     ". exit  image image image image icon ."
+        //     "words words words words words words words words"
+
+        //     "words words words words words words words words"
+        //     "words words words words words words words words"
+        //     "words words words words words words words words"
+        //     "words words words words words words words words"
+        //     "words words words words words words words words";
+        // }
         @include respond(phone){
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -45,11 +60,15 @@
             @include respond(phone){
                 grid-area: exit;
                 position: relative;
+                font-size:3.6rem;
+                margin-top: -2rem;
             }
         }
 
         &__img-container {
-
+            @include respond(phone){
+                margin-top:-2rem
+            }
             position: relative;
             grid-area: image;
             transition:all .2s;
@@ -101,6 +120,7 @@
                 margin:auto;
                 font-size: .85rem;
                 //text-align: justify;
+
             }
             h3{
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -114,6 +134,7 @@
                 margin-bottom:.9rem;
                 display:inline-block;
                 transform: rotate(2deg);
+
                 // span{
                 //     display:inline-block;
                 //     transform:rotate(-3deg)
@@ -122,7 +143,7 @@
              @include respond(tab-land){
 
                 p{
-                    font-size:1.2rem;
+                    font-size:1.1rem;
                     max-width:93%;
                     margin:auto;
                 }
@@ -134,24 +155,33 @@
 
                 }
                 h3{
-                    margin-top:1rem
+                    margin-top:.9rem
                 }
             }
             @include respond(phone){
-                margin-top:0;
+                margin-top:-2.8rem;
                 font-size:1rem;
                 text-align:center;
                 p{
                     max-width:80%;
-                    font-size:1.13rem
+                    font-size:1.13rem;
+                    padding:0rem;
                 }
+                // h3{
+                //     margin-top:-1rem;
+                // }
 
             }
             @include respond(small-phone){
-                margin-top: -17px;
+                margin-top: -2.4rem;
                 p{
                     max-width:85%;
                     font-size: .9rem;
+                    padding:0rem 1rem;
+                }
+                h3{
+                    margin-top: 0;
+                    font-size: 1.6rem;
                 }
             }
             @include respond(big-desktop){
@@ -181,18 +211,25 @@
             a:not(:last-child){
                 margin-right:2rem;
             }
+
             @include respond(phone){
+                margin-top:-2rem;
                     //visibility:hidden;
                     font-size:4rem;
                     background-color: transparent;
                     width:100%;
+                   // transform:rotate(-15deg);
                 a{
                     display:block;
+                   // transform:rotate(15deg);
                     &:not(:last-child){
                         margin-right:0;
 
                     }
                 }
+            }
+            @include respond(small-phone){
+                font-size:3.5rem;
             }
         }
     }
@@ -204,12 +241,3 @@
         }
     }
 
-    .fa-chevron-up, .fa-chevron-down{
-
-        @include respond(phone){
-            font-size: 4rem
-        }
-    }
-    // .fa-chevron-up{
-    //     margin-top:-1.5rem;
-    // }

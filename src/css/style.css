@@ -72,9 +72,12 @@ html {
   @media (max-width: 56.25em) {
     .body {
       min-height: 655px; } }
+  @media (max-width: 37.5em) {
+    .body {
+      min-height: 500px; } }
   @media (max-width: 25em) {
     .body {
-      min-height: 620px; } }
+      min-height: 530px; } }
   @media (min-width: 112.5em) {
     .body {
       min-height: 970px; } }
@@ -163,34 +166,34 @@ a:hover {
     animation-fill-mode: forwards; }
   @media (max-width: 75em) {
     .projects-container {
-      min-width: 70rem;
-      max-width: 70rem;
-      min-height: 39rem;
-      max-height: 39rem; } }
+      min-width: 61rem;
+      max-width: 61rem;
+      min-height: 34rem;
+      max-height: 34rem; } }
   @media (max-width: 56.25em) {
     .projects-container {
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
-      min-width: 55rem;
-      max-width: 55rem;
-      min-height: 37rem;
-      max-height: 37rem; } }
+      min-width: 42rem;
+      max-width: 42rem;
+      min-height: 30rem;
+      max-height: 30rem; } }
   @media (max-width: 37.5em) {
     .projects-container {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
-      min-width: 40rem;
-      max-width: 40rem;
-      min-height: 47rem;
-      max-height: 47rem; } }
+      grid-template-rows: 25% 25% 25% 25%;
+      min-width: 30rem;
+      max-width: 30rem;
+      min-height: 42rem;
+      max-height: 42rem; } }
   @media (max-width: 25em) {
     .projects-container {
       grid-template-columns: 1fr;
       grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%;
-      min-width: 30rem;
-      max-width: 30rem;
-      min-height: 43rem;
-      max-height: 43rem; } }
+      min-width: 25rem;
+      max-width: 25rem;
+      min-height: 37rem;
+      max-height: 37rem; } }
   @media (min-width: 112.5em) {
     .projects-container {
       grid-template-rows: 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333% 33.3333333% 33.333333333% 33.33333333333%;
@@ -208,7 +211,8 @@ a:hover {
     color: rgba(255, 255, 255, 0.829);
     animation-fill-mode: forwards;
     text-align: center;
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    transition: all .5s; }
   .projects-container__heading-tertiary {
     background-color: #282828;
     padding-top: 4px;
@@ -280,7 +284,20 @@ a:hover {
         height: 47%; } }
 
 .down, .up {
-  margin-top: -.8rem; }
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  margin: .8rem;
+  padding: 1rem;
+  margin-left: -7rem;
+  width: 4rem;
+  text-align: center;
+  background-color: purple; }
+  .down i, .up i {
+    color: white !important; }
+  @media (max-width: 56.25em) {
+    .down, .up {
+      margin-left: -5.5rem; } }
 
 .projects-table {
   position: absolute;
@@ -358,6 +375,7 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
+  padding: 0;
   transform: translateX(100%);
   width: 100%;
   height: 100%;
@@ -386,11 +404,16 @@ a:hover {
     @media (max-width: 37.5em) {
       .description-box__arrow {
         grid-area: exit;
-        position: relative; } }
+        position: relative;
+        font-size: 3.6rem;
+        margin-top: -2rem; } }
   .description-box__img-container {
     position: relative;
     grid-area: image;
     transition: all .2s; }
+    @media (max-width: 37.5em) {
+      .description-box__img-container {
+        margin-top: -2rem; } }
     .description-box__img-container i {
       color: purple;
       font-size: 5rem;
@@ -434,7 +457,7 @@ a:hover {
       transform: rotate(2deg); }
     @media (max-width: 75em) {
       .description-box__text p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         max-width: 93%;
         margin: auto; } }
     @media (max-width: 56.25em) {
@@ -442,21 +465,26 @@ a:hover {
         max-width: 100%;
         font-size: 1rem; }
       .description-box__text h3 {
-        margin-top: 1rem; } }
+        margin-top: .9rem; } }
     @media (max-width: 37.5em) {
       .description-box__text {
-        margin-top: 0;
+        margin-top: -2.8rem;
         font-size: 1rem;
         text-align: center; }
         .description-box__text p {
           max-width: 80%;
-          font-size: 1.13rem; } }
+          font-size: 1.13rem;
+          padding: 0rem; } }
     @media (max-width: 25em) {
       .description-box__text {
-        margin-top: -17px; }
+        margin-top: -2.4rem; }
         .description-box__text p {
           max-width: 85%;
-          font-size: .9rem; } }
+          font-size: .9rem;
+          padding: 0rem 1rem; }
+        .description-box__text h3 {
+          margin-top: 0;
+          font-size: 1.6rem; } }
     @media (min-width: 112.5em) {
       .description-box__text {
         margin-top: 1.5rem; }
@@ -482,6 +510,7 @@ a:hover {
       margin-right: 2rem; }
     @media (max-width: 37.5em) {
       .description-box__icons-container {
+        margin-top: -2rem;
         font-size: 4rem;
         background-color: transparent;
         width: 100%; }
@@ -489,15 +518,14 @@ a:hover {
           display: block; }
           .description-box__icons-container a:not(:last-child) {
             margin-right: 0; } }
+    @media (max-width: 25em) {
+      .description-box__icons-container {
+        font-size: 3.5rem; } }
 
 .description__checkbox {
   display: none; }
   .description__checkbox:checked ~ .description-box__video {
     transform: translate(-50%, -50%) scale(1); }
-
-@media (max-width: 37.5em) {
-  .fa-chevron-up, .fa-chevron-down {
-    font-size: 4rem; } }
 
 #form * {
   display: block;

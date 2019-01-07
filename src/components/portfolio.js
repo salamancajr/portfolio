@@ -17,7 +17,18 @@ class Portfolio extends Component {
     }
 
     componentDidMount(){
-        this.props.fetchProjects(()=>this.setState({isLoaded:true}));}
+        window.addEventListener("resize", ()=>{
+            var a = document.getElementsByClassName("projects-container__project");
+
+            for(let i=0;i<a.length;i++){
+                a[i].style.top = 0+"px";
+            }
+            this.setState({shift:0})
+        })
+
+        this.props.fetchProjects(()=>this.setState({isLoaded:true}));
+
+    }
 
     handleClick(e){
         let boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
@@ -125,9 +136,7 @@ class Portfolio extends Component {
 
     <div className="body">
         <Navbar />
-
-            <div className="body__container-portfolio">
-
+        <div className="body__container-portfolio">
             <div className="iframe__container">
                 <label  htmlFor="description__checkbox">
                     <span onClick={this.handleClickExitVideo} className="iframe__container__exit pointer scale">&times;</span>
@@ -140,31 +149,42 @@ class Portfolio extends Component {
                     className="description-box__video"
                     title="luvtipp-video"
                     width="460"
-                    height="240" src={pickedProject?pickedProject[0].youtubeLink:null} frameBorder="0"
+                    height="240"
+                    src={pickedProject?pickedProject[0].youtubeLink:null}
+                    frameBorder="0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen>
                 </iframe>
             </div>
-                <h1> Portfolio Page</h1>
-                <hr />
-                <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
-                <hr />
-                <a className="up"onClick={this.handleClickUp.bind(this)}><i className="fas fa-chevron-up shift pointer"></i></a>
-                    <div className="projects-container">
-                        <input
-                            type="checkbox" className="projects-container__checkbox"
-                            id="chex" />
-                        {
-                            this.state.isLoaded?
+            <h1> Portfolio Page</h1>
+            <hr />
+            <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
+            <hr />
+            <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
+                <div>
+                    <a style={{display:"block"}}className="up"onClick={this.handleClickUp.bind(this)}>
+                        <i className="fas fa-chevron-up shift pointer"></i>
+                    </a>
+                    <a style={{display:"block"}} className="down" onClick={this.handleClickDown.bind(this)}>
+                        <i className="fas fa-chevron-down shift pointer scale"></i>
+                    </a>
+                </div>
 
-                        this.renderProjects()
+                <div className="projects-container">
+                    <input
+                        type="checkbox"
+                        className="projects-container__checkbox"
+                        id="chex" />
+                    {
+                    this.state.isLoaded?
+                    this.renderProjects()
                     :
                     <Loading/>
-                        }
-                        <Description pickedProject={pickedProject}/>
-                    </div>
-                <a className="down" onClick={this.handleClickDown.bind(this)}><i className="fas fa-chevron-down shift pointer scale"></i></a>
+                    }
+                    <Description pickedProject={pickedProject}/>
+                </div>
             </div>
+        </div>
     </div>);
 }
 }

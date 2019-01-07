@@ -22,13 +22,17 @@ html {
 .body {
     min-height: 680px;
     @include respond (tab-land){
+       // min-width:1050px;
         min-height: 750px;
     }
     @include respond (tab-port){
         min-height: 655px;
     }
+    @include respond (phone){
+        min-height: 500px;
+    }
     @include respond (small-phone){
-        min-height: 620px;
+        min-height: 530px;
     }
 
     @include respond (big-desktop){
