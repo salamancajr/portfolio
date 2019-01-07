@@ -52,7 +52,7 @@
     }
     @include respond(phone) {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows:25% 25% 25% 25%;
+        @include gridRows25;
         //@include gridRows;
         min-width: 30rem;
         max-width: 30rem;
