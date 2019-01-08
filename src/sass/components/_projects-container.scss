@@ -59,14 +59,14 @@
         min-height: 42rem;
         max-height: 42rem;
     }
-    @include respond(small-phone) {
-        grid-template-columns: 1fr;
-        grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%; //grid-row-gap: 5%;
-        min-width: 25rem;
-        max-width: 25rem;
-        min-height: 37rem;
-        max-height: 37rem;
-    }
+    // @include respond(small-phone) {
+    //     grid-template-columns: 1fr;
+    //     grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%; //grid-row-gap: 5%;
+    //     min-width: 25rem;
+    //     max-width: 25rem;
+    //     min-height: 37rem;
+    //     max-height: 37rem;
+    // }
     @include respond(big-desktop) {
         @include gridRows;
         min-width: 70rem;
