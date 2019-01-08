@@ -17,14 +17,14 @@ class Portfolio extends Component {
     }
 
     componentDidMount(){
-        // window.addEventListener("resize", ()=>{
-        //     var a = document.getElementsByClassName("projects-container__project");
+        window.addEventListener("resize", ()=>{
+            var a = document.getElementsByClassName("projects-container__project");
 
-        //     for(let i=0;i<a.length;i++){
-        //         a[i].style.top = 0+"px";
-        //     }
-        //     this.setState({shift:0})
-        // })
+            for(let i=0;i<a.length;i++){
+                a[i].style.top = 0+"px";
+            }
+            this.setState({shift:0})
+        })
 
         this.props.fetchProjects(()=>this.setState({isLoaded:true}));
 
@@ -116,11 +116,11 @@ class Portfolio extends Component {
                             className="projects-container__img"
                             src={src?src:""}
                             alt={project.title}/>
-                        <h3
+                        <div
                             id={project.title}
                             className="projects-container__heading-tertiary">
-                            {project.title}
-                        </h3>
+                            <span>{project.title}</span>
+                        </div>
                     </label>
                  </a>
             );
@@ -191,7 +191,9 @@ class Portfolio extends Component {
 
 function mapStateToProps(state){
 
-    return {projects:state.projects};
+    return {
+        projects:state.projects
+    };
 }
 
 export default connect(mapStateToProps, {fetchProjects})(Portfolio);
