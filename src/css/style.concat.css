@@ -181,7 +181,7 @@ a:hover {
   @media (max-width: 37.5em) {
     .projects-container {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25%;
+      grid-template-rows: 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25% 25%;
       min-width: 30rem;
       max-width: 30rem;
       min-height: 42rem;
@@ -189,7 +189,7 @@ a:hover {
   @media (max-width: 25em) {
     .projects-container {
       grid-template-columns: 1fr;
-      grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%;
+      grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%;
       min-width: 25rem;
       max-width: 25rem;
       min-height: 37rem;
@@ -400,7 +400,7 @@ a:hover {
     .description-box {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-      grid-template-areas: ". . image image image image icon ." ". exit  image image image image icon ." ". . image image image image icon ."  "words words words words words words words words" "words words words words words words words words" "words words words words words words words words" "words words words words words words words words" "words words words words words words words words"; } }
+      grid-template-areas: ". . image image image image icon ." ". exit  image image image image icon ." ". . image image image image icon ." "words words words words words words words words" "words words words words words words words words" "words words words words words words words words" "words words words words words words words words" "words words words words words words words words"; } }
   .description-box__arrow {
     transition: all .2s;
     color: white;

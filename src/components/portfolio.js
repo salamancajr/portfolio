@@ -160,8 +160,8 @@ class Portfolio extends Component {
             <hr />
             <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
             <hr />
-            <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-                <div>
+            <div style={{display:"grid", position:"relative"}}>
+                <div style={{position:"absolute", top:"50%",transform:"translateY(-50%)", marginTop:"-.4rem"}}>
                     <a style={{display:"block"}}className="up"onClick={this.handleClickUp.bind(this)}>
                         <i className="fas fa-chevron-up shift pointer"></i>
                     </a>
@@ -169,8 +169,8 @@ class Portfolio extends Component {
                         <i className="fas fa-chevron-down shift pointer scale"></i>
                     </a>
                 </div>
-
                 <div className="projects-container">
+
                     <input
                         type="checkbox"
                         className="projects-container__checkbox"
@@ -184,7 +184,8 @@ class Portfolio extends Component {
                     <Description pickedProject={pickedProject}/>
                 </div>
             </div>
-        </div>
+            </div>
+
     </div>);
 }
 }

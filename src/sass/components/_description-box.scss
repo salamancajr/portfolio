@@ -7,7 +7,6 @@
         width: 100%;
         height: 100%;
         background-color: rgba($color-primary, .9);
-        //rgb(96, 22, 119);
         z-index: 1;
         transition: all .5s;
         animation-fill-mode: forwards;
@@ -17,30 +16,14 @@
         grid-template-areas:
         "words image"
         "words icon";
-        // @include respond(phone){
-        //     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        //     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        //     grid-template-areas:
 
-        //     ". . image image image image icon ."
-        //     ". exit  image image image image icon ."
-        //     "words words words words words words words words"
-
-        //     "words words words words words words words words"
-        //     "words words words words words words words words"
-        //     "words words words words words words words words"
-        //     "words words words words words words words words"
-        //     "words words words words words words words words";
-        // }
         @include respond(phone){
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             grid-template-areas:
-
             ". . image image image image icon ."
             ". exit  image image image image icon ."
             ". . image image image image icon ."
-
             "words words words words words words words words"
             "words words words words words words words words"
             "words words words words words words words words"
@@ -119,7 +102,6 @@
                 max-width:90%;
                 margin:auto;
                 font-size: .85rem;
-                //text-align: justify;
 
             }
             h3{

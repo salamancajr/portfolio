@@ -60,7 +60,7 @@
     }
     @include respond(small-phone) {
         grid-template-columns: 1fr;
-        grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%; //grid-row-gap: 5%;
+        grid-template-rows: 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50% 50%; //grid-row-gap: 5%;
         min-width: 25rem;
         max-width: 25rem;
         min-height: 37rem;
