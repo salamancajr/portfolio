@@ -17,14 +17,14 @@ class Portfolio extends Component {
     }
 
     componentDidMount(){
-        window.addEventListener("resize", ()=>{
-            var a = document.getElementsByClassName("projects-container__project");
+        // window.addEventListener("resize", ()=>{
+        //     var a = document.getElementsByClassName("projects-container__project");
 
-            for(let i=0;i<a.length;i++){
-                a[i].style.top = 0+"px";
-            }
-            this.setState({shift:0})
-        })
+        //     for(let i=0;i<a.length;i++){
+        //         a[i].style.top = 0+"px";
+        //     }
+        //     this.setState({shift:0})
+        // })
 
         this.props.fetchProjects(()=>this.setState({isLoaded:true}));
 

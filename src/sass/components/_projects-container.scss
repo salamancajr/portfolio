@@ -52,8 +52,8 @@
     }
     @include respond(phone) {
         grid-template-columns: 1fr 1fr;
-        //@include gridRows25;
-        @include gridRows;
+        @include gridRows25;
+        //@include gridRows;
         min-width: 30rem;
         max-width: 30rem;
         min-height: 42rem;
