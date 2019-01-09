@@ -251,6 +251,10 @@ a:hover {
       border-radius: 5px; }
   .projects-container__info {
     margin-top: -1rem; }
+    @media (max-width: 56.25em) {
+      .projects-container__info {
+        font-size: 1.4rem;
+        text-align: center; } }
 
 .shift {
   color: purple;

@@ -68,7 +68,9 @@ class Portfolio extends Component {
 
                 shift:this.state.shift-b.offsetHeight
             }, ()=>{
-                project.style.top = +this.state.shift+"px"
+                // project.style.top = +this.state.shift+"px"
+                project.style.transform = `translateY(${+this.state.shift+"px"})`
+
              })
 
 
@@ -83,7 +85,9 @@ class Portfolio extends Component {
             this.setState({
 
                 shift:this.state.shift+b.offsetHeight
-            }, ()=>{project.style.top = +this.state.shift+"px"})
+            }, ()=>{
+                project.style.transform = `translateY(${+this.state.shift+"px"})`
+            })
 
 
 
