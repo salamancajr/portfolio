@@ -14,6 +14,9 @@ const bodyParser = require('body-parser');
 let multer = require('multer')
 let fs = require("fs");
 const _ = require("lodash");
+const imagemin = require('imagemin');
+const imageminJpegtran = require('imagemin-jpegtran');
+const imageminPngquant = require('imagemin-pngquant');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -323,6 +326,50 @@ app.post("/projectOrder", (req, res)=>{
         })
     ]).then(()=>res.sendStatus(200))
 
+})
+
+app.post("/img-compress", (req, res)=>{
+
+    Entry.find({}).then(data=>{
+
+        async function min (i){
+            //turn buffer into file
+            fs.appendFileSync(__dirname+"/"+i+".png", new Buffer(data[i].img.data));
+
+
+               const files = await
+                imagemin([__dirname+"/"+i+".png"], 'build/images', {
+                    plugins: [
+                        imageminJpegtran(),
+                        imageminPngquant({quality: '65-80'})
+                    ]
+                })
+                Entry.findOneAndUpdate({_id:data[i]._id},{
+                   $set:{"img":{data:files[0].data, contentType:"img/png"}
+                }
+
+                }
+                   ).then((ressy)=>{
+
+                    if(i+1==data.length){
+                        let images = fs.readdirSync(__dirname+"/build/images")
+                        images.map(image=>{
+                            fs.unlinkSync(__dirname+`/build/images/${image}`)
+                            fs.unlinkSync(__dirname+`/${image}`)
+                        })
+
+                       console.log("i", i)
+                        res.sendStatus(200)
+                    }
+                    else{
+                        console.log(i)
+                        min(i+=1)
+                    }
+                }
+               )
+            }
+            min(0)
+    })
 })
 
 app.listen(port, () => {
