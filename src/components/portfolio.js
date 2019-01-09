@@ -46,8 +46,8 @@ class Portfolio extends Component {
         }, 900)
 
 
-        document.getElementsByClassName("up")[0].style.opacity= 0
-        document.getElementsByClassName("down")[0].style.opacity= 0
+        document.getElementsByClassName("up")[0].style.transform = "scale(0)"
+        document.getElementsByClassName("down")[0].style.transform = "scale(0)"
 
         var a = document.getElementById(e.target.id);
 

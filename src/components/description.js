@@ -23,8 +23,8 @@ export default class Description extends Component {
         }
 
 
-        document.getElementsByClassName("up")[0].style.opacity = 1
-        document.getElementsByClassName("down")[0].style.opacity = 1
+        document.getElementsByClassName("up")[0].style.transform = "scale(1)"
+        document.getElementsByClassName("down")[0].style.transform = "scale(1)"
         var inputs= document.getElementsByTagName("input");
         _.map(inputs, function(input){
             input.checked = "";
