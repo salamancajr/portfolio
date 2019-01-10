@@ -16,11 +16,19 @@ projectRouter.get("/api", (req, res) => {
 })
 
 
-projectRouter.post("/api", upload.single("avatar"), authenticate, (req, res) => {
+projectRouter.post("/api", upload.single("avatar"), async (req, res) => {
     // let imageUrl = `${req.protocol}s://${req.get('host')}/`;
 
-    let data = fs.readFileSync(req.file.path)
+    //let data = fs.readFileSync(req.file.path)
     let contentType = "image/png"
+
+    const data = await
+    imagemin([req.file.path], 'build/images', {
+        plugins: [
+            imageminJpegtran(),
+            imageminPngquant({quality: '65-80'})
+        ]
+    });
 
     let entry = new Entry({
         title:req.body.title,
@@ -28,9 +36,9 @@ projectRouter.post("/api", upload.single("avatar"), authenticate, (req, res) => 
         githubLink:req.body.githubLink,
         description:req.body.description,
         youtubeLink:req.body.youtubeLink,
-        img:{data, contentType}
+        img:{data:data[0].data, contentType}
         // img: imageUrl+req.file.path
-    })
+    });
 
     entry.save().then((data) => {
 
