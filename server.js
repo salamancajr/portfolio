@@ -9,7 +9,8 @@ const port = process.env.PORT;
 const bodyParser = require('body-parser');
 
 const {projectRouter} = require("./routes/projects");
-const {blogRouter} = require("./routes/blog")
+const {blogRouter} = require("./routes/blog");
+const {authenticateRouter} = require("./routes/authenticate");
 
 app.use(function (err, req, res, next) {
     console.error(err.stack)
@@ -48,6 +49,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
 
 app.use("/", projectRouter);
 app.use("/", blogRouter);
+app.use("/", authenticateRouter);
 ///////////////for the forms page////////////////////////////////////
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html")

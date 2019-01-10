@@ -1,7 +1,7 @@
 const blogRouter = require("express").Router()
-let {Blog} = require("../models/blog")
-let {upload} = require("../middleware/upload")
-const {authenticate} = require("../middleware/authenticate");
+let {Blog} = require("./../models/blog")
+let {upload} = require("./../middleware/upload")
+const {authenticate} = require("./../middleware/authenticate");
 const moment = require("moment");
 let fs = require("fs");
 

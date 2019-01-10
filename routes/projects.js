@@ -1,10 +1,10 @@
 const projectRouter = require("express").Router()
-let {Entry} = require("../models/entry.js")
-let {upload} = require("../middleware/upload")
+let {Entry} = require("./../models/entry.js")
+let {upload} = require("./../middleware/upload")
 const imagemin = require('imagemin');
 const imageminJpegtran = require('imagemin-jpegtran');
 const imageminPngquant = require('imagemin-pngquant');
-const {authenticate} = require("../middleware/authenticate");
+const {authenticate} = require("./../middleware/authenticate");
 let fs = require("fs");
 
 projectRouter.get("/api", (req, res) => {

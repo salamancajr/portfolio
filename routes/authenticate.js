@@ -1,6 +1,6 @@
 const authenticateRouter = require("express").Router()
-let {User} = require("../models/users.js")
-const {authenticate} = require("../middleware/authenticate");
+let {User} = require("./../models/users.js")
+const {authenticate} = require("./../middleware/authenticate");
 const _ = require("lodash");
 
 authenticateRouter.post("/signup", async (req, res)=>{
