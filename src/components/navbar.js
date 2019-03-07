@@ -1,6 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
-
+import NavItem from './NavItem';
 
 export default function (){
     return(
@@ -14,34 +13,12 @@ export default function (){
             </div>
             <div className="ml-auto collapse navbar-collapse" id="navbarNav">
                 <ul className=" ml-auto navbar-nav">
-                    <li className="nav-item">
-                        <Link className = "nav-link" to="/">
-                            Home
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className = "nav-link" to="/About">
-                            About
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Portfolio">Portfolio</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Contact">
-                            Contact
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Blog">
-                            Blog
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                    <Link className="nav-link" to="/Login">
-                        Admin
-                    </Link>
-                    </li>
+                    <NavItem name="Home" />
+                    <NavItem name="About" />
+                    <NavItem name="Portfolio" />
+                    <NavItem name="Contact" />
+                    <NavItem name="Blog" />
+                    <NavItem name="Admin" />
                  </ul>
             </div>
         </div>
