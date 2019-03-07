@@ -1,0 +1,49 @@
+@keyframes moveToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-5rem)
+    }
+}
+
+@keyframes moveToLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(5rem)
+    }
+}
+
+@keyframes longSlideToLeft {
+    0% {
+        transform: translateX(100rem)
+    }
+}
+
+@keyframes slideUpButton {
+    0% {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}
+@keyframes slideUpHome {
+    0% {
+        transform: translateY(5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0rem) scale(1.2);
+        opacity: 1;
+    }
+}
+
+.moveRight {
+    animation: moveToRight 2s;
+}
+
+.moveLeft{
+    animation: moveToLeft 2s;
+}
+

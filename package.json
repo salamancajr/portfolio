@@ -7,12 +7,17 @@
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
     "start": "node server.js",
-    "mongo": "cd ~/mongo/bin && ./mongod --dbpath ~/mongo-data"
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "mongo": "cd ~/mongo/bin && ./mongod --dbpath ~/mongo-data",
+    "client": "cd client && npm run start",
+    "compile:sass": "cd client && node-sass sass/main.scss src/index.css -w",
+    "all": "concurrently \"npm run mongo\" \"nodemon run start\" \"npm run client\" \"npm run compile:sass\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.4",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.3",

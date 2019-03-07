@@ -1,0 +1,48 @@
+.patchForm{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+     opacity:0;
+    background:purple;
+    padding:2rem;
+    height:27rem;
+    display:flex;
+    align-items:center;
+    border-radius:2rem;
+
+    [type="submit"]{
+        margin-bottom:2rem;
+    }
+
+    &__exit{
+        position:absolute;
+        top:1rem;
+        right:2rem;
+        color:white;
+    }
+
+
+    &  *{
+        margin:auto;
+        display:block;
+
+
+        &:not(:last-child){
+            margin-bottom:2rem;
+        }
+
+    }
+}
+
+.blogListCheck{
+display:none;
+
+&:checked ~ .patchForm{
+    // transform:translate(-50%, -50%);
+opacity:1;
+z-index:90000;
+// display:block;
+// top:70%;
+}
+}

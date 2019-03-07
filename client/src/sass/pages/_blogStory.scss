@@ -1,0 +1,77 @@
+.blog-story{
+    text-align:center;
+    position:relative;
+    height:100%;
+    width:80%;
+    background:white;
+    margin:auto;
+
+
+    &__heading{
+        margin-top:4rem;
+        display:block;
+        padding:3rem 0;
+        font-size:4rem;
+        font-weight:bold;
+        color:purple;
+        margin-bottom:0;
+        letter-spacing: 1.5rem;
+
+    }
+    &__img{
+        display:block;
+
+        height:60vh;
+        margin:auto;
+    }
+    &__time{
+        font-weight:bold;
+        color:grey;
+    }
+    &__text{
+        text-align: left;
+
+        font-size:1.4rem;
+        margin-top:5rem;
+        margin:auto;
+        padding:3rem 0;
+        padding-bottom:8rem;
+        max-width:60rem;
+
+        img{
+            max-width:100%;
+        }
+        p{
+            //margin:auto;
+
+            max-width:100%;
+        }
+        a{
+            color:blue;
+        }
+    }
+    @include respond(tab-land){
+        width:90%;
+        &__img{
+            width:80%;
+            height:auto;
+        }
+    }
+    @include respond(phone){
+        width:100%;
+
+        &__heading{
+            font-size:3rem;
+        }
+
+        &__img{
+            width:80%;
+            height:auto;
+        }
+        &__text{
+            padding:2rem;
+        }
+    }
+
+
+}

@@ -1,0 +1,8 @@
+{
+    "root": "build/",
+    "clean_urls": false,
+    "routes": {
+      "/api":"/api",
+      "/**": "index.html"
+    }
+  }

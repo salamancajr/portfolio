@@ -2,6 +2,7 @@ require("./config/config")
 const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const app = express();
 
 const port = process.env.PORT;
@@ -11,6 +12,7 @@ const bodyParser = require('body-parser');
 const {projectRouter} = require("./routes/projects");
 const {blogRouter} = require("./routes/blog");
 const {authenticateRouter} = require("./routes/authenticate");
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(function (err, req, res, next) {
     console.error(err.stack)
@@ -35,6 +37,7 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Something broke!')
 })
 
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
@@ -47,12 +50,16 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
     }
 })
 
-app.use("/", projectRouter);
-app.use("/", blogRouter);
-app.use("/", authenticateRouter);
+app.use("/api", projectRouter);
+app.use("/api", blogRouter);
+app.use("/api", authenticateRouter);
 ///////////////for the forms page////////////////////////////////////
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html")
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', "index.html"), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
 })
 
 app.listen(port, () => {

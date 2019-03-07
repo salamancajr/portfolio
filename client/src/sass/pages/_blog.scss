@@ -1,0 +1,157 @@
+.blog-body {
+    position: absolute;
+    background-image: linear-gradient(to right bottom, $color-primary, white);
+    font-family: Trebuchet MS, Helvetica, sans-serif;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+
+    a:hover,
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+    @include respond(tab-land){
+        min-width:30rem;
+        .blog-entry{
+            min-width:30rem;
+            width: 65rem;
+            height:47rem;
+        }
+    }
+    @include respond(tab-port){
+        min-width:55rem;
+        .blog-entry{
+            min-width:30rem;
+            width: 55rem;
+            height:43rem;
+        }
+    }
+
+    @include respond(phone){
+        min-width:50rem;
+        .blog-entry{
+            min-width:50rem;
+            width: 50rem;
+            height:40rem;
+        }
+    }
+    @include respond(small-phone) {
+        min-width:30rem;
+        right: 0;
+        width: 100%;
+        .blog-entry {
+             width: 100%;
+            height:35rem;
+            min-width:30rem;
+
+            &__header{
+                height:20%;
+                h3 {
+                    font-size: 1.4rem;
+                    cursor: pointer;
+
+                 }
+            }
+            &__img{
+                height:60%;
+            }
+            &__snippet{
+                height:20%;
+            }
+
+        }
+    }
+}
+
+.blog-entry {
+    @include respond(big-desktop) {
+        max-width: 69rem;
+    }
+    min-width:45rem;
+    -webkit-box-shadow: 0px 0px 17px 0px rgba(145, 51, 145, 1);
+    -moz-box-shadow: 0px 0px 17px 0px rgba(145, 51, 145, 1);
+    box-shadow: 0 1rem 2rem rgba(purple, .2);
+    background: white;
+    border-left: 1px solid $color-secondary;
+    border-right: 1px solid $color-secondary;
+    padding: 0rem 3rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 54rem;
+    height: 45rem;
+    overflow: hidden;
+    &:first-child {
+        border-top: 1px solid $color-secondary;
+        margin-top: 6rem;
+        padding-top:1rem;
+        h3{
+        }
+    @include respond(small-phone){
+        padding-top:0;
+    }
+
+    }
+    &:nth-last-child(2) {
+        border-bottom: 1px solid $color-secondary;
+        margin-bottom: 5rem;
+    }
+    &:not(:first-child) &__header {
+        border-top: 1px solid $color-secondary;
+    }
+    &__header {
+        height: 25%;
+        display: flex;
+        &--column-1 {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &--column-2 {
+            width: 10%;
+            display: flex;
+            flex-direction: column;
+        }
+        h3 {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
+    &__icon {
+        height: 50%;
+        position: relative;
+        display:flex;
+        flex-direction:row;
+        text-align:center;
+        align-items:center;
+        justify-content:center;
+        .star{
+
+             text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+         span{
+             font-weight:bold;
+             margin-left:.3rem;
+
+         }
+    }
+    &__time {
+        font-weight: 700;
+        color: grey;
+    }
+    &__img {
+        height: 65%;
+        object-fit: cover;
+    }
+    &__snippet {
+        height: 20%;
+        width: 100%;
+        word-wrap: break-word;
+        margin-top: 1rem;
+
+    }
+}

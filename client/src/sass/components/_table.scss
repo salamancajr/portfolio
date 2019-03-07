@@ -1,0 +1,50 @@
+.projects-table {
+    position:absolute;
+    top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      z-index:1000;
+      width:30rem;
+
+    th{
+          min-width:7rem;
+          padding:.3rem 1rem;
+        }
+
+
+
+    th:not(:first-child){
+                text-align:center;
+        }
+
+    tr:not(:last-child){
+        border-bottom:.2px solid purple;
+    }
+    &__head{
+        color:white;
+        background:purple;
+
+        th:not(:last-child){
+            border-right:1px solid white;
+            }
+
+    }
+
+    &__body{
+        background:white;
+        th{
+            cursor:grab;
+            &:active{
+                cursor:grabbing;
+            }
+        }
+
+        th:not(:nth-last-child(2)){
+            border-right:1px solid purple;
+            }
+
+
+    }
+
+}
+
