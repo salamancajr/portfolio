@@ -10,7 +10,6 @@
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "mongo": "cd ~/mongo/bin && ./mongod --dbpath ~/mongo-data",
     "client": "cd client && npm run start",
     "compile:sass": "cd client && node-sass sass/main.scss src/index.css -w",
