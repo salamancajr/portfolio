@@ -5,16 +5,16 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Home from './components/home';
+import Home from './containers/home';
 import About from "./components/about";
 import Contact from "./components/contact";
-import Portfolio from "./components/portfolio";
-import Login from "./components/login";
-import Admin from "./components/admin";
+import Portfolio from "./containers/portfolio";
+import Login from "./containers/login";
+import Admin from "./containers/admin";
 import NewProject from "./components/newProject";
 import NewBlogEntry from "./components/newBlogEntry";
-import Blog from "./components/blog"
-import BlogEntry from "./components/blogEntry";
+import Blog from "./containers/blog"
+import BlogEntry from "./containers/blogEntry";
 import EditProject from "./components/editProject";
 import reducers from './reducers';
 import promise from "redux-promise";
@@ -49,4 +49,4 @@ ReactDOM.render(
     </div>
   </BrowserRouter>
 </Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

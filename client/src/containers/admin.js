@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import LogoutButton from "./logoutButton";
-import Navbar from "./navbar";
+import LogoutButton from "../components/logoutButton";
+import Navbar from "../components/navbar";
 import {fetchProjects, fetchBlog, handleAdminChart, authenticateRoute, adminLogout } from "../actions";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
-import ProjectList from "./admin-project-list";
-import BlogList from "./admin-blog-list";
-import EditBlog from "./editBlog";
-import Loading from "./Loading";
+import ProjectList from "../components/admin-project-list";
+import BlogList from "../components/admin-blog-list";
+import EditBlog from "../components/editBlog";
+import Loading from "../components/Loading";
+
 class Admin extends Component {
     state={
         isLoadedProjects:false,

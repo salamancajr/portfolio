@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Navbar from "./navbar";
-import Description from "./description";
- import _ from 'lodash';
+import Navbar from "../components/navbar";
+import _ from 'lodash';
+import Description from "../components/description";
+import Loading from '../components/Loading';
 import {fetchProjects } from "../actions";
 import {connect} from 'react-redux';
-import Loading from './Loading'
 let pickedProject;
 
 class Portfolio extends Component {
@@ -165,6 +165,9 @@ class Portfolio extends Component {
             <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
             <hr />
             <div style={{display:"grid", position:"relative"}}>
+                
+                {
+                this.state.isLoaded&&
                 <div style={{position:"absolute", top:"50%",transform:"translateY(-50%)", marginTop:"-.4rem"}}>
                     <a style={{display:"block"}}className="up"onClick={this.handleClickUp.bind(this)}>
                         <i className="fas fa-chevron-up shift pointer"></i>
@@ -173,6 +176,7 @@ class Portfolio extends Component {
                         <i className="fas fa-chevron-down shift pointer scale"></i>
                     </a>
                 </div>
+                }
                 <div className="projects-container">
 
                     <input

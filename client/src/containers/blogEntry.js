@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {selectedBlog} from "../actions";
-import Navbar from "./navbar"
+import Navbar from "../components/navbar"
 import {connect} from "react-redux";
 import marked from "marked";
 

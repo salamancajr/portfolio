@@ -5,8 +5,8 @@
         "JWT_SECRET": "uyiuytiouyipuyoigvgcfhgcbvcb"
     },
     "development":{
-        "PORT": 5000,
-        "MONGODB_URI":"mongodb://localhost:27017/PortfolioApp",
+        "PORT":8081,
+        "MONGODB_URI":"mongodb://George:q2pyVnMm5nh3hUG@ds129831.mlab.com:29831/heroku_ks0vhrrr",
         "JWT_SECRET": "wawaewafwavdxwgxbfxrgsresregsfdshrd"
 
     }

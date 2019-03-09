@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
-
+const ngrok = require('ngrok');
 const port = process.env.PORT;
 
 const bodyParser = require('body-parser');
@@ -35,7 +35,16 @@ app.use(cors());
 app.use(function (err, req, res, next) {
     console.error(err.stack)
     res.status(500).send('Something broke!')
-})
+});
+
+ 
+(async function() {
+ 
+    
+  const url = await ngrok.connect({addr: 8081});
+  console.log(url)
+})();
+
 
 
 mongoose.Promise = global.Promise;
@@ -53,7 +62,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
 app.use("/api", projectRouter);
 app.use("/api", blogRouter);
 app.use("/api", authenticateRouter);
-///////////////for the forms page////////////////////////////////////
+ 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', "index.html"), function(err) {
       if (err) {
@@ -61,6 +70,7 @@ app.get('/*', function(req, res) {
       }
     })
 })
+ 
 
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);

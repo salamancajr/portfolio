@@ -71,19 +71,23 @@ blogRouter.get("/blog/:id", (req, res) => {
 blogRouter.patch("/blog/:id", authenticate, (req, res)=>{
     let check;
     let _id = req.params.id;
+    let {ipAddress} = req.body;
+     
         Blog.findById({_id}).then((data)=>{
+            
             if(req.body.likes){
-                if(data.likes.indexOf(req.headers["x-forwarded-for"])>-1){
+                if(data.likes.indexOf(ipAddress)>-1){
                     check = {
                         $pull:{
-                            likes:{$in:req.headers["x-forwarded-for"]}
+                            likes:{$in:ipAddress}
                         }
                     }
                 }
                 else{
                     check = {
                         $push:{
-                            likes:req.headers["x-forwarded-for"]
+                            likes:ipAddress
+                            //req.headers["x-forwarded-for"]
                         }
                     }
                 }

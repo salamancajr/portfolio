@@ -5,6 +5,7 @@
   "dependencies": {
     "arraybuffer-to-string": "^1.0.2",
     "axios": "^0.18.0",
+    "http-proxy-middleware": "^0.19.1",
     "lodash": "^4.17.10",
     "marked": "^0.4.0",
     "react": "^16.4.1",
@@ -46,7 +47,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "https://localhost:5000",
+      "target": "http://100.27.16.30:8081/",
       "secure": false
     }
   }

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Navbar from "./navbar";
+import Navbar from "../components/navbar";
 import {loginAuth} from "../actions";
 import {connect} from "react-redux";
 

@@ -155,10 +155,10 @@ export function selectedProject(id, callback) {
 
 }
 
-export function patchItem(e) {
+export function patchItem(target, ip, cb) {
 
-    if (e.target.id == "blogForm" || e.target.id == "projectsForm") {
-        var form = document.getElementById(e.target.id)
+    if (target.id == "blogForm" || target.id == "projectsForm") {
+        var form = document.getElementById(target.id)
         var bodyFormData = new FormData(form);
         var key = [];
         for (var pair of bodyFormData.entries()) {
@@ -167,9 +167,9 @@ export function patchItem(e) {
         var body = {
             [key[0]]: key[1]
         };
-        if (e.target.id === "blogForm") {
+        if (target.id === "blogForm") {
 
-            const requestBlog = axios.patch(`${BLOG_URL}/${e.target.name}`, body, {
+            const requestBlog = axios.patch(`${BLOG_URL}/${target.name}`, body, {
                 headers: {
                     'x-auth': localStorage.getItem("token")
                 }
@@ -182,7 +182,7 @@ export function patchItem(e) {
         } else {
 
 
-            const requestProjects = axios.patch(`${PROJECTS_URL}/${e.target.name}`, body, {
+            const requestProjects = axios.patch(`${PROJECTS_URL}/${target.name}`, body, {
                 headers: {
                     'x-auth': localStorage.getItem("token")
                 }
@@ -196,14 +196,15 @@ export function patchItem(e) {
         }
     } else {
 
-        const request = axios.patch(`${BLOG_URL}/${e.target.id}`, {
-            "likes": "fernando"
+        const request = axios.patch(`${BLOG_URL}/${target.id}`, {
+            "likes": "fernando",
+            "ipAddress":ip
         }, {
             headers: {
                 'x-auth': localStorage.getItem("token")
             }
         })
-
+        console.log("request check", request)
         return {
             type: UPDATED_BLOG,
             payload: request

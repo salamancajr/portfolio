@@ -935,6 +935,9 @@ a:hover {
     word-wrap: break-word;
     margin-top: 1rem; }
 
+.share {
+  color: purple; }
+
 .blog-story {
   text-align: center;
   position: relative;
