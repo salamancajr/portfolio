@@ -9,6 +9,8 @@
   "scripts": {
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
+    
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "start": "node server.js",
     "mongo": "cd ~/mongo/bin && ./mongod --dbpath ~/mongo-data",
     "client": "cd client && npm run start",
