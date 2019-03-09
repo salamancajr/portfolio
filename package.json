@@ -12,9 +12,9 @@
     "client": "cd client && npm run start",
     "compile:sass": "cd client && node-sass sass/main.scss src/index.css -w",
     "all": "concurrently \"npm run mongo\" \"nodemon run start\" \"npm run client\" \"npm run compile:sass\"",
-    "install-nvm":"curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash",
-    "activate-nvm":". ~/.nvm/nvm.sh",
-    "update-node":"nvm install 11.11.0",
+    "install-nvm": "curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash",
+    "activate-nvm": ". ~/.nvm/nvm.sh",
+    "update-node": "nvm install 11.11.0",
     "node-update": "npm run 'install-nvm' && npm run 'activate-nvm' && npm run 'update-node'"
   },
   "author": "",
@@ -22,26 +22,27 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "concurrently": "^4.1.0",
-    "cors": "^2.8.4",
+    "cors": "^2.8.5",
     "crypto-js": "^3.1.9-1",
-    "express": "^4.16.3",
-    "image-downloader": "^3.4.1",
+    "express": "^4.16.4",
+    "image-downloader": "^3.4.2",
     "imagemin": "^6.1.0",
     "imagemin-jpegtran": "^6.0.0",
     "imagemin-pngquant": "^6.0.1",
-    "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.10",
-    "moment": "^2.22.2",
-    "mongodb": "^3.1.0",
-    "mongoose": "^5.2.1",
-    "multer": "^1.3.1",
-    "request": "^2.87.0",
-    "validator": "^10.4.0"
+    "jsonwebtoken": "^8.5.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.18",
+    "multer": "^1.4.1",
+    "ngrok": "^3.1.1",
+    "request": "^2.88.0",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
-    "expect": "^23.4.0",
+    "expect": "^23.6.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.10",
-    "supertest": "^3.1.0"
+    "supertest": "^3.4.2"
   }
 }
