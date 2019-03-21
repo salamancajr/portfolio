@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import _ from 'lodash';
 import Description from "../components/description";
 import Loading from '../components/Loading';
-import {fetchProjects } from "../actions";
+import {fetchProjects } from "../sagaSetup";
 import {connect} from 'react-redux';
 let pickedProject;
 

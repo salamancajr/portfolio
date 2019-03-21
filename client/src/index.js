@@ -17,10 +17,15 @@ import Blog from "./containers/blog"
 import BlogEntry from "./containers/blogEntry";
 import EditProject from "./components/editProject";
 import reducers from './reducers';
+import { fetchProjects } from './sagaSetup';
 import promise from "redux-promise";
 import thunk from "redux-thunk";
+import createSagaMiddleware from 'redux-saga';
 
-const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
+const sagaMiddleware = createSagaMiddleware()
+const createStoreWithMiddleware = applyMiddleware(promise, thunk, sagaMiddleware)(createStore);
+
+sagaMiddleware.run(fetchProjects);
 
 ReactDOM.render(
 
@@ -31,7 +36,6 @@ ReactDOM.render(
   <div>
 
     <Switch>
-
       <Route path="/About" component={About}/>
       <Route path="/Contact" component={Contact}/>
       <Route path="/Portfolio" component={Portfolio}/>
