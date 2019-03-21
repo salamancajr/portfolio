@@ -75,17 +75,17 @@ export function addProject(values, callback) {
     };
 }
 
-export function fetchBlog(cb) {
-    const request = axios.get(BLOG_URL
-        ).then((data)=>{
-            cb()
-            return data
-        });
-        return {
-            type: FETCH_BLOG,
-            payload: request
-        };
-}
+// export function fetchBlog(cb) {
+//     const request = axios.get(BLOG_URL
+//         ).then((data)=>{
+//             cb()
+//             return data
+//         });
+//         return {
+//             type: FETCH_BLOG,
+//             payload: request
+//         };
+// }
 
 export const selectedBlog = async (id, callback) => {
     const request = await axios.get(`${BLOG_URL}/${id}`)

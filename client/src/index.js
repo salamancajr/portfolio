@@ -17,7 +17,7 @@ import Blog from "./containers/blog"
 import BlogEntry from "./containers/blogEntry";
 import EditProject from "./components/editProject";
 import reducers from './reducers';
-import { fetchProjects } from './sagaSetup';
+import {fetchProjects, fetchBlog} from './sagaSetup';
 import promise from "redux-promise";
 import thunk from "redux-thunk";
 import createSagaMiddleware from 'redux-saga';
@@ -25,7 +25,7 @@ import createSagaMiddleware from 'redux-saga';
 const sagaMiddleware = createSagaMiddleware()
 const createStoreWithMiddleware = applyMiddleware(promise, thunk, sagaMiddleware)(createStore);
 
-sagaMiddleware.run(fetchProjects);
+
 
 ReactDOM.render(
 
@@ -53,4 +53,7 @@ ReactDOM.render(
     </div>
   </BrowserRouter>
 </Provider>, document.getElementById('root'));
+
+sagaMiddleware.run(fetchProjects);
+sagaMiddleware.run(fetchBlog);
 // registerServiceWorker();

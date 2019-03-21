@@ -49,7 +49,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://18.204.43.225:8081/",
+      "target": "http://localhost:8081/",
       "secure": false
     }
   }

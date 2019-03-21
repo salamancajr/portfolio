@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Navbar from "../components/navbar";
-import {fetchBlog, patchItem, selectedBlog} from "../actions";
+import {patchItem, selectedBlog} from "../actions";
+import {fetchBlog} from "../sagaSetup";
 import {connect} from "react-redux";
 import _ from "lodash";
 import Loading from '../components/Loading';
@@ -10,40 +11,41 @@ class Blog extends Component{
         isLoaded:false
     }
     async componentDidMount(){
-        this.props.fetchBlog(()=>this.setState({isLoaded:true}));
+        fetchBlog();
+        this.setState({isLoaded:true})
         var findIP = new Promise(r=>{var w=window,a=new (w.RTCPeerConnection||w.mozRTCPeerConnection||w.webkitRTCPeerConnection)({iceServers:[]}),b=()=>{};a.createDataChannel("");a.createOffer(c=>a.setLocalDescription(c,b,b),b);a.onicecandidate=c=>{try{c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(r)}catch(e){}}})
         let ipAddress = await findIP;
         this.ipAddress = ipAddress.toString();
     }
 
     goToBlog(e){
-         
+
         let prom = new Promise((resolve, reject)=>{
             resolve(this.props.selectedBlog(e.target.id))
         })
-        
+
         prom.then(()=>{
             this.props.history.push("/BlogEntry")
-        })   
-       
-    } 
+        })
+
+    }
 
     handleClickLike(e){
         const event = e.target;
 
         /*Usage example*/
         this.props.patchItem(event, this.ipAddress, ()=>{
-            
-        }) 
+
+        })
     }
 
-    renderBlogs(){ 
+    renderBlogs(){
         return _.map(this.props.blog, blog=>{
             var subString = blog.text.substr(0, 200)+"...";
 
 
             let src =`data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`
- 
+
             return (
                     <div key={blog._id} className="blog-entry">
                         <div className="blog-entry__header">
@@ -59,7 +61,7 @@ class Blog extends Component{
                                     <i id={blog._id} className="far fa-star pointer" onClick={this.handleClickLike.bind(this)}></i>
                                     :
                                     <i id={blog._id} onClick={this.handleClickLike.bind(this)} class="fas fa-star pointer" style={{color:"purple"}}></i>
-                                    
+
                                 }
                                     <span>{blog.likes.length}</span>
                                 </div>

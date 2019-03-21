@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import _ from 'lodash';
 import Description from "../components/description";
 import Loading from '../components/Loading';
-import {fetchProjects } from "../sagaSetup";
+import { fetchProjects } from "../sagaSetup";
 import {connect} from 'react-redux';
 let pickedProject;
 
@@ -26,7 +26,8 @@ class Portfolio extends Component {
             this.setState({shift:0})
         })
 
-        this.props.fetchProjects(()=>this.setState({isLoaded:true}));
+        fetchProjects();
+        this.setState({isLoaded:true})
 
     }
 
@@ -165,7 +166,7 @@ class Portfolio extends Component {
             <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
             <hr />
             <div style={{display:"grid", position:"relative"}}>
-                
+
                 {
                 this.state.isLoaded&&
                 <div style={{position:"absolute", top:"50%",transform:"translateY(-50%)", marginTop:"-.4rem"}}>
@@ -205,4 +206,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, {fetchProjects})(Portfolio);
+export default connect(mapStateToProps)(Portfolio);

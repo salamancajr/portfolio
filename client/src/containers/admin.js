@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import LogoutButton from "../components/logoutButton";
 import Navbar from "../components/navbar";
-import {fetchProjects, fetchBlog, handleAdminChart, authenticateRoute, adminLogout } from "../actions";
+import {fetchProjects, handleAdminChart, authenticateRoute, adminLogout } from "../actions";
+import {fetchBlog} from "../sagaSetup";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import ProjectList from "../components/admin-project-list";
@@ -23,7 +24,8 @@ class Admin extends Component {
 
 
         this.props.fetchProjects(()=>this.setState({isLoadedProjects:true}));
-        this.props.fetchBlog(()=>this.setState({isLoadedBlog:true}));
+        fetchBlog();
+        this.setState({isLoadedBlog:true})
     }
 
     // handleClick(e){
