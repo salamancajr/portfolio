@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import Navbar from "../components/navbar";
 import {patchItem, selectedBlog} from "../actions";
-import {fetchBlog} from "../sagaSetup";
+import {fetchBlog} from "../sagas/blogSagas";
 import {connect} from "react-redux";
 import _ from "lodash";
 import Loading from '../components/Loading';
+import { stat } from "fs";
 
 class Blog extends Component{
     state={
@@ -94,12 +95,13 @@ class Blog extends Component{
 
 render(){
     return (
-        <div className="blog-body" style={this.state.isLoaded?null:{width:"100vw", height:"100vh" }}>
-            {this.state.isLoaded?
-
+        <div className="blog-body" style={this.state.loading?null:{width:"100vw", height:"100vh" }}>
+            {this.props.loading?
+                <Loading/>
+                :
             this.renderBlogs()
-        :
-            <Loading/>}
+
+            }
 
              <Navbar />
         </div>);
@@ -108,7 +110,8 @@ render(){
 
 function mapStateToProps(state){
     return{
-    blog: state.blog
+    blog: state.blog,
+    loading:state.ui.isLoading
     };
 
 }

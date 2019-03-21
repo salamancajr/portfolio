@@ -13,7 +13,7 @@ import UIReducer from "./reducer_ui"
   form: formReducer,
   adminChart:AdminReducer,
   selectedProject:SelectedProjectReducer,
-   ui:UIReducer
+  ui:UIReducer
  });
 
 export default rootReducer;

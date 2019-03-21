@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import _ from 'lodash';
 import Description from "../components/description";
 import Loading from '../components/Loading';
-import { fetchProjects } from "../sagaSetup";
+import { fetchProjects } from "../sagas/projectsSagas";
 import {connect} from 'react-redux';
 let pickedProject;
 
@@ -12,7 +12,7 @@ class Portfolio extends Component {
         super(props);
         this.state = {
             shift:0,
-            isLoaded:false
+
         }
     }
 
@@ -27,7 +27,7 @@ class Portfolio extends Component {
         })
 
         fetchProjects();
-        this.setState({isLoaded:true})
+
 
     }
 
@@ -168,7 +168,7 @@ class Portfolio extends Component {
             <div style={{display:"grid", position:"relative"}}>
 
                 {
-                this.state.isLoaded&&
+                !this.props.isLoading&&
                 <div style={{position:"absolute", top:"50%",transform:"translateY(-50%)", marginTop:"-.4rem"}}>
                     <a style={{display:"block"}}className="up"onClick={this.handleClickUp.bind(this)}>
                         <i className="fas fa-chevron-up shift pointer"></i>
@@ -185,10 +185,11 @@ class Portfolio extends Component {
                         className="projects-container__checkbox"
                         id="chex" />
                     {
-                    this.state.isLoaded?
-                    this.renderProjects()
-                    :
+                    this.props.isLoading?
                     <Loading/>
+                    :
+                    this.renderProjects()
+
                     }
                     <Description pickedProject={pickedProject}/>
                 </div>
@@ -202,6 +203,7 @@ class Portfolio extends Component {
 function mapStateToProps(state){
 
     return {
+        isLoading:state.ui.isLoading,
         projects:state.projects
     };
 }
