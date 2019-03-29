@@ -95,7 +95,8 @@ class Blog extends Component{
 
 render(){
     return (
-        <div className="blog-body" style={this.state.loading?null:{width:"100vw", height:"100vh" }}>
+        <div 
+            className="blog-body" style={this.state.loading?null:{width:"100vw", height:"auto" }}>
             {this.props.loading?
                 <Loading/>
                 :

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import LogoutButton from "../components/logoutButton";
 import Navbar from "../components/navbar";
-import {fetchProjects, handleAdminChart, authenticateRoute, adminLogout } from "../actions";
+import {handleAdminChart, authenticateRoute, adminLogout } from "../actions";
 import {fetchBlog} from "../sagas/blogSagas";
+import {fetchProjects} from "../sagas/projectsSagas";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import ProjectList from "../components/admin-project-list";

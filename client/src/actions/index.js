@@ -24,17 +24,17 @@ const LOGIN_URL = "/api/signin";
 const AUTHENTICATE_URL = "/api/authenticate";
 const SIGN_OUT = "/api/token";
 
-export function fetchProjects(cb) {
-    const request = axios.get(PROJECTS_URL
-    ).then((data)=>{
-        cb()
-        return data
-    });
-    return {
-        type: FETCH_PROJECTS,
-        payload: request
-    };
-}
+// export function fetchProjects(cb) {
+//     const request = axios.get(PROJECTS_URL
+//     ).then((data)=>{
+//         cb()
+//         return data
+//     });
+//     return {
+//         type: FETCH_PROJECTS,
+//         payload: request
+//     };
+// }
 
 export function deleteProject(id) {
 
@@ -49,31 +49,31 @@ export function deleteProject(id) {
     };
 }
 
-export function addProject(values, callback) {
+// export function addProject(values, callback) {
 
-    var image = document.getElementById("upload").files[0];
-    var form = document.getElementById("form");
-    var bodyFormData = new FormData(form);
-    bodyFormData.append("avatar", image);
+//     var image = document.getElementById("upload").files[0];
+//     var form = document.getElementById("form");
+//     var bodyFormData = new FormData(form);
+//     bodyFormData.append("avatar", image);
 
-    const request = axios({
-        method: "post",
-        url: PROJECTS_URL,
-        data: bodyFormData,
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            'x-auth': localStorage.getItem("token")
-        }
+//     const request = axios({
+//         method: "post",
+//         url: PROJECTS_URL,
+//         data: bodyFormData,
+//         headers: {
+//             'Content-Type': 'multipart/form-data',
+//             'x-auth': localStorage.getItem("token")
+//         }
 
-    }).then(() => {
-        callback()
-    });
+//     }).then(() => {
+//         callback()
+//     });
 
-    return {
-        type: ADD_PROJECT,
-        payload: request
-    };
-}
+//     return {
+//         type: ADD_PROJECT,
+//         payload: request
+//     };
+// }
 
 // export function fetchBlog(cb) {
 //     const request = axios.get(BLOG_URL

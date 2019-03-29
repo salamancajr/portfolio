@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import {Field, reduxForm} from "redux-form";
 import Navbar from "./navbar";
 import {connect} from "react-redux";
-import {addProject, authenticateRoute} from "../actions";
-
+import {authenticateRoute} from "../actions";
+import addProject from "../sagas/addProjectSaga"
 
 
 
@@ -24,15 +24,8 @@ class NewProject extends Component{
                 {field.meta.error}
             </div>
         );
-    }
-
-    onSubmit(values){
-
-        this.props.addProject(values, ()=>{
-            this.props.history.push("/Admin")
-        });
-    }
-
+    } 
+    
     fileChangedHandler(e){
         console.log("new.js", e.target.files[0])
     }
@@ -46,7 +39,7 @@ class NewProject extends Component{
             <div className="body__container-column">
                 <form
                     id="form"
-                    onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    onSubmit={handleSubmit(addProject())}>
 
                     <Field
                         label="title"
