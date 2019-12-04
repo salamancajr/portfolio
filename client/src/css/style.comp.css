@@ -100,7 +100,8 @@ html {
     width: 80%;
     height: 80%;
     margin: auto;
-    align-items: center; }
+    align-items: center;
+    justify-content: center; }
 
 p {
   text-align: left;
@@ -990,6 +991,7 @@ a:hover {
 
 @media (max-width: 75em) {
   .contact {
+    font-family: Trattatello, fantasy;
     font-size: 1.3rem; }
     .contact h2 {
       font-size: 4rem;

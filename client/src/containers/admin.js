@@ -24,7 +24,7 @@ class Admin extends Component {
     componentDidMount(){
 
 
-        this.props.fetchProjects(()=>this.setState({isLoadedProjects:true}));
+        fetchProjects(()=>this.setState({isLoadedProjects:true}));
         fetchBlog();
         this.setState({isLoadedBlog:true})
     }
@@ -42,7 +42,7 @@ class Admin extends Component {
     render(){
         return (
             <div className="body">
-                <Navbar />
+                <Navbar title="Admin Page" />
                 <div className="body__container-portfolio">
                 {this.state.isLoadedBlog && this.state.isLoadedProjects?
                     <table

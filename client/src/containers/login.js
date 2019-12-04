@@ -16,7 +16,7 @@ class Login extends Component{
     render(){
     return (
         <div className="body">
-            <Navbar />
+            <Navbar  title="Admin Page" />
             <div className="body__container-column">
             <form id="loginForm" onSubmit={this.handleSubmit.bind(this)}>
                 <div>

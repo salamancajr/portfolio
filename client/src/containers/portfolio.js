@@ -140,8 +140,8 @@ class Portfolio extends Component {
     return (
 
     <div className="body">
-        <Navbar />
-        <div className="body__container-portfolio">
+        <Navbar title='My Portfolio'/>
+        <div className="body__container-portfolio" style={{justifyContent:'center'}}>
             <div className="iframe__container">
                 <label  htmlFor="description__checkbox">
                     <span onClick={this.handleClickExitVideo} className="iframe__container__exit pointer scale">&times;</span>
@@ -161,10 +161,10 @@ class Portfolio extends Component {
                     allowFullScreen>
                 </iframe>
             </div>
-            <h1> Portfolio Page</h1>
+            {/* <h1> Portfolio Page</h1>
             <hr />
             <p className="projects-container__info">Here you will find a variety of projects I have undertaken.</p>
-            <hr />
+            <hr /> */}
             <div style={{display:"grid", position:"relative"}}>
 
                 {

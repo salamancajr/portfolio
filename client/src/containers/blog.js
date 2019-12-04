@@ -95,7 +95,7 @@ class Blog extends Component{
 
 render(){
     return (
-        <div 
+        <div
             className="blog-body" style={this.state.loading?null:{width:"100vw", height:"auto" }}>
             {this.props.loading?
                 <Loading/>
@@ -104,7 +104,7 @@ render(){
 
             }
 
-             <Navbar />
+             <Navbar title="My Blogs"/>
         </div>);
     }
 }

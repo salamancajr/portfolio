@@ -1,28 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from "./navbar";
-export default function (){
-    return (<div className="body">
-    <Navbar />
+export default () => {
+  const [title, setTitle ] = useState('About Me')
+  console.log('title', title)
+    return (
+    <div className="body">
+    <Navbar {...{ title }}/>
     <input type="checkbox" id="about" className="about_check"/>
    <div className="body__container-column body__container-column--about-me">
+    <img id="selfie" src="https://i1283.photobucket.com/albums/a550/George_Salamanca/IMG_E2155_zpsncvpbfwi.jpg" alt="Selfie"/>
 
-      <img id="selfie" src="https://i1283.photobucket.com/albums/a550/George_Salamanca/IMG_E2155_zpsncvpbfwi.jpg" alt="Selfie"/>
-
-      <h1>
-       About me
-     </h1>
-
+  <hr />
     <p>I was born and raised in NY. I started coding in 2017 by following the coursework at
       <a style={{color: "orange"}} href="https://www.freecodecamp.org/salamancajr" target="_blank" rel="noopener noreferrer"> Free Code Camp.</a> I obtained their certificate in front end development and am current working on projects for their
       data visualization certificate and back-end development certificate. Thus far, I have learned about Javascript, jQuery,
       CSS, HTML and React. I enjoy it so much that I am decidedly pursuing a career in software development. I am also exploring
       other courses at Codecademy and Udemy to learn more about Javascript, React, Redux and Python.</p>
       </div>
-         <div className="body__container-column body__container-column--about-page">
-
-      <h1>
-       About this webpage
-     </h1>
+        <div
+          className="body__container-column body__container-column--about-page"
+          >
 
     <p>This single page application was created using react, redux and react-router. The layout design of each
     route was configured using flexbox and css grid. I tried to avoid bootstrap and other UI frameworks while creating this page so I could get experience with some advanced css concepts, and excluding the navigation bar that uses bootstrap, I was able to accomplish that.
@@ -35,11 +32,21 @@ export default function (){
     the different GET, POST, PATCH and DELETE routes will be added in the future and will be programmed using mocha.js.</p>
     </div>
     <label htmlFor="about">
-        <div className="admin-login" id="about-button" onClick={(e)=>{e.target.innerHTML==="About this page"?e.target.innerHTML="About me":e.target.innerHTML="About this page"}}>
+        <div
+          className="admin-login"
+          id="about-button"
+          onClick={(e)=>{
+            if (e.target.innerHTML==="About Me") {
+              e.target.innerHTML="About This page"
+              setTitle('About Me')
 
-                About this page
-
-        </div>
+            } else {
+              e.target.innerHTML= "About Me"
+              setTitle('About This Page')
+            }
+          }}>
+            About This Page
+          </div>
         </label>
 
   </div>)

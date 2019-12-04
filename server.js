@@ -4,14 +4,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
-const ngrok = require('ngrok');
 const port = process.env.PORT;
 
 const bodyParser = require('body-parser');
 
-const {projectRouter} = require("./routes/projects");
-const {blogRouter} = require("./routes/blog");
-const {authenticateRouter} = require("./routes/authenticate");
+const { projectRouter } = require("./routes/projects");
+const { blogRouter } = require("./routes/blog");
+const { authenticateRouter } = require("./routes/authenticate");
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(function (err, req, res, next) {
@@ -37,19 +36,11 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Something broke!')
 });
 
- 
-(async function() {
- 
-    
-  const url = await ngrok.connect({addr: 8081});
-  console.log(url)
-})();
-
-
-
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true
+}, (e) => {
     if (!e) {
         console.log('Connected to mongo');
 
@@ -62,7 +53,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (e) => {
 app.use("/api", projectRouter);
 app.use("/api", blogRouter);
 app.use("/api", authenticateRouter);
- 
+
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', "index.html"), function(err) {
       if (err) {
@@ -70,10 +61,10 @@ app.get('/*', function(req, res) {
       }
     })
 })
- 
+
 
 app.listen(port, () => {
     console.log(`Now connected on port ${port}`);
 })
 
-module.exports = {app}
+module.exports = { app }

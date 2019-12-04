@@ -4,15 +4,15 @@ import Navbar from './navbar';
 export default function (){
 return(
 <div className="body">
-<Navbar />
+<Navbar title="Contact Me"/>
 <div className="body__container-column contact">
 
-  <h2 className="contact">Contact
+  {/* <h2 className="contact">Contact
 
-  </h2>
+  </h2> */}
   <p className="contact" id="contactP">You can contact me by email at
     <a href="mailto: salamancajr@gmail.com"> salamancajr@gmail.com</a> or through any of the following social sites.</p>
-
+<hr />
 <div className="contact btc-group">
 
     <a className="btc" href="https://www.linkedin.com/in/george-salamanca-514b5084/" target="_blank" rel="noopener noreferrer">

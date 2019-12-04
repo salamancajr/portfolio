@@ -5,7 +5,7 @@
         "JWT_SECRET": "uyiuytiouyipuyoigvgcfhgcbvcb"
     },
     "development":{
-        "PORT":8081,
+        "PORT":8082,
         "MONGODB_URI":"mongodb://George:q2pyVnMm5nh3hUG@ds129831.mlab.com:29831/heroku_ks0vhrrr",
         "JWT_SECRET": "wawaewafwavdxwgxbfxrgsresregsfdshrd"
 

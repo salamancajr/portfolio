@@ -1,5 +1,9 @@
 .contact{
-
+    font-family: fantasy;
+    text-align: center;
+    p {
+        font-size: 2rem;
+    }
     @include respond(tab-land){
                 h2{
                   font-size:4rem;

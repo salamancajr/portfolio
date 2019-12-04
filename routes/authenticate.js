@@ -1,10 +1,10 @@
 const authenticateRouter = require("express").Router()
-let {User} = require("./../models/users.js")
-const {authenticate} = require("./../middleware/authenticate");
+let { User } = require("./../models/users.js")
+const { authenticate } = require("./../middleware/authenticate");
 const _ = require("lodash");
 
-authenticateRouter.post("/signup", async (req, res)=>{
-    try{
+authenticateRouter.post("/signup", async (req, res) => {
+    try {
         let body = _.pick(req.body, ["email", "password"])
 
         let user = new User(body);
@@ -23,14 +23,14 @@ authenticateRouter.post("/signup", async (req, res)=>{
 
 authenticateRouter.post("/signin", async (req, res)=>{
 
-    try{
+    try {
         let email = req.body.email;
         let password = req.body.password;
         const user = await User.findByCredentials(email, password);
         const token = await user.generateAuthToken();
         res.header('Access-Control-Expose-Headers', "x-auth");
         res.header("x-auth", token).send(user);
-    } catch(e){
+    } catch(e) {
         console.log(e);
         res.status(400).send();
 

@@ -66,7 +66,7 @@ class BlogEntry extends Component{
                         <div className="blog-story__text" dangerouslySetInnerHTML={{__html: marked(selected.text)}}>
                         </div>
                     </div>
-                    <Navbar/>
+                    <Navbar title="My Blogs" />
                 </div>
                 );
         }

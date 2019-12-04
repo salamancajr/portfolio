@@ -100,7 +100,8 @@ html {
     width: 80%;
     height: 80%;
     margin: auto;
-    align-items: center; }
+    align-items: center;
+    justify-content: center; }
 
 p {
   text-align: left;
@@ -644,7 +645,6 @@ a:hover {
   width: 25%; }
 
 .column-2 {
-  height: 100%;
   width: 50%;
   display: flex;
   justify-content: center;
@@ -992,24 +992,28 @@ a:hover {
       .blog-story__text {
         padding: 2rem; } }
 
-@media (max-width: 75em) {
-  .contact {
-    font-size: 1.3rem; }
-    .contact h2 {
-      font-size: 4rem;
-      margin-bottom: 1.5rem; }
-    .contact a {
-      width: 4rem;
-      height: 4rem;
-      margin-top: 2rem; } }
-
-@media (max-width: 56.25em) {
-  .contact {
-    font-size: 1.6rem; }
-    .contact h2 {
-      font-size: 4rem;
-      margin-bottom: 2rem; }
-    .contact a {
-      width: 5rem;
-      height: 5rem;
-      margin-top: 2rem; } }
+.contact {
+  font-family: fantasy;
+  text-align: center; }
+  .contact p {
+    font-size: 2rem; }
+  @media (max-width: 75em) {
+    .contact {
+      font-size: 1.3rem; }
+      .contact h2 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem; }
+      .contact a {
+        width: 4rem;
+        height: 4rem;
+        margin-top: 2rem; } }
+  @media (max-width: 56.25em) {
+    .contact {
+      font-size: 1.6rem; }
+      .contact h2 {
+        font-size: 4rem;
+        margin-bottom: 2rem; }
+      .contact a {
+        width: 5rem;
+        height: 5rem;
+        margin-top: 2rem; } }
