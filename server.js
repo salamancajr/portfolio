@@ -9,7 +9,6 @@ const port = process.env.PORT;
 const bodyParser = require('body-parser');
 
 const { projectRouter } = require("./routes/projects");
-const { blogRouter } = require("./routes/blog");
 const { authenticateRouter } = require("./routes/authenticate");
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -51,8 +50,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 
 app.use("/api", projectRouter);
-app.use("/api", blogRouter);
 app.use("/api", authenticateRouter);
+require("./routes/blog")(app);
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', "index.html"), function(err) {

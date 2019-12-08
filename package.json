@@ -13,12 +13,9 @@
     "start": "node server.js",
     "mongo": "cd ~/mongo/bin && ./mongod --dbpath ~/mongo-data",
     "client": "cd client && npm run start",
+    "sass": "cd client && npm run watch:sass",
     "compile:sass": "cd client && node-sass sass/main.scss src/index.css -w",
-    "all": "concurrently \"npm run mongo\" \"nodemon run start\" \"npm run client\" \"npm run compile:sass\"",
-    "install-nvm": "curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash",
-    "activate-nvm": ". ~/.nvm/nvm.sh",
-    "update-node": "nvm install 11.11.0",
-    "node-update": "npm run 'install-nvm' && npm run 'activate-nvm' && npm run 'update-node'"
+    "all": "concurrently \"npm run mongo\" \"nodemon run start\" \"npm run client\" \"npm run sass\""
   },
   "author": "",
   "license": "ISC",
@@ -44,6 +41,7 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
+    "chalk": "^3.0.0",
     "expect": "^23.6.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.10",

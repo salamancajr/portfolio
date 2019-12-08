@@ -197,14 +197,9 @@ export function patchItem(target, ip, cb) {
     } else {
 
         const request = axios.patch(`${BLOG_URL}/${target.id}`, {
-            "likes": "fernando",
-            "ipAddress":ip
-        }, {
-            headers: {
-                'x-auth': localStorage.getItem("token")
-            }
+            likes: target.id,
+            ipAddress:ip
         })
-        console.log("request check", request)
         return {
             type: UPDATED_BLOG,
             payload: request

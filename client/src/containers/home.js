@@ -4,29 +4,23 @@ export default class App extends Component {
   state = {
     boxText: ''
   }
-  componentDidMount() {
-    const letters = "Welcome to my developer page, where you'll find a little info about me. You can see some of my projects and find my contact information. Enjoy!"
-
-    const timer = setInterval(() => {
-      let {boxText} = this.state
-      if (boxText.length == letters.length) {
-        clearInterval(timer)
-        return
-      }
-      this.setState({ boxText: boxText + letters[boxText.length]})}, 50)
-
-
-  }
   render() {
-    let {boxText} = this.state
+
 
     return (
       <div className="body" style={{minHeight:"500px"}}>
         <Navbar title="Home | George Salamanca"/>
         <div className="body__container-row">
-          <div className="column-1"></div>
-          <div className="column-2" style={{overflow:'visible'}}>
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+          {/* <div className="column-1"></div>
+          <div className="column-2" style={{overflow:'visible'}}> */}
+          <div class="card" style={{maxWidth: '36rem', padding: '2rem'}}>
+
+  <div class="card-body text-dark">
+    <h5 class="card-title">Welcome to my developer page.</h5>
+    <p class="card-text">You'll find a little info about me. You can see some of my projects and find my contact information. Enjoy!.</p>
+  </div>
+</div>
+            {/* <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
               fill="purple" transform="scale(1,-1)" width="1000" height="1000" viewBox="0 0 20000 600"
               preserveAspectRatio="xMidYMid meet">
               <metadata>
@@ -42,16 +36,16 @@ export default class App extends Component {
               -755 1222 -121 198 -123 203 -109 230 13 24 15 469 15 3433 0 2335 3 3441 11
               3519 12 130 8 154 -25 177 -22 14 -405 16 -4103 18 -2243 2 -4629 0 -5303 -3z
               m8930 -3531 l0 -2740 -4880 0 -4880 0 0 2740 0 2740 4880 0 4880 0 0 -2740z"></path>
-            </svg>
-<div style={{width:488, height:274, transform: 'translate(-.2%, -21%)', backgroundColor:'white', position:'absolute', fontFamily:'monotype'}}>
+            </svg> */}
+{/* <div style={{width:488, height:274, transform: 'translate(-.2%, -21%)', backgroundColor:'white', position:'absolute', fontFamily:'monotype'}}>
   <div style={{fontSize:27, alignSelf:'center', flex:1, fontFamily:'Andale Mono, monospace'}}>
   {boxText}
 
   </div>
 </div>
-          </div>
-          <div className="column-3"></div>
-          <div className="column-4">
+          </div> */}
+          {/* <div className="column-3"></div> */}
+          {/* <div className="column-4">
             <a className="column-4__button"href="https://www.linkedin.com/in/george-salamanca-514b5084/" target="_blank" rel="noopener noreferrer">
               <strong>LinkedIn</strong>
               <i className="fab fa-linkedin-square"></i>
@@ -63,8 +57,8 @@ export default class App extends Component {
             <a className="column-4__button" href="https://github.com/salamancajr" target="_blank" rel="noopener noreferrer">
               <strong>Github</strong>
               <i className="fab fa-github"></i>
-            </a>
-          </div>
+            </a>*/}
+          {/* </div> */}
         </div>
       </div>
     );

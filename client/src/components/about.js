@@ -48,6 +48,5 @@ export default () => {
             About This Page
           </div>
         </label>
-
   </div>)
 }

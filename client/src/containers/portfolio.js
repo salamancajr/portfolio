@@ -38,17 +38,11 @@ class Portfolio extends Component {
             let projectsContainer = document.querySelector(".projects-container")
             projectsContainer.style.boxShadow = boxShadow;
             projectsContainer.style.borderRadius = "5px"
-            // let project_items = document.getElementsByClassName("projects-container__project projects-container__a")
-            // for (let i = 0;i<project_items.length;i++){
-            //     project_items[i].style.opacity = 0
-            // }
-
-
         }, 900)
 
 
-        document.getElementsByClassName("up")[0].style.transform = "scale(0)"
-        document.getElementsByClassName("down")[0].style.transform = "scale(0)"
+        // document.getElementsByClassName("up")[0].style.transform = "scale(0)"
+        // document.getElementsByClassName("down")[0].style.transform = "scale(0)"
 
         var a = document.getElementById(e.target.id);
 
@@ -167,7 +161,7 @@ class Portfolio extends Component {
             <hr /> */}
             <div style={{display:"grid", position:"relative"}}>
 
-                {
+                {/* {
                 !this.props.isLoading&&
                 <div style={{position:"absolute", top:"50%",transform:"translateY(-50%)", marginTop:"-.4rem"}}>
                     <a style={{display:"block"}}className="up"onClick={this.handleClickUp.bind(this)}>
@@ -177,7 +171,7 @@ class Portfolio extends Component {
                         <i className="fas fa-chevron-down shift pointer scale"></i>
                     </a>
                 </div>
-                }
+                } */}
                 <div className="projects-container">
 
                     <input

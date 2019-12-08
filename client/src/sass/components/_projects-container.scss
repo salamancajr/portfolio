@@ -9,7 +9,7 @@
         @include gridRows;
     grid-column-gap: 30px; //grid-row-gap: 30px;
     transition: all .5s;
-    overflow: hidden;
+    //overflow-x: hidden;
     min-width: 50rem;
     max-width: 50rem;
     min-height: 28rem;
