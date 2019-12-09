@@ -9,23 +9,13 @@ let vals="";
 let src="";
 class BlogEntry extends Component{
 
-    componentWillMount(){
-        console.log("heyhey")
-    }
     componentDidMount(){
-
+        window.scrollTo(0, 0)
         if (window.location.search.slice(1)){
           this.props.selectedBlog(window.location.search.slice(1), ()=>{console.log("done")})
 
         }
         else{
-            // if(this.props.selectBlog=={}){
-            //     this.props.history.push("/Blog")
-            // }
-            // if(!this.props.selectBlog.img){
-            //     this.props.history.push("/Blog")
-
-            // }
             try{
                 console.log(this.props.selectBlog.img)
                 if(this.props.selectBlog.img==undefined){
@@ -35,19 +25,10 @@ class BlogEntry extends Component{
             catch(e){
                 this.props.history.push("/Blog")
             }
-            // if(this.props.selectBlog.length==undefined){
-            //     this.props.history.push("/Blog")
-            // }
         }
 
 
    }
-//     static getDerivedStateFromProps(nextProps){
-//         console.log(nextProps)
-//     }
-//    componentDidUpdate(prevProps){
-//         console.log(prevProps)
-//    }
 
     render(){
         try{
@@ -72,7 +53,6 @@ class BlogEntry extends Component{
         }
         catch(e){
             return <div>Loading...</div>
-
         }
 
     }

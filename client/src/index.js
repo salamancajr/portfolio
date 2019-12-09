@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/style.css';
-import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
@@ -36,7 +35,6 @@ ReactDOM.render(
 
 
   <div>
-
     <Switch>
       <Route path="/About" component={About}/>
       <Route path="/Contact" component={Contact}/>
@@ -49,7 +47,6 @@ ReactDOM.render(
       <Route path="/Blog" component={Blog}/>
       <Route path="/EditProject" component={EditProject}/>
       <Route path="/" component={Home}/>
-      {/* <PrivateRoute path="/protected" component={Protected}/> */}
 
       </Switch>
     </div>
@@ -58,4 +55,3 @@ ReactDOM.render(
 
 sagaMiddleware.run(fetchProjects);
 sagaMiddleware.run(fetchBlog);
-// registerServiceWorker();

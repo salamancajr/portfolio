@@ -3,7 +3,7 @@ import LogoutButton from "../components/logoutButton";
 import Navbar from "../components/navbar";
 import {handleAdminChart, authenticateRoute, adminLogout } from "../actions";
 import {fetchBlog} from "../sagas/blogSagas";
-import {fetchProjects} from "../sagas/projectsSagas";
+import {fetchProjects} from "../actions";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import ProjectList from "../components/admin-project-list";
@@ -22,17 +22,10 @@ class Admin extends Component {
     }
 
     componentDidMount(){
-
-
         fetchProjects(()=>this.setState({isLoadedProjects:true}));
         fetchBlog();
         this.setState({isLoadedBlog:true})
     }
-
-    // handleClick(e){
-    //     var a = document.getElementById(e.target.id);
-    //     a.click();
-    // }
 
     handle2ndClick(){
         this.props.adminLogout(()=>{this.props.history.push("/Login")})

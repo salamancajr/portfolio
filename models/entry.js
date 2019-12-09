@@ -1,49 +1,49 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose')
 
-var Entry = mongoose.model("Entry", {
-    title: {
-        type: "string",
-        required: true,
-        minlength: 1,
-        trim: true
-    },
-    link: {
-        type: "string",
-        required: true,
-        minlength: 1,
-        trim: true
-    },
-    githubLink: {
-        type: "string",
-        required: true,
-        minlength: 1,
-        trim: true
-    },
-    description: {
-        type: "string",
-        required: true,
-        minlength: 1,
-        trim: true
-    },
-    img: {
-        data: Buffer,
-        contentType: String
+var Entry = mongoose.model('Entry', {
+  title: {
+    type: 'string',
+    required: true,
+    minlength: 1,
+    trim: true
+  },
+  link: {
+    type: 'string',
+    required: true,
+    minlength: 1,
+    trim: true
+  },
+  githubLink: {
+    type: 'string',
+    required: true,
+    minlength: 1,
+    trim: true
+  },
+  description: {
+    type: 'string',
+    required: true,
+    minlength: 1,
+    trim: true
+  },
+  img: {
+    data: Buffer,
+    contentType: String
 
-    },
-    youtubeLink:{
-        type:"string",
-        minlength:4,
-        default:"no link"
-    },
-    orderNum:{
-        type:Number,
+  },
+  youtubeLink: {
+    type: 'string',
+    minlength: 4,
+    default: 'no link'
+  },
+  orderNum: {
+    type: Number
 
-    }
-    // img: {
-    //     type:String,
-    //     required:true
-    // }
+  }
+  // img: {
+  //     type:String,
+  //     required:true
+  // }
 
 })
 
-module.exports = {Entry};
+module.exports = { Entry }

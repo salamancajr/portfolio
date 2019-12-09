@@ -24,17 +24,17 @@ const LOGIN_URL = "/api/signin";
 const AUTHENTICATE_URL = "/api/authenticate";
 const SIGN_OUT = "/api/token";
 
-// export function fetchProjects(cb) {
-//     const request = axios.get(PROJECTS_URL
-//     ).then((data)=>{
-//         cb()
-//         return data
-//     });
-//     return {
-//         type: FETCH_PROJECTS,
-//         payload: request
-//     };
-// }
+export function fetchProjects(cb) {
+    const request = axios.get(PROJECTS_URL
+    ).then((data)=>{
+        cb()
+        return data
+    });
+    return {
+        type: FETCH_PROJECTS,
+        payload: request
+    };
+}
 
 export function deleteProject(id) {
 
