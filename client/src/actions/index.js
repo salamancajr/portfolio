@@ -118,11 +118,10 @@ export function handleAdminChart(e) {
 
 }
 
-export function addBlog(values, callback) {
-
+export function addBlog(callback) {
+    console.log('check')
     var form = document.getElementById("blogform");
     var bodyFormData = new FormData(form);
-
     for (var pair of bodyFormData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
     }

@@ -10,10 +10,6 @@ module.exports = app => {
       res.send(data)
     })
   })
-
-  app.get('/api/blogform', (req, res) => {
-    res.sendFile(path.join(__dirname, '/index2.html'))
-  })
   /// ////delete the blog log//////////////////////////
 
   app.delete('/api/blog/:id', (req, res) => {
@@ -43,6 +39,9 @@ module.exports = app => {
       blog.save().then((data) => {
         res.send(data)
       })
+    }, (e) => {
+      console.log('error', e)
+      res.send(e).status(500)
     })
   })
 

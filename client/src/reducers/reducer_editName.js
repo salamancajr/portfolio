@@ -1,13 +1,11 @@
-import {EDIT_NAME} from "../actions"
+import { EDIT_NAME } from '../actions'
 
-export default function(state={}, action){
-    switch(action.type){
-        case EDIT_NAME:
-            return action.payload;
+export default function (state = {}, action) {
+  switch (action.type) {
+    case EDIT_NAME:
+      return action.payload
 
-        default:
-            return state
-
-
-    }
+    default:
+      return state
+  }
 }

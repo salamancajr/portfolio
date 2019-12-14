@@ -315,11 +315,8 @@ a:hover {
 
 .projects-table {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  width: 30rem; }
+  top: 15rem;
+  width: 40rem; }
   .projects-table th {
     min-width: 7rem;
     padding: .3rem 1rem; }
