@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import Navbar from '../components/navbar'
-import _ from 'lodash'
-import Description from '../components/description'
+import _ from 'lodash' 
 import Loading from '../components/Loading'
 import { fetchProjects } from '../sagas/projectsSagas'
-import { connect } from 'react-redux'
-let pickedProject
+import { connect } from 'react-redux' 
 
 class Portfolio extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      shift: 0
-
+      shift: 0,
+      pickedProject: {}
     }
   }
 
@@ -30,23 +28,14 @@ class Portfolio extends Component {
   }
 
   handleClick (e) {
-    const boxShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-
-    setTimeout(() => {
-      const projectsContainer = document.querySelector('.projects-container')
-      projectsContainer.style.boxShadow = boxShadow
-      projectsContainer.style.borderRadius = '5px'
-    }, 900)
-
-    // document.getElementsByClassName("up")[0].style.transform = "scale(0)"
-    // document.getElementsByClassName("down")[0].style.transform = "scale(0)"
+    
 
     var a = document.getElementById(e.target.id)
 
     a.click()
-    pickedProject = this.props.projects.filter(function (project) {
+    this.setState({ pickedProject: this.props.projects.find(function (project) {
       return project.title === e.target.id
-    })
+    }) })
   }
 
   handleClickDown () {
@@ -96,6 +85,8 @@ class Portfolio extends Component {
                 id={project.title}
                 className="projects-container__project projects-container__a" >
                 <label
+                  data-toggle="modal" 
+                  data-target=".bd-example-modal-xl"
                   htmlFor="chex"
                   className="projects-container__label"
                   onClick={this.handleClick.bind(this)}>
@@ -116,9 +107,13 @@ class Portfolio extends Component {
         }
 
         render () {
-          return (
 
-            <div className="body">
+          const { pickedProject } = this.state
+          console.log(pickedProject);
+          
+          return (
+            <React.Fragment>
+<div className="body" style={{ overflowY: 'scroll' }}>
               <Navbar title='My Portfolio'/>
               <div className="body__container-portfolio" style={{ justifyContent: 'center' }}>
                 <div className="iframe__container">
@@ -134,7 +129,7 @@ class Portfolio extends Component {
                     title="luvtipp-video"
                     width="460"
                     height="240"
-                    src={pickedProject ? pickedProject[0].youtubeLink : null}
+                    src={pickedProject ? pickedProject.youtubeLink : null}
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen>
@@ -167,14 +162,36 @@ class Portfolio extends Component {
                       this.props.isLoading
                         ? <Loading/>
                         : this.renderProjects()
-
                     }
-                    <Description pickedProject={pickedProject}/>
                   </div>
                 </div>
               </div>
 
-            </div>)
+            </div>
+
+
+            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+              <div style={{ height: '100vh', pointerEvents:'none', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
+              <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content" style={{ padding:'2rem'}}>
+                  <h1>
+                    {pickedProject.title}
+                  </h1>
+                  <p>
+                    {pickedProject.description}
+                  </p>
+                  <div style={{ display: 'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                  {pickedProject.githubLink !== 'none'&& <a style={{backgroundColor:'purple', minWidth:'5rem', border:'none'}} type="button" target='_blank' href={pickedProject.githubLink} class="btn btn-dark">Github</a>}
+                  <a style={{backgroundColor:'purple', minWidth:'5rem', border:'none'}} type="button" target='_blank' href={pickedProject.link} class="btn btn-dark">Link</a>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+              </div>
+              
+            </React.Fragment>
+            )
         }
 }
 
