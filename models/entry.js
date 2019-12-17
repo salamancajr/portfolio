@@ -25,11 +25,7 @@ var Entry = mongoose.model('Entry', {
     minlength: 1,
     trim: true
   },
-  img: {
-    data: Buffer,
-    contentType: String
-
-  },
+  img: String,
   youtubeLink: {
     type: 'string',
     minlength: 4,

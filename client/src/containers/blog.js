@@ -51,7 +51,7 @@ class Blog extends Component {
               console.log('likes', blog.likes.indexOf(this.state.ipAddress), this.state.ipAddress)
               var subString = blog.text.substr(0, 200) + '...'
 
-              const src = `data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`
+              //const src = `data:image/jpeg;base64, ${new Buffer(blog.img.data).toString('base64')}`
 
               return (
                 <div key={blog._id} className="blog-entry">
@@ -80,9 +80,9 @@ class Blog extends Component {
                     </div>
                   </div>
 
-                  <img className="blog-entry__img" src={src} alt={blog.title}>
+                  {/* <img className="blog-entry__img" src={src} alt={blog.title}> */}
 
-                  </img>
+                  {/* </img> */}
                   <div className="blog-entry__snippet">
 
                     {subString}

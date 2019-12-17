@@ -13,11 +13,7 @@ var BlogSchema = new Schema({
     minlength: 1,
     trim: true
   },
-  img: {
-    data: Buffer,
-    contentType: String
-
-  },
+  img: String,
   likes: {
     type: Array,
     default: null

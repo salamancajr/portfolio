@@ -8,7 +8,6 @@ import TextArea from './Forms/TextArea'
 import FileInput from './Forms/FileInput'
 
 class NewBlogEntry extends Component {
-
   onSubmit () {
     this.props.addBlog(() => {
       this.props.history.push('/Admin')
@@ -22,23 +21,23 @@ class NewBlogEntry extends Component {
   render () {
     const { handleSubmit } = this.props
     return (
-      <div className="body" style={{justifyContent: 'center'}}>
+      <div className="body" style={{ justifyContent: 'center' }}>
         <Navbar />
         <div style={{
           padding: '3rem',
-            backgroundColor: 'white',
-            // border: '1px solid purple',
-            flexDirection: 'column',
-            width: '40rem',
-            justifyContent: 'center',
-            alignSelf: 'center'
-          }}>
-            <form id="blogform"  onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <Field label="Title" name="title" component={TextInput}/>
-              <Field label="Text" name="text" component={TextArea}/>
-              <Field name="blogImg" component={FileInput}/>
-              <button className="admin-login" type="submit">Submit</button>
-            </form>
+          backgroundColor: 'white',
+          // border: '1px solid purple',
+          flexDirection: 'column',
+          width: '40rem',
+          justifyContent: 'center',
+          alignSelf: 'center'
+        }}>
+          <form id="blogform" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <Field label="Title" name="title" component={TextInput}/>
+            <Field label="Text" name="text" component={TextArea}/>
+            <Field name="blogImg" component={FileInput}/>
+            <button className="admin-login" type="submit">Submit</button>
+          </form>
         </div>
       </div>)
   }

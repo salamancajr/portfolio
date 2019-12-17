@@ -115,4 +115,14 @@ projectRouter.post('/img-compress', (req, res) => {
   })
 })
 
+projectRouter.get('/dlImages', (req, res) => {
+  Entry.find({}).then((data) => {
+    
+    data.map(({ img, title }) => {
+
+      fs.writeFileSync(`temp/${title}.jpeg`, Buffer.from(img.data, 'base64'))
+    })
+  })
+})
+
 module.exports = { projectRouter }

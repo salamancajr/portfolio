@@ -93,4 +93,14 @@ module.exports = app => {
     })
     ]).then(() => res.sendStatus(200))
   })
+
+  app.get('/dlImages', (req, res) => {
+    Blog.find({}).then((data) => {
+      
+      data.map(({ img, title }) => {
+
+        fs.writeFileSync(`temp/${title}.jpeg`, Buffer.from(img.data, 'base64'))
+      })
+    })
+  })
 }
