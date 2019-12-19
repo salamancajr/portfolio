@@ -1,29 +1,51 @@
 import React, { Component } from 'react'
-import Navbar from './navbar'
+import { patchBlogOrProject } from '../actions'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import TextInput from './Forms/TextInput'
+import TextArea from './Forms/TextArea'
+import FileInput from './Forms/FileInput'
+import { Field, reduxForm } from 'redux-form'
+import Modal from './Modal'
+
 class EditProject extends Component {
+  onSubmit (values) {
+    this.props.patchBlogOrProject({ ...values, img: values.img[0] })
+  }
+
   render () {
+    const { handleSubmit } = this.props
     return (
-      <div className="body">
-        <Navbar />
-        <div className="body__container-column">
-          <form id="form">
-            <select name="updataBlog">
-              <option value="title"></option>
-              <option value="text"></option>
-            </select>
-            <Link className="admin-login" to="/Admin">Submit</Link>
+      <Modal control="editProject">
+        <div style={{
+          padding: '3rem',
+          backgroundColor: 'white',
+          flexDirection: 'column',
+          width: '40rem',
+          justifyContent: 'center',
+          alignSelf: 'center'
+        }} class="modal-content">
+          <form
+            onSubmit={handleSubmit(this.onSubmit.bind(this))}
+          >
+            <Field label="Title" name="title" component={TextInput}/>
+            <Field label="Link" name="link" component={TextInput}/>
+            <Field label="Github" name="githubLink" component={TextInput}/>
+            <Field label="YouTube" name="youtubeLink" component={TextInput}/>
+            <Field label="Description" name="description" component={TextArea}/>
+            <Field name="img" component={FileInput}/>
+            <button className="admin-login" type="submit">Submit</button>
           </form>
         </div>
-      </div>)
+
+      </Modal>
+    )
   }
 }
-
 function mapStateToProps (state) {
   return {
-
+    initialValues: {
+      ...state.selectedProject
+    }
   }
 }
-
-export default connect(mapStateToProps, {})(EditProject)
+export default connect(mapStateToProps, { patchBlogOrProject })(reduxForm({ form: 'editProject', enableReinitialize: true })(EditProject))

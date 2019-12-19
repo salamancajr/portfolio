@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import ProjectList from '../components/admin-project-list'
 import BlogList from '../components/admin-blog-list'
 import EditBlog from '../components/editBlog'
+import EditProject from '../components/editProject'
+
 import Loading from '../components/Loading'
 
 class Admin extends Component {
@@ -91,10 +93,8 @@ class Admin extends Component {
             </div>
             <LogoutButton logout={this.handle2ndClick.bind(this)}/>
           </div>
-          <EditBlog
-            name={this.props.adminChart}
-            item={this.props.adminChart === 'blog' ? this.props.selectedBlog._id : this.props.selectedProject._id}
-          />
+          <EditBlog />
+          <EditProject />
         </React.Fragment>
 
       )

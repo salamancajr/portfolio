@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import marked from 'marked'
 
 var selected = ''
-let vals = ''
-let src = ''
+const vals = ''
+const src = ''
 class BlogEntry extends Component {
   componentDidMount () {
     window.scrollTo(0, 0)
@@ -27,15 +27,13 @@ class BlogEntry extends Component {
   render () {
     try {
       selected = this.props.selectBlog
-      vals = new Buffer(selected.img.data).toString('base64')
-      src = `data:image/jpeg;base64, ${vals}`
 
       return (
         <div className="blog-body">
           <div className="blog-story">
             <h2 className=" blog-story__heading">{selected.title ? selected.title : ''}</h2>
             <div style={{ background: 'purple' }}>
-              <img className=" blog-story__img" src={src || ''} alt={selected.title}/>
+              <img className=" blog-story__img" src={selected.img} alt={selected.title}/>
             </div >
             <span className="blog-story__time">{selected.time}</span>
             <div className="blog-story__text" dangerouslySetInnerHTML={{ __html: marked(selected.text) }}>

@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.592.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",

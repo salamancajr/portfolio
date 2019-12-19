@@ -75,8 +75,6 @@ class Portfolio extends Component {
 
         renderProjects () {
           return _.map(this.props.projects, project => {
-            // const vals = new Buffer(project.img.data).toString('base64')
-            // const src = `data:image/jpeg;base64, ${vals}`
             return (
               <a
 
@@ -90,11 +88,11 @@ class Portfolio extends Component {
                   htmlFor="chex"
                   className="projects-container__label"
                   onClick={this.handleClick.bind(this)}>
-                  {/* <img
+                  <img
                     id={project.title}
                     className="projects-container__img"
-                    src={src || ''}
-                    alt={project.title}/> */}
+                    src={project.img}
+                    alt={project.title}/>
                   <div
                     id={project.title}
                     className="projects-container__heading-tertiary">
@@ -108,7 +106,6 @@ class Portfolio extends Component {
 
         render () {
           const { pickedProject } = this.state
-          console.log(pickedProject)
 
           return (
             <React.Fragment>

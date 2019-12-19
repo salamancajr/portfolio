@@ -42,7 +42,7 @@ renderBlogList () {
         <th>
           <label htmlFor="blogListCheck">
             <i
-             data-target="#editBlog" data-toggle="modal" 
+              data-target="#editBlog" data-toggle="modal"
               name={blog.title}
               id={blog._id}
               onClick={this.handleClick.bind(this)}

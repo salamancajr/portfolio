@@ -35,11 +35,6 @@ var Entry = mongoose.model('Entry', {
     type: Number
 
   }
-  // img: {
-  //     type:String,
-  //     required:true
-  // }
-
 })
 
 module.exports = { Entry }

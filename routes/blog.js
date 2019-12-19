@@ -3,6 +3,7 @@ const { upload } = require('./../middleware/upload')
 const moment = require('moment')
 const fs = require('fs')
 const path = require('path')
+const AWS = require('aws-sdk')
 
 module.exports = app => {
   app.get('/api/blog', (req, res) => {
@@ -51,9 +52,20 @@ module.exports = app => {
     Blog.findById({
       _id
     }).then((data) => {
-
       res.send(data)
     })
+  })
+
+  app.get('/api/presignedRequest/:name&:type', (req, res) => {
+    const { name, type } = req.params
+
+    const s3 = new AWS.S3({ apiVersion: '2006-03-01' })
+    const url = s3.getSignedUrl('putObject', {
+      Bucket: 'portfoliogs',
+      Key: name,
+      ContentType: type
+    })
+    res.send({ url, name: `https://portfoliogs.s3.amazonaws.com/${name}` })
   })
 
   app.patch('/api/blog/:id', (req, res) => {
@@ -96,9 +108,7 @@ module.exports = app => {
 
   app.get('/dlImages', (req, res) => {
     Blog.find({}).then((data) => {
-      
       data.map(({ img, title }) => {
-
         fs.writeFileSync(`temp/${title}.jpeg`, Buffer.from(img.data, 'base64'))
       })
     })

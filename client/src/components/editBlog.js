@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { patchItem } from '../actions'
+import { patchBlogOrProject } from '../actions'
 import { connect } from 'react-redux'
 import TextInput from './Forms/TextInput'
 import TextArea from './Forms/TextArea'
@@ -8,32 +8,17 @@ import { Field, reduxForm } from 'redux-form'
 import Modal from './Modal'
 
 class EditBlog extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      text: '',
-      title: '',
-      description: '',
-      link: '',
-      githubLink: '',
-      option: 'text',
-      orderNum: ''
-    }
-  }
-
-  handleSubmit (e) {
-    e.preventDefault()
-    this.props.patchItem(e)
+  onSubmit (values) {
+    this.props.patchBlogOrProject({ ...values, img: values.img[0] })
   }
 
   render () {
+    const { handleSubmit } = this.props
     return (
-
       <Modal control="editBlog">
         <div style={{
           padding: '3rem',
           backgroundColor: 'white',
-          // border: '1px solid purple',
           flexDirection: 'column',
           width: '40rem',
           justifyContent: 'center',
@@ -41,11 +26,11 @@ class EditBlog extends Component {
         }} class="modal-content">
           <form
             id="blogform"
-            // onSubmit={handleSubmit(this.onSubmit.bind(this))}
+            onSubmit={handleSubmit(this.onSubmit.bind(this))}
           >
             <Field label="Title" name="title" component={TextInput}/>
             <Field label="Text" name="text" component={TextArea}/>
-            <Field name="blogImg" component={FileInput}/>
+            <Field name="img" component={FileInput}/>
             <button className="admin-login" type="submit">Submit</button>
           </form>
         </div>
@@ -54,12 +39,13 @@ class EditBlog extends Component {
     )
   }
 }
-function mapStateToProps ({ selectedBlog: { title, text } }) {
+function mapStateToProps ({ selectedBlog: { title, text, _id } }) {
   return {
     initialValues: {
       title,
-      text
+      text,
+      _id
     }
   }
 }
-export default connect(mapStateToProps, { patchItem })(reduxForm({ form: 'editBlog', enableReinitialize: true })(EditBlog))
+export default connect(mapStateToProps, { patchBlogOrProject })(reduxForm({ form: 'editBlog', enableReinitialize: true })(EditBlog))
