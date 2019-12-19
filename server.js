@@ -38,7 +38,8 @@ app.use(function (err, req, res, next) {
 mongoose.Promise = global.Promise
 
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 }, (e) => {
   if (!e) {
     console.log('Connected to mongo')
