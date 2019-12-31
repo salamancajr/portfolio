@@ -8,7 +8,7 @@ export default () => {
       <Navbar {...{ title }}/>
       <input type="checkbox" id="about" className="about_check"/>
       <div className="body__container-column body__container-column--about-me">
-        <img id="selfie" src="https://i1283.photobucket.com/albums/a550/George_Salamanca/IMG_E2155_zpsncvpbfwi.jpg" alt="Selfie"/>
+        <img id="selfie" src="https://portfoliogs.s3.amazonaws.com/17352347_10158395309945298_4196410004585528038_n.jpg" alt="Selfie"/>
 
         <hr />
         <p>I was born and raised in NY. I started coding in 2017 by following the coursework at
