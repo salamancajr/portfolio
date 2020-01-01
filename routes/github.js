@@ -1,4 +1,4 @@
-const git = require('simple-git')
+const git = require('simple-git/promise')
 const { execSync } = require('child_process')
 
 module.exports = app => {
