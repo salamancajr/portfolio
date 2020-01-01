@@ -7,7 +7,7 @@ module.exports = app => {
     console.log(crypto.createHmac('sha1', 'cashews').update(JSON.stringify(req.body)).digest('hex'))
     console.log(req.headers['x-hub-signature'])
     git().pull('origin', 'master').then(() => {
-      execSync('pm2 reload 0')
+      execSync('pm2 reload --force 0')
       res.sendStatus(200)
     })
   })
