@@ -51,6 +51,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api', projectRouter)
 app.use('/api', authenticateRouter)
 require('./routes/blog')(app)
+require('./routes/github')(app)
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'), function (err) {
