@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class Login extends Component {
   componentWillMount () {
-    localStorage.getItem('token') ? this.props.history.push('/Admin') : null
+    localStorage.getItem('token') && this.props.history.push('/Admin')
   }
 
   handleSubmit (e) {

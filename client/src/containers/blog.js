@@ -16,8 +16,18 @@ class Blog extends Component {
       window.scrollTo(0, 0)
       fetchBlog()
       this.setState({ isLoaded: true })
-      var findIP = new Promise(r => {
-        var w = window; var a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] }); var b = () => {}; a.createDataChannel(''); a.createOffer(c => a.setLocalDescription(c, b, b), b); a.onicecandidate = c => { try { c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(r) } catch (e) {} }
+      var findIP = new Promise(resolve => {
+        var w = window; var a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] })
+        var b = () => {}
+        a.createDataChannel('')
+        a.createOffer(c => a.setLocalDescription(c, b, b), b)
+        a.onicecandidate = c => {
+          try {
+            c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(resolve)
+          } catch (e) {
+
+          }
+        }
       })
       await findIP.then(ipAddress => this.setState({ ipAddress: ipAddress.toString() }))
     }
