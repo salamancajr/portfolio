@@ -4,12 +4,14 @@ const crypto = require('crypto')
 
 module.exports = app => {
   app.post('/api/updateGit', (req, res) => {
-    console.log(crypto.createHmac('sha1', 'cashews').update(JSON.stringify(req.body)).digest('hex'))
-    console.log(req.headers['x-hub-signature'])
-    git().pull('origin', 'master').then(() => {
-      execSync('pm2 reload --force 0')
-      res.sendStatus(200)
-    })
+    if (crypto.createHmac('sha1', 'cashews').update(JSON.stringify(req.body)).digest('hex') === req.headers['x-hub-signature']) {
+      git().pull('origin', 'master').then(() => {
+        execSync('pm2 reload --force 0')
+        res.sendStatus(200)
+      })
+    } else {
+      res.sendStatus(403)
+    }
   })
 }
 // Testing 9
