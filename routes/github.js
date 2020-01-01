@@ -3,7 +3,8 @@ const { execSync } = require('child_process')
 
 module.exports = app => {
   app.post('/api/updateGit', (req, res) => {
-    console.log(req.headers)
+    console.log(crypto.createHash('sha1').update(JSON.stringify(res.body)).digest('hex'))
+    console.log(req.headers['x-hub-signature'])
     git().pull('origin', 'master').then(() => {
       execSync('pm2 reload 0')
       res.sendStatus(200)
