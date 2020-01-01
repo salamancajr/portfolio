@@ -55,6 +55,7 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.18.10",
     "puppeteer": "^2.0.0",
+    "simple-git": "^1.129.0",
     "supertest": "^3.4.2"
   }
 }
