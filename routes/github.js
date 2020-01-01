@@ -4,7 +4,7 @@ const crypto = require('crypto')
 
 module.exports = app => {
   app.post('/api/updateGit', (req, res) => {
-    console.log(crypto.createHash('sha1', req.headers['x-hub-signature']).update(JSON.stringify(req.body)).digest('hex'))
+    console.log(crypto.createHash('sha1', 'cashews').update(JSON.stringify(req.body)).digest('hex'))
     console.log(req.headers['x-hub-signature'])
     git().pull('origin', 'master').then(() => {
       execSync('pm2 reload 0')
