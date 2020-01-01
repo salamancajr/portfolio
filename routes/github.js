@@ -1,5 +1,6 @@
 const git = require('simple-git/promise')
 const { execSync } = require('child_process')
+const crypto = require('crypto')
 
 module.exports = app => {
   app.post('/api/updateGit', (req, res) => {
