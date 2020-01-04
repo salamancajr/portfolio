@@ -2,13 +2,19 @@ const { Blog } = require('./../models/blog')
 const { upload } = require('./../middleware/upload')
 const moment = require('moment')
 const fs = require('fs')
-const path = require('path')
 const AWS = require('aws-sdk')
 
-module.exports = app => {
-  app.get('/api/blog', (req, res) => {
-    Blog.find({}).sort({ orderNum: +1 }).then((data) => {
+module.exports = (app, { client }) => {
+  app.get('/api/blog', async (req, res) => {
+    const cachedBlogs = await client.get('blogs')
+    if (cachedBlogs) {
+      return res.send(JSON.parse(cachedBlogs))
+    }
+    Blog.find({}).sort({ orderNum: -1 }).then((data) => {
+      console.log('Getting data from mongo')
+
       res.send(data)
+      client.set('blogs', JSON.stringify(data))
     })
   })
   /// ////delete the blog log//////////////////////////
@@ -46,13 +52,21 @@ module.exports = app => {
     })
   })
 
-  app.get('/api/blog/:id', (req, res) => {
+  app.get('/api/blog/:id', async (req, res) => {
     const _id = req.params.id
+
+    const cachedBlogs = await client.hget('blogSelection', _id)
+
+    if (cachedBlogs) {
+      console.log('cache')
+      return res.send(JSON.parse(cachedBlogs))
+    }
 
     Blog.findById({
       _id
     }).then((data) => {
       res.send(data)
+      client.hset('blogSelection', _id, JSON.stringify(data))
     })
   })
 

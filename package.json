@@ -7,7 +7,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js",
+    "test": "env-cmd -e test mocha **/*.test.js --timeout 5000",
     "test-watch": "nodemon --exec 'npm test'",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "start": "node server.js",
@@ -15,7 +15,7 @@
     "client": "cd client && npm run start",
     "sass": "cd client && npm run watch:sass",
     "compile:sass": "cd client && node-sass sass/main.scss src/index.css -w",
-    "all": "concurrently \"npm run mongo\" \"nodemon run start\" \"npm run client\" \"npm run sass\""
+    "all": "concurrently \"env-cmd -e development nodemon run start\" \"npm run client\" \"npm run sass\""
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "crypto-js": "^3.1.9-1",
+    "env-cmd": "^10.0.1",
     "express": "^4.16.4",
     "heroku-cli": "^7.0.9",
     "image-downloader": "^3.4.2",

@@ -24,20 +24,14 @@ const entries = [{
   link: 'www.test.com',
   githubLink: 'www.test2.com',
   description: 'This is a test description',
-  img: {
-    data: fs.readFileSync(photo),
-    contentType: 'image/png'
-  }
+  img: 'https://images.unsplash.com/photo-1577992443472-c9a4f44e8172?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'
 }, {
   _id: new ObjectID(),
   title: 'Second Test',
   link: 'www.secondtest.com',
   githubLink: 'www.secondtest2.com',
   description: 'This is a second test description',
-  img: {
-    data: fs.readFileSync(photo),
-    contentType: 'image/png'
-  }
+  img: 'https://images.unsplash.com/photo-1577992443472-c9a4f44e8172?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'
 }]
 
 const blogs = [{
@@ -45,18 +39,14 @@ const blogs = [{
   title: 'Test blog',
   text: 'test text',
   time: '12:00pm 12/12/2012',
-  img: {
-    data: fs.readFileSync(photo),
-    contentType: 'image/png'
-  }
+  img: 'https://images.unsplash.com/photo-1577992443472-c9a4f44e8172?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'
+
 }, {
   title: 'Test blog2',
   text: 'test text2',
   time: '12:00pm 12/12/2012',
-  img: {
-    data: fs.readFileSync(photo),
-    contentType: 'image/png'
-  }
+  img: 'https://images.unsplash.com/photo-1577992443472-c9a4f44e8172?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80'
+
 }
 
 ]
