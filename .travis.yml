@@ -14,7 +14,7 @@ cache:
 install:
     - npm install
     - cd client && npm install
-    - npm run build
+    - npm run build && cd ..
 script:
     - hohup npm run start &
     - sleep 3
