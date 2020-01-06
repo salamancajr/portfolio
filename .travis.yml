@@ -13,7 +13,7 @@ cache:
         - client/node_modules
 install:
     - npm install
-    - npm run client-build
+    - npm run build
 script:
     - hohup npm run start &
     - sleep 3
