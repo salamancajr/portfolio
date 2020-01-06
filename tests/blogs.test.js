@@ -3,8 +3,8 @@ const request = require('supertest')
 const { app } = require('../server')
 const { blogs } = require('./seed/seed')
 
-xdescribe('GET /blog', () => {
-  xit('should get all blogs', (done) => {
+describe('GET /blog', () => {
+  it('should get all blogs', (done) => {
     request(app)
       .get('/api/blog')
       .expect(200)
