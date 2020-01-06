@@ -6,7 +6,7 @@ services:
     - mongodb
     - redis-server
 env:
-    NODE_ENV=ci
+    - NODE_ENV=ci REDIS_URL=redis://127.0.0.1:6379 PORT=8082 MONGODB_URI=mongodb://127.0.0.1:27017/PortfolioCI JWT_SECRET=uyiuytiouyipuyoigvgcfhgcbvcb
 cache:
     directories:
         - node_modules
@@ -17,4 +17,4 @@ install:
 script:
     - hohup npm run start &
     - sleep 3
-    - npm run test
+    - npm run test-ci

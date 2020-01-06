@@ -7,7 +7,7 @@ const path = require('path')
 const app = express()
 const port = process.env.PORT
 
-const client = redis.createClient('redis://127.0.0.1:6379')
+const client = redis.createClient(process.env.REDIS_URL)
 client.get = util.promisify(client.get)
 client.hget = util.promisify(client.hget)
 
