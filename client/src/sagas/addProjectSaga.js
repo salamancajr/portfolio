@@ -10,7 +10,7 @@ function setFormData(){
     var bodyFormData = new FormData(form);
     bodyFormData.append("avatar", image);
 
-    const request = axios({
+    axios({
         method: "post",
         url: PROJECTS_URL,
         data: bodyFormData,

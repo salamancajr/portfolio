@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 import marked from 'marked'
 
 var selected = ''
-const vals = ''
-const src = ''
 class BlogEntry extends Component {
   componentDidMount () {
     window.scrollTo(0, 0)

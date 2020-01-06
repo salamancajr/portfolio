@@ -76,8 +76,9 @@ class Portfolio extends Component {
         renderProjects () {
           return _.map(this.props.projects, project => {
             return (
+              // eslint-disable-next-line
               <a
-
+                
                 href={'#'}
                 key={project.title}
                 id={project.title}
