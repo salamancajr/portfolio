@@ -7,7 +7,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test-ci": "mocha **/*.test.js",
+    "test-ci": "node --expose-internals ./node_modules/.bin/mocha **/*.test.js --exit",
     "test": "env-cmd -e test node --expose-internals ./node_modules/.bin/mocha **/*.test.js --exit",
     "test-watch": "nodemon --exec 'npm test'",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
