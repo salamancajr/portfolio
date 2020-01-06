@@ -6,7 +6,6 @@ const { User } = require('./../../models/users')
 const jwt = require('jsonwebtoken')
 const path = require('path')
 const userId = new ObjectID()
-const photo = './blogUploads/test.png'
 
 const users = [{
   _id: userId,

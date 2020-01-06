@@ -1,0 +1,20 @@
+language: node_js
+node_js: 
+    - "12.13.1"
+dist: trusty
+services:
+    - mongodb
+    - redis-server
+env:
+    NODE_ENV=ci
+cache:
+    directories:
+        - node_modules
+        - client/node_modules
+install:
+    - npm install
+    - npm run client-build
+script:
+    - hohup npm run start &
+    - sleep 3
+    - npm run test
