@@ -39,59 +39,63 @@ class Admin extends Component {
     render () {
       return (
         <React.Fragment>
-          <div className="body">
+          <div className="body" style={{ height: 'auto', overflow: 'scroll' }}>
             <Navbar title="Admin Page" />
-            <div className="body__container-portfolio">
+            <div className="body__container-portfolio" style={{ height: 'auto', overflow: 'scroll' }}>
               {this.state.isLoadedBlog && this.state.isLoadedProjects
-                ? <table
-                  id="fetchTable"
-                  className="projects-table">
-                  <thead
-                    className="projects-table__head">
-                    <tr>
-                      <th>
-                        <span
-                          className="pointer"
-                          style={{ color: this.props.adminChart === 'blog' ? '#007bff' : '' }} id="projects"
-                          onClick={(e) => this.props.handleAdminChart(e)}>Projects
-                        </span>
+                ? <React.Fragment>
+                  <table
+                    style={{ marginBottom: '5rem' }}
+                    id="fetchTable"
+                    className="projects-table">
+                    <thead
+                      className="projects-table__head">
+                      <tr>
+                        <th>
+                          <span
+                            className="pointer"
+                            style={{ color: this.props.adminChart === 'blog' ? '#007bff' : '' }} id="projects"
+                            onClick={(e) => this.props.handleAdminChart(e)}>Projects
+                          </span>
                                     /
-                        <span
-                          className="pointer"
-                          style={{ color: this.props.adminChart === 'projects' ? '#007bff' : '' }}id="blog"
-                          onClick={(e) => this.props.handleAdminChart(e)}>Blog
-                        </span>
-                        {this.props.adminChart === 'blog'
-                          ? <Link
-                            style={{ float: 'right' }}
-                            to="/NewBlogEntry">
-                            <i className="fas fa-plus"></i>
-                          </Link>
-                          : <Link
-                            style={{ float: 'right' }}
-                            to="/NewProject">
-                            <i className="fas fa-plus"></i>
-                          </Link>}
-                      </th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  {this.props.adminChart === 'blog'
-                    ? <BlogList
-                      blog={this.props.blog}
-                      link={this.props.history}/>
-                    : <ProjectList
-                      projects={this.props.projects}
-                      link={this.props.history.push}/>
-                  }
+                          <span
+                            className="pointer"
+                            style={{ color: this.props.adminChart === 'projects' ? '#007bff' : '' }}id="blog"
+                            onClick={(e) => this.props.handleAdminChart(e)}>Blog
+                          </span>
+                          {this.props.adminChart === 'blog'
+                            ? <Link
+                              style={{ float: 'right' }}
+                              to="/NewBlogEntry">
+                              <i className="fas fa-plus"></i>
+                            </Link>
+                            : <Link
+                              style={{ float: 'right' }}
+                              to="/NewProject">
+                              <i className="fas fa-plus"></i>
+                            </Link>}
+                        </th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    {this.props.adminChart === 'blog'
+                      ? <BlogList
+                        blog={this.props.blog}
+                        link={this.props.history}/>
+                      : <ProjectList
+                        projects={this.props.projects}
+                        link={this.props.history.push}/>
+                    }
 
-                </table>
+                  </table>
+                  <LogoutButton logout={this.handle2ndClick.bind(this)}/>
+
+                </React.Fragment>
                 : <Loading/>
               }
 
             </div>
-            <LogoutButton logout={this.handle2ndClick.bind(this)}/>
           </div>
           <EditBlog />
           <EditProject />

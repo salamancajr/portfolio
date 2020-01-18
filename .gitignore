@@ -2,3 +2,4 @@ node_modules/
 .env-cmdrc
 client/node_modules
 client/build
+redux-form

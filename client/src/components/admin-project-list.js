@@ -19,8 +19,7 @@ handleDrag = (e) => {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({ order })
-  }).then(data => console.log('data', data)
-  )
+  })// .then(data => console.log('data', data))
 }
 
 renderProjectList (e) {

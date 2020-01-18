@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 import { fetchProjects } from '../sagas/projectsSagas'
 import { connect } from 'react-redux'
 import Modal from '../components/Modal'
+
 class Portfolio extends Component {
   constructor (props) {
     super(props)
@@ -78,7 +79,7 @@ class Portfolio extends Component {
             return (
               // eslint-disable-next-line
               <a
-                
+
                 href={'#'}
                 key={project.title}
                 id={project.title}
@@ -107,7 +108,7 @@ class Portfolio extends Component {
 
         render () {
           const { pickedProject } = this.state
-
+          console.log(pickedProject)
           return (
             <React.Fragment>
               <div className="body" style={{ overflowY: 'scroll' }}>
@@ -150,16 +151,28 @@ class Portfolio extends Component {
 
               </div>
               <Modal control="description">
-                <div class="modal-content" style={{ padding: '2rem' }}>
-                  <h1>
+                <div class="modal-content modal-container" style={{ padding: '2rem' }}>
+                  <h1 style={{ textAlign: 'center', paddingBottom: '1rem', fontWeight: 'bold' }}>
                     {pickedProject.title}
                   </h1>
-                  <p>
+                  <p style={{ textAlign: 'center', paddingBottom: '1rem', minWidth: '30rem' }}>
                     {pickedProject.description}
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                    {pickedProject.githubLink !== 'none' && <a style={{ backgroundColor: 'purple', minWidth: '5rem', border: 'none' }} type="button" target='_blank' href={pickedProject.githubLink} class="btn btn-dark">Github</a>}
-                    <a style={{ backgroundColor: 'purple', minWidth: '5rem', border: 'none' }} type="button" target='_blank' href={pickedProject.link} class="btn btn-dark">Link</a>
+                    <a style={{
+                      padding: '1rem 4rem 1rem',
+                      borderRadius: '2rem',
+                      backgroundColor: 'purple',
+                      minWidth: '5rem',
+                      border: 'none'
+                    }} type="button" target='_blank' href={pickedProject.githubLink} class={`btn btn-dark ${pickedProject.githubLink === 'none' ? 'disabled' : ''}`}>Github</a>
+                    <a style={{
+                      backgroundColor: 'purple',
+                      minWidth: '5rem',
+                      border: 'none',
+                      padding: '1rem 4rem 1rem',
+                      borderRadius: '2rem'
+                    }} type="button" target='_blank' href={pickedProject.link} class="btn btn-dark">Link</a>
                   </div>
 
                 </div>

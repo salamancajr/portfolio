@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import NavItem from './NavItem'
 
-export default function ({ title }) {
+export default ({ title }) => {
   return (
     <nav className="ml-auto navbar navbar-expand-sm navbar-dark rounded-0 navy">
       <div className="ml-auto container">

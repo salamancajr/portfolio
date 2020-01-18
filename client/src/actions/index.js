@@ -117,11 +117,10 @@ export function handleAdminChart (e) {
 }
 
 export function addBlog (callback) {
-  console.log('check')
   var form = document.getElementById('blogform')
   var bodyFormData = new FormData(form)
   for (var pair of bodyFormData.entries()) {
-    console.log(pair[0] + ', ' + pair[1])
+    // console.log(pair[0] + ', ' + pair[1])
   }
   const request = axios.post(BLOG_URL, bodyFormData, {
     headers: {
@@ -258,11 +257,9 @@ export function authenticateRoute (cb) {
       'x-auth': localStorage.getItem('token')
     }
   }).then((data) => {
-    console.log('status', 'OK')
   }, (data) => {
     cb()
   })
-  console.log('authrequest', request)
   return {
     type: AUTHENTICATE_ROUTE,
     payload: request
@@ -275,7 +272,6 @@ export function adminLogout (cb) {
       'x-auth': localStorage.getItem('token')
     }
   }).then(() => {
-    console.log('logged out')
     cb()
     localStorage.removeItem('token')
   })

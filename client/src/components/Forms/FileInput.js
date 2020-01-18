@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default (field) => (
-    <div class="input-group mb-3">
+  <div class="input-group mb-3">
     <div class="custom-file">
       <input
         type="file"
@@ -11,7 +11,7 @@ export default (field) => (
         {...field.input}
         value={null}
       />
-        {field.meta.error}
+      {field.meta.error}
       <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
     </div>
   </div>

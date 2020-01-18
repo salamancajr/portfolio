@@ -109,7 +109,7 @@ module.exports = (app, { client }) => {
       }
       return Blog.findOneAndUpdate({ _id }, check)
     }).then(() => {
-      Blog.find({}).then(data => res.send(data))
+      Blog.find({}).sort({ orderNum: -1 }).then(data => res.send(data))
     })
   })
 

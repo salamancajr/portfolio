@@ -105,7 +105,6 @@ html {
 
 p {
   text-align: left;
-  max-width: 31.25rem;
   padding: 0rem 1.2rem; }
 
 a:hover {
@@ -316,7 +315,8 @@ a:hover {
 .projects-table {
   position: absolute;
   top: 15rem;
-  width: 40rem; }
+  width: 40rem;
+  padding-bottom: 5rem; }
   .projects-table th {
     min-width: 7rem;
     padding: .3rem 1rem; }
@@ -340,7 +340,7 @@ a:hover {
 
 .admin-login {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0;
   left: 50%;
   width: 7rem;
   text-align: center;
@@ -636,6 +636,65 @@ a:hover {
     font-weight: bold;
     display: block; }
 
+.card {
+  opacity: 0;
+  animation: slideUpButton .5s .2s forwards; }
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold; }
+  @media (max-width: 75em) {
+    .card-title {
+      font-size: 1.8rem; } }
+
+@media (max-width: 75em) {
+  .card-text {
+    font-size: 1.2rem; } }
+
+@media (max-width: 56.25em) {
+  .card-text {
+    font-size: 1.3rem; } }
+
+@media (max-width: 75em) {
+  .contact-card {
+    min-width: 45rem !important; } }
+
+@media (max-width: 37.5em) {
+  .contact-card {
+    min-width: 40rem !important; } }
+
+.contact-text a {
+  color: purple;
+  font-weight: bold; }
+
+@media (max-width: 75em) {
+  .contact-text {
+    min-width: 40rem !important;
+    font-size: 1.25rem; } }
+
+@media (max-width: 56.25em) {
+  .contact-text {
+    min-width: 38rem !important;
+    font-size: 1.3rem; } }
+
+@media (max-width: 37.5em) {
+  .contact-text {
+    min-width: 35rem !important;
+    font-size: 1.4rem; } }
+
+.card-link {
+  font-weight: bold;
+  color: purple; }
+  @media (max-width: 75em) {
+    .card-link {
+      font-size: 1.25rem; } }
+  @media (max-width: 56.25em) {
+    .card-link {
+      font-size: 1.3rem; } }
+  @media (max-width: 37.5em) {
+    .card-link {
+      font-size: 1.4rem; } }
+
 .column-1 {
   height: 100%;
   width: 25%; }
@@ -781,7 +840,6 @@ a:hover {
   transition: all .5s;
   font-size: 1rem; }
   .body__container-column--about-page p {
-    max-width: 60%;
     display: table-cell;
     -moz-column-count: 2;
     -moz-column-gap: 4rem;
@@ -793,12 +851,6 @@ a:hover {
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto; }
-  @media (max-width: 56.25em) {
-    .body__container-column--about-page p {
-      max-width: 70%; } }
-  @media (max-width: 37.5em) {
-    .body__container-column--about-page p {
-      max-width: 90%; } }
 
 #about-button {
   transition: all .5s; }

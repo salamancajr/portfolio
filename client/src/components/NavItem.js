@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 export default ({ name }) => {
   const { pathname } = window.location
-
   return (
     <li className="nav-item">
       <Link

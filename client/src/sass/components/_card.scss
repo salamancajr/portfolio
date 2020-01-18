@@ -1,0 +1,74 @@
+.card {
+    opacity: 0;
+    animation: slideUpButton .5s .2s forwards;
+}
+.card-title {
+   font-size: 1.4rem;
+  font-weight: bold;
+  @include respond(tab-land) {
+      font-size: 1.8rem;
+  }
+}
+.card-text {
+    @include respond(tab-land) {
+        font-size: 1.2rem;
+  
+    }
+    @include respond(tab-port) {
+        font-size: 1.3rem;
+  
+    }
+}
+
+.contact-card {
+    @include respond(tab-land) {
+        min-width: 45rem !important;
+   
+     }
+     @include respond(phone) {
+        min-width: 40rem !important;
+   
+     }
+}
+
+.contact-text {
+   a {
+       color:purple;
+       font-weight: bold;
+   }
+    @include respond(tab-land) {
+        min-width: 40rem !important;
+       font-size: 1.25rem;
+  
+    }
+    @include respond(tab-port) {
+        min-width: 38rem !important;
+
+        font-size: 1.3rem;
+  
+    }
+    @include respond(phone) {
+        min-width: 35rem !important;
+
+        font-size: 1.4rem;
+  
+    }
+}
+
+.card-link {
+    font-weight: bold;
+
+    color: purple;
+    @include respond(tab-land) {
+       font-size: 1.25rem;
+  
+    }
+    @include respond(tab-port) {
+        font-size: 1.3rem;
+
+    }
+    @include respond(phone) {
+        font-size: 1.4rem;
+
+    }
+}

@@ -7,7 +7,7 @@ export default () => {
     <div className="body">
       <Navbar {...{ title }}/>
       <input type="checkbox" id="about" className="about_check"/>
-      <div className="body__container-column body__container-column--about-me">
+      {/* <div className="body__container-column body__container-column--about-me">
         <img id="selfie" src="https://portfoliogs.s3.amazonaws.com/17352347_10158395309945298_4196410004585528038_n.jpg" alt="Selfie"/>
 
         <hr />
@@ -16,8 +16,31 @@ export default () => {
               data visualization certificate and back-end development certificate. Thus far, I have learned about Javascript, jQuery,
             CSS, HTML and React. I enjoy it so much that I am decidedly pursuing a career in software development. I am also exploring
             other courses at Codecademy and Udemy to learn more about Javascript, React, Redux and Python.</p>
+      </div> */}
+      <div className="body__container-column body__container-column--about-me">
+        <div class="card" style={{ width: '30rem', justifyContent: 'center' }}>
+          <img style={{ height: '20rem', objectFit: 'cover' }} src="https://portfoliogs.s3.amazonaws.com/17352347_10158395309945298_4196410004585528038_n.jpg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            {/* <h5 class="card-title">Card title</h5> */}
+            <p class="card-text" style={{ padding: '1.5rem' }}>I was born and raised in NY. I started coding in 2017 by following the coursework at
+              <a style={{ color: 'orange' }} href="https://www.freecodecamp.org/salamancajr" target="_blank" rel="noopener noreferrer"> Free Code Camp.</a> I obtained their certificate in front end development and am current working on projects for their
+              data visualization certificate and back-end development certificate. Thus far, I have learned about Javascript, jQuery,
+            CSS, HTML and React. I enjoy it so much that I am decidedly pursuing a career in software development. I am also exploring
+            other courses at Codecademy and Udemy to learn more about Javascript, React, Redux and Python.</p>
+            {/* <div style={{ display: 'flex', alignItems: 'center' }}><a style={{
+              padding: '1rem 4rem 1rem',
+              borderRadius: '2rem',
+              backgroundColor: 'purple',
+              minWidth: '5rem',
+              alignSelf: 'center'
+            }} href="#" class="btn btn-primary">Contact</a>
+
+            </div> */}
+
+          </div>
+        </div>
       </div>
-      <div
+      {/* <div
         className="body__container-column body__container-column--about-page"
       >
 
@@ -30,8 +53,8 @@ export default () => {
     if you will be visiting this link. The administrator authentication was created using a few NPM modules, namely <a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank"rel="noopener noreferrer">JSONWEBTOKEN</a> and <a href="https://www.npmjs.com/package/bcryptjs" target="_blank"rel="noopener noreferrer">BCRYPTJS.</a> I created this page with the
     intention of incorporating as much as I could of what I have learned so far. It will be useful for posting new projects and blogs. Future additions will include adding functionality to the "likes" and "share" button on the blogs page and adding video functionality so I can upload videos directly from the admin route of the page. Also,testing of
     the different GET, POST, PATCH and DELETE routes will be added in the future and will be programmed using mocha.js.</p>
-      </div>
-      <label htmlFor="about">
+      </div> */}
+      {/* <label htmlFor="about">
         <div
           className="admin-login"
           id="about-button"
@@ -46,6 +69,6 @@ export default () => {
           }}>
             About This Page
         </div>
-      </label>
+      </label> */}
     </div>)
 }
