@@ -105,9 +105,7 @@ module.exports = (app, { client }) => {
           $set: req.body
         }
       }
-      return Blog.findOneAndUpdate({ _id }, check)
-    }).then(() => {
-      Blog.find({}).then(data => {
+      return Blog.findOneAndUpdate({ _id }, check, { new: true }).then(data => {
         client.set('blogs', JSON.stringify(data))
         res.send(data)
       })

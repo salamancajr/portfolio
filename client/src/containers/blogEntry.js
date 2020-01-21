@@ -9,10 +9,10 @@ class BlogEntry extends Component {
   componentDidMount () {
     window.scrollTo(0, 0)
     if (window.location.search.slice(1)) {
-      this.props.selectedBlog(window.location.search.slice(1), () => { console.log('done') })
+      this.props.selectedBlog(window.location.search.slice(1), () => { })
     } else {
       try {
-        console.log(this.props.selectBlog.img)
+      
         if (this.props.selectBlog.img === undefined) {
           this.props.history.push('/Blog')
         }

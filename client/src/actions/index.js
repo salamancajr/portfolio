@@ -240,7 +240,6 @@ export function loginAuth (cb) {
     password: entries[1]
   })
     .then((data) => {
-      console.log('headers', data.headers)
       return localStorage.setItem('token', data.headers['x-auth'])
     }).then(() => {
       cb()

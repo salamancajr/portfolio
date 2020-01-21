@@ -32,8 +32,8 @@ class Blog extends Component {
       
       const event = e.target
 
-    console.log('ip on click', this.state.ipAddress)
-      /* Usage example */
+ 
+  
       this.props.patchItem(event, this.state.ipAddress, () => {
 
       })
@@ -46,9 +46,7 @@ class Blog extends Component {
           {this.props.loading
             ? <Loading/>
             : _.map(this.props.blog, blog => { 
-              console.log('ip at render', this.state.ipAddress)
-              console.log('likes', blog.likes)
-              console.log('ip at render', blog._id)
+ 
 
               var subString = blog.text.substr(0, 200) + '...'
 

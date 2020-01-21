@@ -108,7 +108,7 @@ class Portfolio extends Component {
 
         render () {
           const { pickedProject } = this.state
-          console.log(pickedProject)
+ 
           return (
             <React.Fragment>
               <div className="body" style={{ overflowY: 'scroll' }}>

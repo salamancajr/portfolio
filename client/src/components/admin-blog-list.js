@@ -24,7 +24,7 @@ handleDrag = (e) => {
 }
 
 handleClick (e) {
-  this.props.selectedBlog(e.target.id, () => { console.log('testing') })
+  this.props.selectedBlog(e.target.id, () => {  })
 }
 
 renderBlogList () {

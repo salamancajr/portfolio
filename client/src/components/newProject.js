@@ -21,7 +21,7 @@ class NewProject extends Component {
   }
 
   fileChangedHandler (e) {
-    console.log('new.js', e.target.files[0])
+ 
   }
 
   render () {

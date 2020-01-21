@@ -36,7 +36,7 @@ renderProjectList (e) {
             <i
               name={project.title}
               id={project.title}
-              onClick={(e) => this.props.selectedProject(e.target.id, () => { console.log('testing') })}
+              onClick={(e) => this.props.selectedProject(e.target.id, () => {  })}
               className="fas fa-edit pointer"
               data-target="#editProject"
               data-toggle="modal"
