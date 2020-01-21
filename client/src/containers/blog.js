@@ -4,6 +4,7 @@ import { patchItem, selectedBlog } from '../actions'
 import { fetchBlog } from '../sagas/blogSagas'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { sagaMiddleware } from '../'
 import Loading from '../components/Loading'
 
 class Blog extends Component {
@@ -14,22 +15,7 @@ class Blog extends Component {
 
     async componentDidMount () {
       window.scrollTo(0, 0)
-      fetchBlog()
-      this.setState({ isLoaded: true })
-      var findIP = new Promise(resolve => {
-        var w = window; var a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] })
-        var b = () => {}
-        a.createDataChannel('')
-        a.createOffer(c => a.setLocalDescription(c, b, b), b)
-        a.onicecandidate = c => {
-          try {
-            c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(resolve)
-          } catch (e) {
-
-          }
-        }
-      })
-      await findIP.then(ipAddress => this.setState({ ipAddress: ipAddress.toString() }))
+      sagaMiddleware.run(fetchBlog, ipAddress => this.setState({ isLoaded: true, ipAddress }))
     }
 
     goToBlog (e) {
@@ -43,8 +29,10 @@ class Blog extends Component {
     }
 
     handleClickLike (e) {
+      
       const event = e.target
 
+    console.log('ip on click', this.state.ipAddress)
       /* Usage example */
       this.props.patchItem(event, this.state.ipAddress, () => {
 
@@ -57,8 +45,11 @@ class Blog extends Component {
           className="blog-body" style={this.state.loading ? null : { width: '100vw', height: 'auto' }}>
           {this.props.loading
             ? <Loading/>
-            : _.map(this.props.blog, blog => {
-              console.log('likes', blog.likes.indexOf(this.state.ipAddress), this.state.ipAddress)
+            : _.map(this.props.blog, blog => { 
+              console.log('ip at render', this.state.ipAddress)
+              console.log('likes', blog.likes)
+              console.log('ip at render', blog._id)
+
               var subString = blog.text.substr(0, 200) + '...'
 
               return (

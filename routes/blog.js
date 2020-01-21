@@ -10,9 +10,7 @@ module.exports = (app, { client }) => {
     if (cachedBlogs) {
       return res.send(JSON.parse(cachedBlogs))
     }
-    Blog.find({}).sort({ orderNum: -1 }).then((data) => {
-      console.log('Getting data from mongo')
-
+    Blog.find({}).then((data) => {
       res.send(data)
       client.set('blogs', JSON.stringify(data))
     })
@@ -85,7 +83,7 @@ module.exports = (app, { client }) => {
   app.patch('/api/blog/:id', (req, res) => {
     let check
     const _id = req.params.id
-    const { ipAddress } = req.body
+    const ipAddress = req.headers['x-forwarded-for']
 
     Blog.findById({ _id }).then((data) => {
       if (req.body.likes) {
@@ -109,7 +107,10 @@ module.exports = (app, { client }) => {
       }
       return Blog.findOneAndUpdate({ _id }, check)
     }).then(() => {
-      Blog.find({}).sort({ orderNum: -1 }).then(data => res.send(data))
+      Blog.find({}).then(data => {
+        client.set('blogs', JSON.stringify(data))
+        res.send(data)
+      })
     })
   })
 

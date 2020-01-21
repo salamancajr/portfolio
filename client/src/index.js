@@ -50,4 +50,5 @@ ReactDOM.render(
   </Provider>, document.getElementById('root'))
 
 sagaMiddleware.run(fetchProjects)
-sagaMiddleware.run(fetchBlog)
+// sagaMiddleware.run(fetchBlog)
+export { sagaMiddleware }

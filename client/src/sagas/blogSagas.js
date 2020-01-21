@@ -6,14 +6,16 @@ const BLOG_URL = '/api/blog'
 
 function fetchBlogApi () {
   return axios.get(BLOG_URL
-  ).then(response => ({ response }))
+  ).then(response => ({response}))
     .catch(error => ({ error }))
 }
 
-export function * fetchBlog () {
+export function * fetchBlog (cb) {
+ 
   yield put({ type: UI_START_LOADING })
   const { response, error } = yield call(fetchBlogApi)
   if (response) {
+    yield call(cb, response.headers['x-forwarded-for'])
     yield put({ type: UI_STOP_LOADING })
     yield put({ type: FETCH_BLOG, payload: response })
   } else { yield put({ type: UI_STOP_LOADING }) }
