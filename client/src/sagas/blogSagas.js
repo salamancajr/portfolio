@@ -15,6 +15,7 @@ export function * fetchBlog (cb) {
   yield put({ type: UI_START_LOADING })
   const { response, error } = yield call(fetchBlogApi)
   if (response) {
+    if (cb)
     yield call(cb, response.headers['x-forwarded-for'])
     yield put({ type: UI_STOP_LOADING })
     yield put({ type: FETCH_BLOG, payload: response })

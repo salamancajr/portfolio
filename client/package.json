@@ -51,7 +51,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "https://www.georgesalamanca.com/",
+      "target": "http://localhost:8082/",
       "secure": false
     }
   }

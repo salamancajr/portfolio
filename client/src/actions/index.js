@@ -116,12 +116,10 @@ export function handleAdminChart (e) {
   }
 }
 
-export function addBlog (callback) {
+export const addBlog = (callback) => {
   var form = document.getElementById('blogform')
   var bodyFormData = new FormData(form)
-  for (var pair of bodyFormData.entries()) {
-    // console.log(pair[0] + ', ' + pair[1])
-  }
+ 
   const request = axios.post(BLOG_URL, bodyFormData, {
     headers: {
       'x-auth': localStorage.getItem('token')

@@ -7,38 +7,6 @@ const path = require('path')
 const app = express()
 const port = process.env.PORT
 
-const client = redis.createClient(process.env.REDIS_URL)
-client.get = util.promisify(client.get)
-client.hget = util.promisify(client.hget)
-
-const bodyParser = require('body-parser')
-
-const { authenticateRouter } = require('./routes/authenticate')
-app.use(express.static(path.join(__dirname, 'client/build')))
-
-app.use(function (err, req, res, next) {
-  console.log(err.stack)
-  res.status(500).send('Something broke!')
-})
-
-app.use(bodyParser.json({
-  limit: '50mb'
-}))
-
-app.use('/uploads', express.static('uploads'))
-
-app.use(bodyParser.urlencoded({
-  limit: '50mb',
-  extended: true
-}))
-
-app.use(cors())
-
-app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-})
-
 mongoose.Promise = global.Promise
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -52,10 +20,39 @@ mongoose.connect(process.env.MONGODB_URI, {
   }
 })
 
-require('./routes/projects')(app, { client })
-app.use('/api', authenticateRouter)
-require('./routes/blog')(app, { client })
+const redisClient = redis.createClient(process.env.REDIS_URL)
+redisClient.get = util.promisify(redisClient.get)
+redisClient.hget = util.promisify(redisClient.hget)
+
+const bodyParser = require('body-parser')
+app.use(express.static(path.join(__dirname, 'client/build')))
+
+app.use(function (err, req, res, next) {
+  console.log('error at middleware', err.stack)
+  res.status(500).send('Something broke!')
+})
+
+app.use(bodyParser.json({
+  limit: '50mb'
+}))
+
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}))
+
+app.use(cors())
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
+require('./routes/projects')(app, { redisClient })
+require('./routes/authenticate')(app)
+require('./routes/blog')(app, { redisClient })
 require('./routes/github')(app)
+require('./routes/aws')(app)
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'), function (err) {

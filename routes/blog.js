@@ -1,48 +1,52 @@
 const { Blog } = require('./../models/blog')
-const { upload } = require('./../middleware/upload')
 const moment = require('moment')
-const fs = require('fs')
-const AWS = require('aws-sdk')
+const { authenticate } = require('../middleware/authenticate')
 
-module.exports = (app, { client }) => {
+module.exports = (app, { redisClient }) => {
   app.get('/api/blog', async (req, res) => {
-    const cachedBlogs = await client.get('blogs')
+    const cachedBlogs = await redisClient.get('blogs')
     if (cachedBlogs) {
       return res.send(JSON.parse(cachedBlogs))
     }
     Blog.find({}).then((data) => {
       res.send(data)
-      client.set('blogs', JSON.stringify(data))
+      redisClient.set('blogs', JSON.stringify(data))
     })
   })
-  /// ////delete the blog log//////////////////////////
 
-  app.delete('/api/blog/:id', (req, res) => {
+  app.get('/api/blog/:id', async (req, res) => {
     const _id = req.params.id
 
-    Blog.removeAndReduceByOne(_id).then(() => {
-      Blog.find({}).then((data) => { res.status(200).send(data) })
+    const cachedBlog = await redisClient.hget('blogSelection', _id)
+
+    if (cachedBlog) {
+      return res.send(JSON.parse(cachedBlog))
+    }
+
+    Blog.findById(_id).then((data) => {
+      res.send(data)
+      redisClient.hset('blogSelection', _id, JSON.stringify(data))
     })
   })
 
-  app.post('/api/blog', upload.single('blogImg'), (req, res) => {
-    const data = fs.readFileSync(req.file.path)
-    const contentType = 'image/png'
+  app.post('/api/blog', authenticate, (req, res) => {
+    const { title, text, img } = req.body
     const time = moment().format('MMMM Do YYYY, h:mm:ss a')
 
     Blog.find({}).then((dataBlog) => {
       const orderNum = dataBlog.length
+
       const blog = new Blog({
-        title: req.body.title,
-        text: req.body.text,
-        likes: req.body.likes,
+        title,
+        text,
         time,
         orderNum,
-        img: { data, contentType }
+        img
       })
 
       blog.save().then((data) => {
         res.send(data)
+        redisClient.set('blogs', JSON.stringify(data))
       })
     }, (e) => {
       console.log('error', e)
@@ -50,80 +54,61 @@ module.exports = (app, { client }) => {
     })
   })
 
-  app.get('/api/blog/:id', async (req, res) => {
-    const _id = req.params.id
+  app.post('/api/blogOrder', authenticate, async (req, res) => {
+    const result = await Promise.all(req.body.order.map(async item => {
+      const val = await Blog.findOneAndUpdate({ _id: item.id }, { $set: { orderNum: item.orderNum } }, { new: true }).then(data => data)
+      return val
+    }))
 
-    const cachedBlogs = await client.hget('blogSelection', _id)
-
-    if (cachedBlogs) {
-      console.log('cache')
-      return res.send(JSON.parse(cachedBlogs))
-    }
-
-    Blog.findById({
-      _id
-    }).then((data) => {
-      res.send(data)
-      client.hset('blogSelection', _id, JSON.stringify(data))
-    })
+    res.send(result)
+    redisClient.set('blogs', JSON.stringify(result))
   })
 
-  app.get('/api/presignedRequest/:name&:type', (req, res) => {
-    const { name, type } = req.params
-
-    const s3 = new AWS.S3({ apiVersion: '2006-03-01' })
-    const url = s3.getSignedUrl('putObject', {
-      Bucket: 'portfoliogs',
-      Key: name,
-      ContentType: type
-    })
-    res.send({ url, name: `https://portfoliogs.s3.amazonaws.com/${name}` })
-  })
-
-  app.patch('/api/blog/:id', (req, res) => {
-    let check
+  app.patch('/api/blog/:id', authenticate, async (req, res) => {
     const _id = req.params.id
     const ipAddress = req.headers['x-forwarded-for']
 
-    Blog.findById({ _id }).then((data) => {
+    const finalUpdate = await Blog.findById({ _id }).then(data => {
+      let update
       if (req.body.likes) {
-        if (data.likes.indexOf(ipAddress) > -1) {
-          check = {
+        if (data.likes.includes(ipAddress)) {
+          update = {
             $pull: {
               likes: { $in: ipAddress }
             }
           }
         } else {
-          check = {
+          update = {
             $push: {
               likes: ipAddress
             }
           }
         }
       } else {
-        check = {
+        update = {
           $set: req.body
         }
       }
-      return Blog.findOneAndUpdate({ _id }, check, { new: true }).then(data => {
-        client.set('blogs', JSON.stringify(data))
-        res.send(data)
-      })
+      return update
+    })
+    await Blog.findOneAndUpdate({ _id }, finalUpdate, { new: true }).then(data =>
+      redisClient.hset('blogSelection', _id, JSON.stringify(data))
+    )
+    Blog.find().then(data => {
+      res.send(data)
+      redisClient.set('blogs', JSON.stringify(data))
     })
   })
 
-  app.post('/api/blogOrder', (req, res) => {
-    Promise.all([req.body.order.map(item => {
-      Blog.findOneAndUpdate({ _id: item.id }, { $set: { orderNum: item.orderNum } }, { new: true }).then(data => console.log('data', data))
-    })
-    ]).then(() => res.sendStatus(200))
-  })
+  app.delete('/api/blog/:id', authenticate, async (req, res) => {
+    const _id = req.params.id
 
-  app.get('/dlImages', (req, res) => {
-    Blog.find({}).then((data) => {
-      data.map(({ img, title }) => {
-        fs.writeFileSync(`temp/${title}.jpeg`, Buffer.from(img.data, 'base64'))
-      })
+    await Blog.removeAndReduceByOne(_id)
+
+    Blog.find({}).then(data => {
+      res.status(200).send(data)
+      redisClient.hdel('blogSelection', _id)
+      redisClient.set('blogs', JSON.stringify(data))
     })
   })
 }

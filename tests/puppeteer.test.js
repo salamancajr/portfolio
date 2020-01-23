@@ -11,7 +11,6 @@ beforeEach(async () => {
 describe('Renders a blog list', _ => {
   it('should get two blogs', async () => {
     const page = await browser.newPage()
-    // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3419.0 Safari/537.36')
     await page.goto('http://localhost:8082')
     await page.click('a[href="/Blog"]')
     await page.waitFor('.blog-entry')

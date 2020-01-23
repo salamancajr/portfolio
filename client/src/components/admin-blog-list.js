@@ -15,7 +15,7 @@ handleDrag = (e) => {
   for (let i = 0; i < array.length; i++) {
     order.push({ orderNum: i, id: array[i].id })
   }
-  fetch('https://quiet-taiga-43727.herokuapp.com/blogOrder', {
+  fetch('http://localhost:8082/api/blogOrder', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({ order })

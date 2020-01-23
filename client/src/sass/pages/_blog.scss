@@ -122,6 +122,8 @@
             flex-direction: column;
         }
         h3 {
+            font-weight: bold;
+
             font-size: 2rem;
             cursor: pointer;
         }
@@ -163,4 +165,4 @@
 
 .share{
     color:$color-primary;
-}
+} 
