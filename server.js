@@ -24,15 +24,12 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.use(function (err, req, res, next) {
   console.log('error at middleware', err.stack)
-  res.status(500).send('Something broke!')
+  res.sendStatus(500)
 })
 
-app.use(bodyParser.json({
-  limit: '50mb'
-}))
+app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({
-  limit: '50mb',
   extended: true
 }))
 
