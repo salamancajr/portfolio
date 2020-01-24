@@ -13,7 +13,10 @@ var BlogSchema = new Schema({
     minlength: 1,
     trim: true
   },
-  img: String,
+  img: {
+    type: String,
+    required: true
+  },
   likes: {
     type: Array,
     default: null
