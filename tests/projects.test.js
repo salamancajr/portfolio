@@ -4,7 +4,7 @@ const { app } = require('./../server')
 const { Entry } = require('./../models/entry')
 const { entries, users } = require('./seed/seed')
 
-describe('GET /api', () => {
+describe('GET /api/projects', () => {
   it('should get all project entries', (done) => {
     request(app)
       .get('/api/blog')
@@ -16,7 +16,7 @@ describe('GET /api', () => {
   })
 })
 
-describe('GET /api/api/:id', () => {
+describe('GET /api/projects/:id', () => {
   it('should fetch desired project', (done) => {
     request(app)
       .get(`/api/api/${entries[0].title}`)
@@ -49,7 +49,7 @@ describe('GET /api/api/:id', () => {
 //   })
 // })
 
-describe('PATCH /api', () => {
+describe('PATCH /api/projects', () => {
   it('should edit an existing project entry', (done) => {
     const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     request(app)
@@ -66,7 +66,7 @@ describe('PATCH /api', () => {
   })
 })
 
-describe('DELETE /api', () => {
+describe('DELETE /api/projects', () => {
   it('should delete a project entry', (done) => {
     request(app)
       .delete(`/api/api/${entries[0]._id}`)
