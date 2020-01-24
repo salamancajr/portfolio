@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
-var Schema = mongoose.Schema
-var BlogSchema = new Schema({
+const Schema = mongoose.Schema
+const { redisClient } = require('../redis')
+
+const expirationTime = 60 * 60 * 24 * 7
+
+const BlogSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -32,7 +36,7 @@ var BlogSchema = new Schema({
 })
 
 BlogSchema.statics.removeAndReduceByOne = function (_id) {
-  var Blog = this
+  const Blog = this
 
   return Blog.findById(_id).then((data) => {
     return data.orderNum
@@ -42,6 +46,18 @@ BlogSchema.statics.removeAndReduceByOne = function (_id) {
   })
 }
 
-var Blog = mongoose.model('Blog', BlogSchema)
+BlogSchema.statics.findAndCacheResponse = function (res) {
+  const Blog = this
+
+  return Blog.find().sort({ orderNum: +1 }).then(data => {
+    if (res) {
+      res.send(data)
+    }
+    redisClient.set('blogs', JSON.stringify(data), 'EX', expirationTime)
+    return data
+  })
+}
+
+const Blog = mongoose.model('Blog', BlogSchema)
 
 module.exports = { Blog }

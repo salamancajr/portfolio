@@ -1,17 +1,18 @@
 const { Blog } = require('./../models/blog')
 const moment = require('moment')
 const { authenticate } = require('../middleware/authenticate')
+const { redisClient } = require('../redis')
 
-module.exports = (app, { redisClient }) => {
+const expirationTime = 60 * 60 * 24 * 7
+
+module.exports = app => {
   app.get('/api/blog', async (req, res) => {
     try {
       const cachedBlogs = await redisClient.get('blogs')
       if (cachedBlogs) {
         return res.send(JSON.parse(cachedBlogs))
       }
-      const allData = await Blog.find()
-      res.send(allData)
-      redisClient.set('blogs', JSON.stringify(allData))
+      Blog.findAndCacheResponse(res)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -29,7 +30,7 @@ module.exports = (app, { redisClient }) => {
 
       const data = await Blog.findById(_id)
       res.send(data)
-      redisClient.hset('blogSelection', _id, JSON.stringify(data))
+      redisClient.hset('blogSelection', _id, JSON.stringify(data), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -53,11 +54,8 @@ module.exports = (app, { redisClient }) => {
       })
 
       const newBlog = await blog.save()
-      res.send(newBlog)
-      redisClient.hset('blogSelection', newBlog._id.toString(), JSON.stringify(newBlog))
-
-      const updatedAllData = await Blog.find()
-      redisClient.set('blogs', JSON.stringify(updatedAllData))
+      Blog.findAndCacheResponse(res)
+      redisClient.hset('blogSelection', newBlog._id.toString(), JSON.stringify(newBlog), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -72,8 +70,8 @@ module.exports = (app, { redisClient }) => {
 
       res.send(result)
 
-      redisClient.set('blogs', JSON.stringify(result))
-      result.map(blog => redisClient.hset('blogSelection', blog._id.toString(), JSON.stringify(blog)))
+      redisClient.set('blogs', JSON.stringify(result), 'EX', expirationTime)
+      result.map(blog => redisClient.hset('blogSelection', blog._id.toString(), JSON.stringify(blog), 'EX', expirationTime))
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -88,12 +86,9 @@ module.exports = (app, { redisClient }) => {
         $set: req.body
       }, { new: true })
 
-      const allBlogs = await Blog.find()
+      Blog.findAndCacheResponse(res)
 
-      res.send(allBlogs)
-
-      redisClient.hset('blogSelection', _id, JSON.stringify(updatedBlog))
-      redisClient.set('blogs', JSON.stringify(allBlogs))
+      redisClient.hset('blogSelection', _id, JSON.stringify(updatedBlog), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -123,12 +118,9 @@ module.exports = (app, { redisClient }) => {
       }
 
       const newBlog = await Blog.findOneAndUpdate({ _id }, update, { new: true })
-      const allBlogs = await Blog.find()
+      Blog.findAndCacheResponse(res)
 
-      res.send(allBlogs)
-
-      redisClient.hset('blogSelection', _id, JSON.stringify(newBlog))
-      redisClient.set('blogs', JSON.stringify(allBlogs))
+      redisClient.hset('blogSelection', _id, JSON.stringify(newBlog), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -141,11 +133,9 @@ module.exports = (app, { redisClient }) => {
 
       await Blog.removeAndReduceByOne(_id)
 
-      const allData = await Blog.find()
-      res.status(200).send(allData)
+      Blog.findAndCacheResponse(res)
 
       redisClient.hdel('blogSelection', _id)
-      redisClient.set('blogs', JSON.stringify(allData))
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)

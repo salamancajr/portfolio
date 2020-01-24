@@ -1,10 +1,9 @@
 const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
-const redis = require('redis')
-const util = require('util')
 const path = require('path')
 const app = express()
+
 const port = process.env.PORT
 
 mongoose.Promise = global.Promise
@@ -19,10 +18,6 @@ mongoose.connect(process.env.MONGODB_URI, {
     console.log(e)
   }
 })
-
-const redisClient = redis.createClient(process.env.REDIS_URL)
-redisClient.get = util.promisify(redisClient.get)
-redisClient.hget = util.promisify(redisClient.hget)
 
 const bodyParser = require('body-parser')
 app.use(express.static(path.join(__dirname, 'client/build')))
@@ -48,9 +43,9 @@ app.use(function (err, req, res, next) {
   res.status(500).send('Something broke!')
 })
 
-require('./routes/projects')(app, { redisClient })
+require('./routes/projects')(app)
 require('./routes/authenticate')(app)
-require('./routes/blog')(app, { redisClient })
+require('./routes/blog')(app)
 require('./routes/github')(app)
 require('./routes/aws')(app)
 

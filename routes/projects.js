@@ -1,17 +1,18 @@
 
 const { Entry } = require('../models/entry.js')
 const { authenticate } = require('../middleware/authenticate')
+const { redisClient } = require('../redis')
 
-module.exports = (app, { redisClient }) => {
+const expirationTime = 60 * 60 * 24 * 7
+
+module.exports = app => {
   app.get('/api/projects', async (req, res) => {
     try {
       const cachedProjects = await redisClient.get('projects')
       if (cachedProjects) {
         return res.send(JSON.parse(cachedProjects))
       }
-      const allProjects = await Entry.find().sort({ orderNum: +1 })
-      res.send(allProjects)
-      redisClient.set('projects', JSON.stringify(allProjects))
+      Entry.findAndCacheResponse(res)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -30,7 +31,7 @@ module.exports = (app, { redisClient }) => {
 
       res.send(projectEntry)
 
-      redisClient.hset('projectSelection', _id, JSON.stringify(projectEntry))
+      redisClient.hset('projectSelection', _id, JSON.stringify(projectEntry), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -39,15 +40,18 @@ module.exports = (app, { redisClient }) => {
 
   app.post('/api/projects', authenticate, async (req, res) => {
     try {
-      const entry = new Entry(req.body)
+      const { length } = await Entry.find()
+      const orderNum = length
+
+      const entry = new Entry({
+        ...req.body,
+        orderNum
+      })
 
       const newProject = await entry.save()
-      const allProjects = await Entry.find()
+      Entry.findAndCacheResponse(res)
 
-      res.status(200).send(allProjects)
-
-      redisClient.hset('projectSelection', newProject._id.toString(), JSON.stringify(newProject))
-      redisClient.set('projects', JSON.stringify(allProjects))
+      redisClient.hset('projectSelection', newProject._id.toString(), JSON.stringify(newProject), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -61,8 +65,8 @@ module.exports = (app, { redisClient }) => {
       ))
       res.send(result)
 
-      redisClient.set('projects', JSON.stringify(result))
-      result.map(project => redisClient.hset('projectSelection', project._id.toString(), JSON.stringify(project)))
+      redisClient.set('projects', JSON.stringify(result), 'EX', expirationTime)
+      result.map(project => redisClient.hset('projectSelection', project._id.toString(), JSON.stringify(project), 'EX', expirationTime))
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -78,11 +82,9 @@ module.exports = (app, { redisClient }) => {
           $set: req.body
         }, { new: true })
 
-      const allProjects = await Entry.find()
-      res.send(allProjects)
+      Entry.findAndCacheResponse(res)
 
-      redisClient.set('projects', JSON.stringify(allProjects))
-      redisClient.hset('projectSelection', _id, JSON.stringify(updatedProject))
+      redisClient.hset('projectSelection', _id, JSON.stringify(updatedProject), 'EX', expirationTime)
     } catch (e) {
       res.sendStatus(500)
       console.log(`error at ${req.url}`, e)
@@ -97,11 +99,8 @@ module.exports = (app, { redisClient }) => {
         _id
       })
 
-      const updatedEntries = await Entry.find()
+      Entry.findAndCacheResponse(res)
 
-      res.send(updatedEntries)
-
-      redisClient.set('projects', JSON.stringify(updatedEntries))
       redisClient.hdel('projectSelection', _id)
     } catch (e) {
       res.sendStatus(500)
