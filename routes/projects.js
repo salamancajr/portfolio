@@ -58,7 +58,7 @@ module.exports = app => {
     }
   })
 
-  app.post('/api/projectOrder', authenticate, async (req, res) => {
+  app.patch('/api/projectOrder', authenticate, async (req, res) => {
     try {
       const result = await Promise.all(req.body.order.map(async item =>
         Entry.findOneAndUpdate({ _id: item.id }, { $set: { orderNum: item.orderNum } }, { new: true })

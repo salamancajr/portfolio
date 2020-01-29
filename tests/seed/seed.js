@@ -47,13 +47,11 @@ const blogs = [{
   time: '12:00pm 12/12/2012',
   img: 'https://images.unsplash.com/photo-1577992443472-c9a4f44e8172?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
   orderNum: 1
-
 }
 
 ]
 
 const populateEntries = (done) => {
-  fs.truncate(path.join(__dirname, 'uploads'), 0, function () { console.log('done') })
   Entry.deleteMany({}).then(() => {
     return Entry.insertMany(entries)
   }).then(() => done())

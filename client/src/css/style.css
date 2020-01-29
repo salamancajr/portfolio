@@ -326,16 +326,17 @@ a:hover {
     border-bottom: .2px solid purple; }
   .projects-table__head {
     color: white;
-    background: purple; }
+    background-color: purple; }
     .projects-table__head th:not(:last-child) {
-      border-right: 1px solid white; }
+      border-right: 1px solid purple; }
   .projects-table__body {
-    background: white; }
+    background: purple; }
     .projects-table__body th {
+      background-color: white;
       cursor: grab; }
       .projects-table__body th:active {
         cursor: grabbing; }
-    .projects-table__body th:not(:nth-last-child(2)) {
+    .projects-table__body th:not(:last-child) {
       border-right: 1px solid purple; }
 
 .admin-login {

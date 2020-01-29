@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import Navbar from './navbar'
+import React from 'react'
+import Navbar from '../components/Navbar'
 export default () => {
-  const [title, setTitle] = useState('About Me')
-
   return (
     <div className="body">
-      <Navbar {...{ title }}/>
+      <Navbar title="About Me" />
       <input type="checkbox" id="about" className="about_check"/>
       <div className="body__container-column body__container-column--about-me">
         <div class="card" style={{ width: '30rem', justifyContent: 'center' }}>
@@ -16,7 +14,7 @@ export default () => {
               data visualization certificate and back-end development certificate. Thus far, I have learned about Javascript, jQuery,
             CSS, HTML and React. I enjoy it so much that I am decidedly pursuing a career in software development. I am also exploring
             other courses at Codecademy and Udemy to learn more about Javascript, React, Redux and Python.</p>
-           </div>
+          </div>
         </div>
       </div>
     </div>)

@@ -1,9 +1,9 @@
-import { SELECTED_PROJECT } from '../actions'
+import { UPDATE_SELECTED_PROJECT } from '../actions'
 
 export default function (state = {}, action) {
   switch (action.type) {
-    case SELECTED_PROJECT:
-      return action.payload.data
+    case UPDATE_SELECTED_PROJECT:
+      return action.payload
     default:
       return state
   }

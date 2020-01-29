@@ -1,7 +1,6 @@
 @import "abstracts/mixins";
 @import "abstracts/variables";
 
-
 @import "base/animations";
 @import "base/base";
 @import "base/utilities";
@@ -15,11 +14,9 @@
 @import "components/new-project";
 @import "components/patch-form";
 @import "components/modal";
-@import "components/navbar";
+@import "components/Navbar";
 @import "components/admin-alert";
 @import "components/card";
-
-
 
 @import "pages/home";
 @import "pages/about";

@@ -1,125 +1,63 @@
 import axios from 'axios'
-export const FETCH_PROJECTS = 'fetch_projects'
-export const DELETE_PROJECT = 'delete_project'
-export const ADD_PROJECT = 'add_project'
-export const FETCH_BLOG = 'fetch_blog'
-export const SELECTED_BLOG = 'selected_blog'
-export const SELECTED_PROJECT = 'selected_project'
-export const DELETE_BLOG = 'delete_blog'
-export const ADMIN_CHART = 'admin_chart'
-export const ADD_BLOG = 'add_blog'
-export const EDIT_NAME = 'edit_name'
-export const UPDATED_BLOG = 'updated_blog'
-export const UPDATED_PROJECTS = 'updated_projects'
-export const LOGIN_AUTH = 'login_auth'
-export const AUTHENTICATE_ROUTE = 'authenticate_route'
-export const ADMIN_LOGOUT = 'admin_logout'
+export const FETCH_PROJECTS = 'FETCH_PROJECTS'
+export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS'
+export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS'
+export const DELETE_BLOG_SUCCESS = 'DELETE_BLOG_SUCCESS'
+export const DELETE_PROJECT = 'DELETE_PROJECT'
+export const ADD_PROJECT = 'ADD_PROJECT'
+export const FETCH_BLOG = 'FETCH_BLOG'
+export const FETCH_BLOG_SUCCESS = 'FETCH_BLOG_SUCCESS'
+export const SELECT_BLOG = 'SELECT_BLOG'
+export const SELECT_PROJECT = 'SELECT_PROJECT'
+export const UPDATE_SELECTED_PROJECT = 'UPDATE_SELECTED_PROJECT'
+export const UPDATE_SELECTED_BLOG = 'UPDATE_SELECTED_BLOG'
+export const DELETE_BLOG = 'DELETE_BLOG'
+export const ADMIN_CHART = 'ADMIN_CHART'
+export const ADD_BLOG = 'ADD_BLOG'
+export const EDIT_NAME = 'EDIT_NAME'
+export const UPDATED_BLOG = 'UPDATED_BLOG'
+export const UPDATED_PROJECTS = 'UPDATED_PROJECTS'
+export const LOGIN_AUTH = 'LOGIN_AUTH'
+export const AUTHENTICATE_ROUTE = 'AUTHENTICATE_ROUTE'
+export const ADMIN_LOGOUT = 'ADMIN_LOGOUT'
 export const UI_START_LOADING = 'UI_START_LOADING'
 export const UI_STOP_LOADING = 'UI_STOP_LOADING'
+export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS'
+export const ADD_PROJECT_ERROR = 'ADD_PROJECT_ERROR'
+export const API_ERROR = 'API_ERROR'
+export const UPDATE_PROJECT_ORDER = 'UPDATE_PROJECT_ORDER'
+export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS'
+export const UPDATE_BLOG_ORDER = 'UPDATE_BLOG_ORDER'
+export const BLOG_SUCCESS = 'BLOG_SUCCESS'
 
-const PROJECTS_URL = '/api/api'
+const PROJECTS_URL = '/api/projects'
 const BLOG_URL = '/api/blog'
 const LOGIN_URL = '/api/signin'
-// const SIGNUP_URL = "/api/signup";
 const AUTHENTICATE_URL = '/api/authenticate'
 const SIGN_OUT = '/api/token'
 
-export function fetchProjects (cb) {
-  const request = axios.get(PROJECTS_URL
-  ).then((data) => {
-    cb()
-    return data
-  })
-  return {
-    type: FETCH_PROJECTS,
-    payload: request
-  }
-}
+export const fetchProjects = () => ({ type: FETCH_PROJECTS })
 
-export function deleteProject (id) {
-  const request = axios.delete(`${PROJECTS_URL}/${id}`, {
-    headers: {
-      'x-auth': localStorage.getItem('token')
-    }
-  })
-  return {
-    type: DELETE_PROJECT,
-    payload: request
-  }
-}
+export const selectProject = id => ({ type: SELECT_PROJECT, payload: id })
 
-// export function addProject(values, callback) {
+export const deleteProject = id => ({ type: DELETE_PROJECT, payload: id })
 
-//     var image = document.getElementById("upload").files[0];
-//     var form = document.getElementById("form");
-//     var bodyFormData = new FormData(form);
-//     bodyFormData.append("avatar", image);
+export const addProject = values => ({ type: ADD_PROJECT, payload: values })
 
-//     const request = axios({
-//         method: "post",
-//         url: PROJECTS_URL,
-//         data: bodyFormData,
-//         headers: {
-//             'Content-Type': 'multipart/form-data',
-//             'x-auth': localStorage.getItem("token")
-//         }
+export const updateProjectOrder = order => ({ type: UPDATE_PROJECT_ORDER, payload: order })
 
-//     }).then(() => {
-//         callback()
-//     });
+export const fetchBlog = (cb = () => {}) => ({ type: FETCH_BLOG, payload: cb })
 
-//     return {
-//         type: ADD_PROJECT,
-//         payload: request
-//     };
-// }
+export const selectBlog = id => ({ type: SELECT_BLOG, payload: id })
 
-// export function fetchBlog(cb) {
-//     const request = axios.get(BLOG_URL
-//         ).then((data)=>{
-//             cb()
-//             return data
-//         });
-//         return {
-//             type: FETCH_BLOG,
-//             payload: request
-//         };
-// }
+export const deleteBlog = id => ({ type: DELETE_BLOG, payload: id })
 
-export const selectedBlog = async (id, callback) => {
-  const request = await axios.get(`${BLOG_URL}/${id}`)
-  // setTimeout(()=>{callback()}, 000)
-
-  return {
-    type: SELECTED_BLOG,
-    payload: request
-  }
-}
-
-export function deleteBlog (id) {
-  const request = axios.delete(`${BLOG_URL}/${id}`, {
-    headers: {
-      'x-auth': localStorage.getItem('token')
-    }
-  })
-
-  return {
-    type: DELETE_BLOG,
-    payload: request
-  }
-}
-
-export function handleAdminChart (e) {
-  return {
-    type: ADMIN_CHART,
-    payload: e.target.id
-  }
-}
+export const updateBlogOrder = order => ({ type: UPDATE_BLOG_ORDER, payload: order })
 
 export const addBlog = (callback) => {
   var form = document.getElementById('blogform')
   var bodyFormData = new FormData(form)
- 
+
   const request = axios.post(BLOG_URL, bodyFormData, {
     headers: {
       'x-auth': localStorage.getItem('token')
@@ -130,19 +68,6 @@ export const addBlog = (callback) => {
 
   return {
     type: ADD_BLOG,
-    payload: request
-  }
-}
-
-export function selectedProject (id, callback) {
-  const request = axios.get(`${PROJECTS_URL}/${id}`)
-
-  request.then(() => {
-    callback()
-  })
-
-  return {
-    type: SELECTED_PROJECT,
     payload: request
   }
 }
