@@ -56,7 +56,7 @@ class AllBlogs extends Component {
 	                </div>
 	                <div className="blog-entry__header--column-2">
 	                  <div id={blog._id} className="blog-entry__icon">
-	                    {blog.likes.includes(ipAddress.ipAddress) ? (
+	                    {!blog.likes.includes(ipAddress.ipAddress) ? (
 	                      <i
 	                        id={blog._id}
 	                        className="far fa-star pointer"
