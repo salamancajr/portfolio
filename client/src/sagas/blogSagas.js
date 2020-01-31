@@ -5,7 +5,7 @@ import api from '../api'
 
 function * fetchBlog ({ cb }) {
   yield put({ type: UI_START_LOADING })
-  const { response, error } = yield call(api.fetchBlogApi)
+  const { response/*, error */ } = yield call(api.fetchBlogApi)
   if (response) {
     ipAddress.ipAddress = response.headers['x-forwarded-for']
     yield put({ type: UI_STOP_LOADING })

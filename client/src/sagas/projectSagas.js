@@ -1,10 +1,10 @@
 import { call, put, fork, takeEvery, select } from 'redux-saga/effects'
 import api from '../api'
-import { UPDATE_PROJECT_SUCCESS, UPDATE_PROJECT_ORDER, DELETE_PROJECT_SUCCESS, API_ERROR, UPDATE_SELECTED_PROJECT, SELECT_PROJECT, DELETE_PROJECT, FETCH_PROJECTS_SUCCESS, FETCH_PROJECTS, UI_STOP_LOADING, UI_START_LOADING, ADD_PROJECT_SUCCESS, ADD_PROJECT_ERROR, ADD_PROJECT } from '../actions'
+import { UPDATE_PROJECT_SUCCESS, UPDATE_PROJECT_ORDER, DELETE_PROJECT_SUCCESS, API_ERROR, UPDATE_SELECTED_PROJECT, SELECT_PROJECT, DELETE_PROJECT, FETCH_PROJECTS_SUCCESS, FETCH_PROJECTS, UI_STOP_LOADING, UI_START_LOADING, ADD_PROJECT_SUCCESS, ADD_PROJECT } from '../actions'
 
 function * fetchProjects () {
   yield put({ type: UI_START_LOADING })
-  const { response, error } = yield call(api.fetchProjects)
+  const { response /*, error */ } = yield call(api.fetchProjects)
   if (response) {
     yield put({ type: FETCH_PROJECTS_SUCCESS, payload: response.data })
     yield put({ type: UI_STOP_LOADING })

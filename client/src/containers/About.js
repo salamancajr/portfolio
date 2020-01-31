@@ -13,7 +13,7 @@ export default () => {
               <a style={{ color: 'orange' }} href="https://www.freecodecamp.org/salamancajr" target="_blank" rel="noopener noreferrer"> Free Code Camp.</a> I obtained their certificate in front end development, data visualization and back-end development.
               I enjoyed it so much so that I dedicated myself to coding ever since. Experienced and passionate FullStack developer with over two years of experience with Javascript, NodeJS, React, React-Native, and MongoDB.
 
-I am eager to work on you project and provide a quality, professional experience from start to finish. Please contact me to discuss your position and how I can meet your business needs!</p>
+I am eager to work on your project and provide a quality, professional experience from start to finish. Please contact me to discuss your position and how I can meet your business needs!</p>
           </div>
         </div>
       </div>

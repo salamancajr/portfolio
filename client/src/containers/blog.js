@@ -44,7 +44,6 @@ class AllBlogs extends Component {
 	      ) : (
 	        _.map(this.props.blog, (blog) => {
 	          var subString = blog.text.substr(0, 200) + '...'
-			  console.log('blog.likes.includes(ipAddress.ipAddress)', ipAddress.ipAddress)
 
 	          return (
 	            <div key={blog._id} className="blog-entry">
