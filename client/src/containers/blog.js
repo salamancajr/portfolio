@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import Navbar from '../components/Navbar'
-import { patchItem, selectBlog, fetchBlog } from '../actions'
+import { likeBlog, selectBlog, fetchBlog } from '../actions'
 
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import Loading from '../components/Loading'
+import ipAddress from '../utils/ipAddress'
 
 class AllBlogs extends Component {
 	state = {
-	  isLoaded: false,
-	  ipAddress: -1
+	  isLoaded: false
 	};
 
 	async componentDidMount () {
@@ -17,8 +17,9 @@ class AllBlogs extends Component {
 	}
 
 	componentDidUpdate (prevProps) {
-	  if (this.props.selectedBlog !== prevProps.selectedBlog) {
-	    this.props.history.push('/SelectedBlog')
+	  const { selectedBlog, history } = this.props
+	  if (selectedBlog !== prevProps.selectedBlog) {
+	    history.push('/SelectedBlog')
 	  }
 	}
 
@@ -27,9 +28,9 @@ class AllBlogs extends Component {
 	}
 
 	handleClickLike (e) {
-	  const event = e.target
+	  const { id } = e.target
 
-	  this.props.patchItem(event, this.state.ipAddress, () => {})
+	  this.props.likeBlog(id, ipAddress.ipAddress)
 	}
 
 	render () {
@@ -43,6 +44,7 @@ class AllBlogs extends Component {
 	      ) : (
 	        _.map(this.props.blog, (blog) => {
 	          var subString = blog.text.substr(0, 200) + '...'
+			  console.log('blog.likes.includes(ipAddress.ipAddress)', ipAddress.ipAddress)
 
 	          return (
 	            <div key={blog._id} className="blog-entry">
@@ -55,7 +57,7 @@ class AllBlogs extends Component {
 	                </div>
 	                <div className="blog-entry__header--column-2">
 	                  <div id={blog._id} className="blog-entry__icon">
-	                    {blog.likes.indexOf(this.state.ipAddress) === -1 ? (
+	                    {blog.likes.includes(ipAddress.ipAddress) ? (
 	                      <i
 	                        id={blog._id}
 	                        className="far fa-star pointer"
@@ -103,4 +105,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchBlog, patchItem, selectBlog })(AllBlogs)
+export default connect(mapStateToProps, { fetchBlog, likeBlog, selectBlog })(AllBlogs)

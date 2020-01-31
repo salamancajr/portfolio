@@ -29,6 +29,8 @@ export const UPDATE_PROJECT_ORDER = 'UPDATE_PROJECT_ORDER'
 export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS'
 export const UPDATE_BLOG_ORDER = 'UPDATE_BLOG_ORDER'
 export const BLOG_SUCCESS = 'BLOG_SUCCESS'
+export const IP_ADDRESS = 'IP_ADDRESS'
+export const LIKE_BLOG = 'LIKE_BLOG'
 
 const PROJECTS_URL = '/api/projects'
 const BLOG_URL = '/api/blog'
@@ -49,6 +51,8 @@ export const updateProjectOrder = order => ({ type: UPDATE_PROJECT_ORDER, payloa
 export const fetchBlog = (cb = () => {}) => ({ type: FETCH_BLOG, payload: cb })
 
 export const selectBlog = id => ({ type: SELECT_BLOG, payload: id })
+
+export const likeBlog = id => ({ type: LIKE_BLOG, payload: id })
 
 export const deleteBlog = id => ({ type: DELETE_BLOG, payload: id })
 

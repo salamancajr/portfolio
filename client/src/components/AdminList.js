@@ -47,8 +47,9 @@ const AdminList = ({ deleteListItem, updateListOrder, list, selectListItem }) =>
           <th>
             <i
               id={listItem._id}
-              onClick={() => {
-                document.getElementById(`warning${listItem._id}`).style.display = 'block'
+              onClick={e => {
+                callToDelete(e)
+                // document.getElementById(`warning${listItem._id}`).style.display = 'block'
               }}
               className="fas fa-trash pointer">
             </i>
@@ -66,4 +67,3 @@ const AdminList = ({ deleteListItem, updateListOrder, list, selectListItem }) =>
 }
 
 export default AdminList
-// deleteProject, selectProject, updateProjectOrder

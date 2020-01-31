@@ -18,3 +18,5 @@ export const updateBlogOrder = order => axios.patch('/api/blogOrder', { order },
     'x-auth': localStorage.getItem('token')
   }
 })
+
+export const likeBlog = id => axios.patch(`/api/likeBlog/${id}`)

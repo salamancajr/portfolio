@@ -1,15 +1,13 @@
 import { call, put, takeEvery, fork, select } from 'redux-saga/effects'
-import { BLOG_SUCCESS, UPDATE_BLOG_ORDER, FETCH_BLOG, DELETE_BLOG, API_ERROR, UI_STOP_LOADING, UI_START_LOADING, UPDATE_SELECTED_BLOG, SELECT_BLOG } from '../actions'
-
+import { LIKE_BLOG, BLOG_SUCCESS, UPDATE_BLOG_ORDER, FETCH_BLOG, DELETE_BLOG, API_ERROR, UI_STOP_LOADING, UI_START_LOADING, UPDATE_SELECTED_BLOG, SELECT_BLOG } from '../actions'
+import ipAddress from '../utils/ipAddress'
 import api from '../api'
 
 function * fetchBlog ({ cb }) {
   yield put({ type: UI_START_LOADING })
   const { response, error } = yield call(api.fetchBlogApi)
   if (response) {
-    if (cb) {
-      yield call(cb, response.headers['x-forwarded-for'])
-    }
+    ipAddress.ipAddress = response.headers['x-forwarded-for']
     yield put({ type: UI_STOP_LOADING })
     yield put({ type: BLOG_SUCCESS, payload: response.data })
   }
@@ -54,7 +52,21 @@ function * watchUpdateBlogOrder () {
   yield takeEvery(UPDATE_BLOG_ORDER, updateBlogOrder)
 }
 
+function * likeBlog ({ payload }) {
+  const response = yield call(api.likeBlog, payload)
+  if (response.status === 200) {
+    yield put({ type: BLOG_SUCCESS, payload: response.data })
+  } else {
+    yield put({ type: API_ERROR })
+  }
+}
+
+function * watchLikeBlog () {
+  yield takeEvery(LIKE_BLOG, likeBlog)
+}
+
 const blogSagas = [
+  fork(watchLikeBlog),
   fork(watchFetchBlog),
   fork(watchDeleteBlog),
   fork(watchSelectBlog),

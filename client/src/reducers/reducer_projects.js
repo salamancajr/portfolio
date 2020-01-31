@@ -1,4 +1,4 @@
-import { ADD_PROJECT_SUCCESS, DELETE_PROJECT, UPDATED_PROJECTS, FETCH_PROJECTS_SUCCESS, UPDATE_PROJECT_SUCCESS } from '../actions'
+import { ADD_PROJECT_SUCCESS, DELETE_PROJECT_SUCCESS, UPDATED_PROJECTS, FETCH_PROJECTS_SUCCESS, UPDATE_PROJECT_SUCCESS } from '../actions'
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -8,8 +8,8 @@ export default function (state = {}, action) {
 
       return action.payload
 
-    case DELETE_PROJECT:
-      return action.payload.data
+    case DELETE_PROJECT_SUCCESS:
+      return action.payload
 
     case UPDATED_PROJECTS:
 
