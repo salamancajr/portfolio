@@ -1,34 +1,30 @@
-.contact{
-    p {
-        font-size: 2rem;
-    }
-    @include respond(tab-land){
-                h2{
-                  font-size:4rem;
-                  margin-bottom:1.5rem;
+.contact {
+	p {
+		font-size: 2rem;
+	}
+	@include respond(tab-land) {
+		h2 {
+			font-size: 4rem;
+			margin-bottom: 1.5rem;
+		}
+		a {
+			width: 4rem;
+			height: 4rem;
+			margin-top: 2rem;
+		}
+		font-size: 1.3rem;
+	}
 
-        }
-        a{
-            width:4rem;
-            height:4rem;
-            margin-top:2rem;
-        }
-        font-size:1.3rem;
-
-    }
-
-    @include respond(tab-port){
-        h2{
-                  font-size:4rem;
-                  margin-bottom:2rem;
-
-        }
-        a{
-            width:5rem;
-            height:5rem;
-            margin-top:2rem;
-        }
-        font-size:1.6rem;
-     }
-
+	@include respond(tab-port) {
+		h2 {
+			font-size: 4rem;
+			margin-bottom: 2rem;
+		}
+		a {
+			width: 5rem;
+			height: 5rem;
+			margin-top: 2rem;
+		}
+		font-size: 1.6rem;
+	}
 }

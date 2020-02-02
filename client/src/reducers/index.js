@@ -5,6 +5,7 @@ import BlogReducer from './reducer_blog'
 import SelectedBlogReducer from './reducer_selectedBlog'
 import SelectedProjectReducer from './reducer_selectedProject'
 import UIReducer from './reducer_ui'
+import auth from './authenticationReducer'
 
 const rootReducer = combineReducers({
   projects: ProjectsReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   selectedBlog: SelectedBlogReducer,
   form: formReducer,
   selectedProject: SelectedProjectReducer,
-  ui: UIReducer
+  ui: UIReducer,
+  isLoggedIn: auth
 })
 
 export default rootReducer

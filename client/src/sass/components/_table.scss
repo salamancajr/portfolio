@@ -1,9 +1,9 @@
 .projects-table {
-	position: absolute;
-	top: 15rem;
 	width: 40rem;
-	padding-bottom: 5rem;
 
+	&__wrapper {
+		position: absolute;
+	}
 	th {
 		min-width: 7rem;
 		padding: .3rem 1rem;
@@ -26,7 +26,7 @@
 	}
 
 	&__body {
-		background: purple;
+		// background: purple;
 		th {
 			background-color: white;
 			cursor: grab;

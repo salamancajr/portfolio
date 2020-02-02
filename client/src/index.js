@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './css/style.css'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Home from './containers/Home'
 import About from './containers/About'
 import Contact from './containers/Contact'
@@ -18,11 +18,13 @@ import reducers from './reducers'
 import rootSaga from './sagas'
 import createSagaMiddleware from 'redux-saga'
 import { FETCH_BLOG, FETCH_PROJECTS } from './actions'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 const sagaMiddleware = createSagaMiddleware()
-// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// const createStoreWithMiddleware = applyMiddleware(sagaMiddleware)(createStore)
-const store = createStore(reducers, applyMiddleware(sagaMiddleware))
+
+const store = createStore(reducers, composeWithDevTools(
+  applyMiddleware(sagaMiddleware)
+))
 ReactDOM.render(
 
   <Provider store={store}>
@@ -33,9 +35,9 @@ ReactDOM.render(
           <Route path="/Contact" component={Contact}/>
           <Route path="/Portfolio" component={Portfolio}/>
           <Route path="/Login" component={Login}/>
-          <Route path="/Admin" component={Admin}/>
-          <Route path="/CreateBlog" component={CreateBlog}/>
-          <Route path="/CreateProject" component={CreateProject}/>
+          <PrivateRoute path="/Admin"><Admin/></PrivateRoute>
+          <PrivateRoute path="/CreateBlog"><CreateBlog /></PrivateRoute>
+          <PrivateRoute path="/CreateProject"><CreateProject /></PrivateRoute>
           <Route path="/SelectedBlog" component={SelectedBlog}/>
           <Route path="/Blog" component={Blog}/>
           <Route path="/" component={Home}/>
@@ -43,6 +45,26 @@ ReactDOM.render(
       </div>
     </BrowserRouter>
   </Provider>, document.getElementById('root'))
+
+function PrivateRoute ({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        store.getState().isLoggedIn ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/Login',
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  )
+}
 
 sagaMiddleware.run(rootSaga)
 store.dispatch({ type: FETCH_PROJECTS })

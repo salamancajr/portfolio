@@ -3,7 +3,7 @@ const { authenticate } = require('./../middleware/authenticate')
 const _ = require('lodash')
 
 module.exports = app => {
-  app.post('/api/signup', async (req, res) => {
+  app.post('/api/auth/signup', async (req, res) => {
     try {
       const body = _.pick(req.body, ['email', 'password'])
       const user = new User(body)
@@ -17,12 +17,13 @@ module.exports = app => {
     }
   })
 
-  app.post('/api/signin', async (req, res) => {
+  app.post('/api/auth/signin', async (req, res) => {
     try {
-      const email = req.body.email
-      const password = req.body.password
+      const { email, password } = req.body
+
       const user = await User.findByCredentials(email, password)
       const token = await user.generateAuthToken()
+
       res.header('x-auth', token).send(user)
     } catch (e) {
       console.log(e)
@@ -30,11 +31,11 @@ module.exports = app => {
     }
   })
 
-  app.get('/api/authenticate', authenticate, (req, res) => {
+  app.post('/api/auth/authenticateRoute', authenticate, (req, res) => {
     res.status(200).send('authentication passed')
   })
 
-  app.delete('/token', authenticate, (req, res) => {
+  app.delete('/api/auth/signout', authenticate, (req, res) => {
     req.user.removeToken(req.token).then(() => {
       res.status(200).send()
     }, () => res.status(400).send())

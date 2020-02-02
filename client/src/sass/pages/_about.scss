@@ -1,88 +1,39 @@
-#selfie {
-    max-width: 20rem;
-    max-height: 15rem;
-    border-color: purple;
-    border-width: .5rem;
-    border-style: solid;
-    border-radius: 40%;
+.about-me {
+	&__wrapper {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		transition: all .5s;
+		font-size: 1rem;
+
+		@include respond (tab-port) {
+			font-size: 1.2rem;
+		}
+		@include respond (tab-land) {
+			font-size: 1.2rem;
+		}
+	}
+
+	&__card {
+		width: 60rem;
+		flex-direction: row;
+		@include respond (tab-port) {
+			flex-direction: column;
+			width: 40rem;
+		}
+	}
+
+	&__img {
+		width: 30rem;
+		object-fit: cover;
+		@include respond (tab-port) {
+			flex-direction: column;
+			width: 30rem;
+			align-self: center;
+		}
+	}
+
+	&__text {
+		padding: 1.5rem;
+	}
 }
-
-.about_check{
-position:absolute;
-display:none;
-}
-
-.body__container-column{
-
-    &--about-me{
-
-        position:absolute;
-        left:50%;
-        transform:translateX(-50%);
-        transition:all .5s;
-        font-size:1rem;
-
-        @include respond (tab-port){
-            font-size:1.2rem;
-            // p{
-            //     width:70vw;
-            // }
-        }
-        @include respond (tab-land){
-            font-size:1.2rem;
-
-        }
-
-    }
-
-    &--about-page{
-
-        position:absolute;
-        left:150%;
-        transform:translateX(-50%);
-        transition:all .5s;
-        font-size:1rem;
-        p{
-            // max-width:60%;
-            display: table-cell;
-            -moz-column-count: 2;
-            -moz-column-gap: 4rem;
-            -moz-column-rule: 1px solid black;
-
-            column-count: 2;
-            column-gap: 4rem;
-            column-rule: 1px solid black;
-            -moz-hyphens: auto;
-            -ms-hyphens: auto;
-            -webkit-hyphens: auto;
-            hyphens: auto;
-        }
-        @include respond (tab-port){
-            p{
-               // max-width:70%;
-            }
-        }
-        @include respond (phone){
-            p{
-              //  max-width:90%;
-            }
-        }
-    }
-}
-
-#about-button{
-    transition: all .5s;
-}
-
-.about_check:checked ~ .body__container-column--about-page{
-    transform:translateX(-150%);
-
-}
-.about_check:checked ~ .body__container-column--about-me{
-    transform:translateX(-150%);
-
-}
-// .about_check:checked ~ #about-button{
-//     transform:rotate(360deg);
-
-// }

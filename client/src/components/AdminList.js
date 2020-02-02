@@ -35,7 +35,7 @@ const AdminList = ({ deleteListItem, updateListOrder, list, selectListItem }) =>
               <i
                 name={listItem.title}
                 id={listItem.title}
-                onClick={(e) => selectListItem(e.target.id)}
+                onClick={() => selectListItem(listItem._id)}
                 className="fas fa-edit pointer"
                 data-target="#editProject"
                 data-toggle="modal"

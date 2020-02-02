@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { patchBlogOrProject } from '../actions'
+import { editProject } from '../actions'
 import { connect } from 'react-redux'
 import TextInput from './Forms/TextInput'
 import TextArea from './Forms/TextArea'
@@ -9,7 +9,7 @@ import Modal from './Modal'
 
 class EditProject extends Component {
   onSubmit (values) {
-    this.props.patchBlogOrProject({ ...values, img: values.img[0] })
+    this.props.editProject({ ...values, img: values.img[0] })
   }
 
   render () {
@@ -48,4 +48,4 @@ function mapStateToProps (state) {
     }
   }
 }
-export default connect(mapStateToProps, { patchBlogOrProject })(reduxForm({ form: 'editProject', enableReinitialize: true })(EditProject))
+export default connect(mapStateToProps, { editProject })(reduxForm({ form: 'editProject', enableReinitialize: true })(EditProject))

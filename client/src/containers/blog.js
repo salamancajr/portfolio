@@ -12,26 +12,15 @@ class AllBlogs extends Component {
 	  isLoaded: false
 	};
 
-	async componentDidMount () {
-	  window.scrollTo(0, 0)
-	}
-
-	componentDidUpdate (prevProps) {
-	  const { selectedBlog, history } = this.props
-	  if (selectedBlog !== prevProps.selectedBlog) {
-	    history.push('/SelectedBlog')
-	  }
-	}
+	componentDidMount = () => window.scrollTo(0, 0)
 
 	goToBlog (e) {
-	  this.props.selectBlog(e.target.id)
+	  const { selectBlog, history } = this.props
+	  selectBlog(e.target.id)
+	  history.push(`/SelectedBlog/${e.target.id}`)
 	}
 
-	handleClickLike (e) {
-	  const { id } = e.target
-
-	  this.props.likeBlog(id, ipAddress.ipAddress)
-	}
+	handleClickLike = e => this.props.likeBlog(e.target.id, ipAddress.ipAddress)
 
 	render () {
 	  const { loading } = this.state

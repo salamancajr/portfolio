@@ -2,48 +2,52 @@ import React, { Component } from 'react'
 import LogoutButton from '../components/logoutButton'
 import Navbar from '../components/Navbar'
 import { authenticateRoute, adminLogout, deleteProject, updateProjectOrder, selectProject, deleteBlog, updateBlogOrder, selectBlog } from '../actions'
+import { withRouter, Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+
 import AdminList from '../components/AdminList'
 import EditBlog from '../components/editBlog'
 import EditProject from '../components/editProject'
 
 class Admin extends Component {
-    state={
-      isLoadedProjects: false,
-      isLoadedBlog: false,
-      adminChart: 'projects'
-    }
+  state={
+    isLoadedProjects: false,
+    isLoadedBlog: false,
+    adminChart: 'projects'
+  }
 
-    componentDidUpdate (prevProps) {
-      if (this.props.projects !== prevProps.projects) {
-        this.setState({ adminChart: 'projects' })
-      }
+  componentDidUpdate (prevProps) {
+    if (this.props.projects !== prevProps.projects) {
+      this.setState({ adminChart: 'projects' })
     }
+  }
 
-    componentWillMount () {
-      this.props.authenticateRoute(() => {
-        localStorage.removeItem('token')
-        this.props.history.push('/login')
-      })
-    }
+  // componentDidMount () {
+  //   this.props.authenticateRoute(() => {
+  //     localStorage.removeItem('token')
+  //     this.props.history.push('/Login')
+  //   })
+  // }
 
-    handle2ndClick () {
-      this.props.adminLogout(() => { this.props.history.push('/Login') })
-    }
+  handleLogout = () => {
+    this.props.adminLogout()
+    this.props.history.push('/Login')
+    localStorage.removeItem('token')
+  }
 
-    render () {
-      const { deleteProject, selectProject, updateProjectOrder, projects, blog, updateBlogOrder, deleteBlog, selectBlog } = this.props
-      const { adminChart } = this.state
-      return (
-        <React.Fragment>
-          <div className="body" style={{ height: 'auto', overflow: 'scroll' }}>
-            <Navbar title="Admin Page" />
-            <div className="body__container-portfolio" style={{ height: 'auto', overflow: 'scroll' }}>
-              <React.Fragment>
+  render () {
+    const { deleteProject, selectProject, updateProjectOrder, projects, blog, updateBlogOrder, deleteBlog, selectBlog } = this.props
+    const { adminChart } = this.state
+    return (
+      <React.Fragment>
+        <div className="body" style={{ height: 'auto', overflow: 'scroll' }}>
+          <Navbar title="Admin Page" />
+          <div className="body__container-portfolio" style={{ height: 'auto', overflow: 'scroll' }}>
+            <React.Fragment>
+              <div className="projects-table__wrapper" >
+                <div style={{ minHeight: '5rem', marginTop: '5rem' }}/>
                 <table
-                  style={{ marginBottom: '5rem' }}
                   id="fetchTable"
                   className="projects-table">
                   <thead
@@ -55,15 +59,15 @@ class Admin extends Component {
                           style={{ color: adminChart === 'blog' ? '#007bff' : '' }}
                           id="projects"
                           onClick={() => this.setState({ adminChart: 'projects' })}>
-                          Projects
+                      Projects
                         </span>
-                        /
+                    /
                         <span
                           className="pointer"
                           style={{ color: adminChart === 'projects' ? '#007bff' : '' }}
                           id="blog"
                           onClick={() => this.setState({ adminChart: 'blog' })}>
-                          Blog
+                      Blog
                         </span>
                         {adminChart === 'blog'
                           ? <Link
@@ -97,16 +101,22 @@ class Admin extends Component {
 
                   }
                 </table>
-                <LogoutButton logout={this.handle2ndClick.bind(this)}/>
-              </React.Fragment>
-            </div>
-          </div>
-          <EditBlog />
-          <EditProject />
-        </React.Fragment>
+                <div style={{ minHeight: '5rem', marginBottom: '5rem', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+                  <LogoutButton logout={this.handleLogout.bind(this)}/>
 
-      )
-    }
+                </div>
+              </div>
+
+            </React.Fragment>
+          </div>
+        </div>
+        <EditBlog />
+        <EditProject />
+
+      </React.Fragment>
+
+    )
+  }
 }
 
 function mapStateToProps (state) {
@@ -129,4 +139,4 @@ export default connect(mapStateToProps, {
   deleteBlog,
   updateBlogOrder,
   selectBlog
-})(Admin)
+})(withRouter(Admin))

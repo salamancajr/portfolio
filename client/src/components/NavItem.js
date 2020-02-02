@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default ({ name }) => {
   const { pathname } = window.location
+
   return (
     <li className="nav-item">
       <Link
@@ -10,9 +11,9 @@ export default ({ name }) => {
         style={
           pathname === `/${name}`
             ? { color: 'white' }
-            : pathname === '/login' && name === 'Admin'
+            : pathname === '/Login' && name === 'Admin'
               ? { color: 'white' }
-              : pathname === '/BlogEntry' && name === 'Blog'
+              : (pathname === '/BlogEntry' || /SelectedBlog/.test(pathname)) && name === 'Blog'
                 ? { color: 'white' }
                 : pathname === '/' && name === 'Home' ? { color: 'white' } : null
         }

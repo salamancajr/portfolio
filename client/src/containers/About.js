@@ -4,12 +4,11 @@ export default () => {
   return (
     <div className="body">
       <Navbar title="About Me" />
-      <input type="checkbox" id="about" className="about_check"/>
-      <div className="body__container-column body__container-column--about-me">
-        <div class="card" style={{ width: '60rem', justifyContent: 'center', flexDirection: 'row' }}>
-          <img style={{ width: '30rem', objectFit: 'cover' }} src="https://portfoliogs.s3.amazonaws.com/17352347_10158395309945298_4196410004585528038_n.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text" style={{ padding: '1.5rem' }}>I was born and raised in NY. I started coding in 2017 by following the coursework at
+ 	  <div className="about-me__wrapper">
+        <div className="card about-me__card">
+          <img src="https://portfoliogs.s3.amazonaws.com/17352347_10158395309945298_4196410004585528038_n.jpg" className="about-me__img" alt="..." />
+          <div className="card-body">
+            <p className="card-text about-me__text">I was born and raised in NY. I started coding in 2017 by following the coursework at
               <a style={{ color: 'orange' }} href="https://www.freecodecamp.org/salamancajr" target="_blank" rel="noopener noreferrer"> Free Code Camp.</a> I obtained their certificate in front end development, data visualization and back-end development.
               I enjoyed it so much so that I dedicated myself to coding ever since. Experienced and passionate FullStack developer with over two years of experience with Javascript, NodeJS, React, React-Native, and MongoDB.
 

@@ -1,42 +1,33 @@
-import React, { Component } from 'react';
-import Navbar from '../components/Navbar';
-import { loginAuth } from '../actions';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import Navbar from '../components/Navbar'
+import { login } from '../actions'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import TextInput from '../components/Forms/TextInput'
 
 class Login extends Component {
-	componentWillMount() {
-		localStorage.getItem('token') && this.props.history.push('/Admin');
-	}
+  onSubmit = values => {
+    this.props.login(values, () => {
+      this.props.history.push('/Admin')
+    })
+  }
 
-	handleSubmit(e) {
-		e.preventDefault();
-		this.props.loginAuth(() => this.props.history.push('/Admin'));
-	}
+  render () {
+    const { handleSubmit } = this.props
 
-	render() {
-		return (
-			<div className="body">
-				<Navbar title="Admin Page" />
-				<div className="body__container-column">
-					<form id="loginForm" onSubmit={this.handleSubmit.bind(this)}>
-						<div>
-							<input type="email" validate="email" name="email" id="email" placeholder="email" />
-						</div>
-						<div>
-							<input
-								type="password"
-								validate="password"
-								name="password"
-								id="password"
-								placeholder="password"
-							/>
-						</div>
-						<input className="admin-login" type="submit" />
-					</form>
-				</div>
-			</div>
-		);
-	}
+    return (
+      <div className="body">
+        <Navbar title="Admin Page" />
+        <div className="body__container-column">
+          <form style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', backgroundColor: 'white', padding: '3rem', borderRadius: 5 }} id="loginForm" onSubmit={handleSubmit(this.onSubmit)}>
+            <Field name="email" type="email" component={TextInput}/>
+            <Field name="password" type="password" component={TextInput}/>
+            <input className="admin-login" type="submit" style={{ alignSelf: 'center' }} />
+          </form>
+        </div>
+      </div>
+    )
+  }
 }
 
-export default connect(null, { loginAuth })(Login);
+export default connect(null, { login })(reduxForm({ form: 'login' })(Login))

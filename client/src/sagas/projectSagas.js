@@ -1,12 +1,12 @@
 import { call, put, fork, takeEvery, select } from 'redux-saga/effects'
 import api from '../api'
-import { UPDATE_PROJECT_SUCCESS, UPDATE_PROJECT_ORDER, DELETE_PROJECT_SUCCESS, API_ERROR, UPDATE_SELECTED_PROJECT, SELECT_PROJECT, DELETE_PROJECT, FETCH_PROJECTS_SUCCESS, FETCH_PROJECTS, UI_STOP_LOADING, UI_START_LOADING, ADD_PROJECT_SUCCESS, ADD_PROJECT } from '../actions'
+import { EDIT_PROJECT, PROJECTS_SUCCESS, UPDATE_PROJECT_ORDER, API_ERROR, UPDATE_SELECTED_PROJECT, SELECT_PROJECT, DELETE_PROJECT, FETCH_PROJECTS, UI_STOP_LOADING, UI_START_LOADING, ADD_PROJECT } from '../actions'
 
 function * fetchProjects () {
   yield put({ type: UI_START_LOADING })
   const { response /*, error */ } = yield call(api.fetchProjects)
   if (response) {
-    yield put({ type: FETCH_PROJECTS_SUCCESS, payload: response.data })
+    yield put({ type: PROJECTS_SUCCESS, payload: response.data })
     yield put({ type: UI_STOP_LOADING })
   } else { yield put({ type: UI_STOP_LOADING }) }
 }
@@ -20,21 +20,37 @@ function * addProject ({ payload }) {
   if (status === 200) {
     const response = yield call(api.addProject, { ...payload, img: name })
     if (response.status === 200) {
-      yield put({ type: ADD_PROJECT_SUCCESS, payload: response.data })
+      yield put({ type: PROJECTS_SUCCESS, payload: response.data })
     } else {
       yield put({ type: API_ERROR })
     }
   }
 }
 
-function * watchAddProjects () {
+function * watchAddProject () {
   yield takeEvery(ADD_PROJECT, addProject)
+}
+
+function * editProject ({ payload }) {
+  const { status, name } = yield call(api.getPresignedURL, payload.img[0])
+  if (status === 200) {
+    const response = yield call(api.editProject, { ...payload, img: name })
+    if (response.status === 200) {
+      yield put({ type: PROJECTS_SUCCESS, payload: response.data })
+    } else {
+      yield put({ type: API_ERROR })
+    }
+  }
+}
+
+function * watchEditProject () {
+  yield takeEvery(EDIT_PROJECT, editProject)
 }
 
 function * deleteProject ({ payload }) {
   const response = yield call(api.deleteProject, payload)
   if (response.status === 200) {
-    yield put({ type: DELETE_PROJECT_SUCCESS, payload: response.data })
+    yield put({ type: PROJECTS_SUCCESS, payload: response.data })
   } else {
     yield put({ type: API_ERROR })
   }
@@ -56,7 +72,7 @@ function * watchSelectProject () {
 function * updateProjectOrder ({ payload }) {
   const response = yield call(api.updateProjectOrder, payload)
   if (response.status === 200) {
-    yield put({ type: UPDATE_PROJECT_SUCCESS, payload: response.data })
+    yield put({ type: PROJECTS_SUCCESS, payload: response.data })
   } else {
     yield put({ type: API_ERROR })
   }
@@ -67,8 +83,9 @@ function * watchUpdateProjectOrder () {
 }
 
 const projectSagas = [
+  fork(watchEditProject),
   fork(watchFetchProjects),
-  fork(watchAddProjects),
+  fork(watchAddProject),
   fork(watchDeleteProject),
   fork(watchSelectProject),
   fork(watchUpdateProjectOrder)

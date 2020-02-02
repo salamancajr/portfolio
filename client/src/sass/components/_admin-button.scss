@@ -1,20 +1,16 @@
-.admin-login{
-    position:absolute;
-    bottom: 0;
-    left:50%;
-    width:7rem;
-    text-align:center;
-    transform:translateX(-50%);
-    background:purple;
-    padding:.5rem 1rem;
-    text-transform:uppercase;
-    color:white;
-    border:none;
-    cursor:pointer;
-    &:hover{
-        background:white;
-        color:purple;
-        border:1px solid purple;
-    }
-
+.admin-login {
+	left: 50%;
+	width: 7rem;
+	text-align: center;
+	background: purple;
+	padding: .5rem 1rem;
+	text-transform: uppercase;
+	color: white;
+	border: none;
+	cursor: pointer;
+	&:hover {
+		background: white;
+		color: purple;
+		border: 1px solid purple;
+	}
 }
