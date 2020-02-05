@@ -23,13 +23,6 @@ class Admin extends Component {
     }
   }
 
-  // componentDidMount () {
-  //   this.props.authenticateRoute(() => {
-  //     localStorage.removeItem('token')
-  //     this.props.history.push('/Login')
-  //   })
-  // }
-
   handleLogout = () => {
     this.props.adminLogout()
     this.props.history.push('/Login')

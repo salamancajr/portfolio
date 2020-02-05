@@ -42,7 +42,5 @@ export const addBlog = values => ({ type: ADD_BLOG, payload: values })
 export const editBlog = values => ({ type: EDIT_BLOG, payload: values })
 
 export const login = (values, cb) => ({ type: LOGIN_AUTH, payload: { values, cb } })
-
 export const authenticateRoute = (cb = () => {}) => ({ type: AUTHENTICATE_ROUTE, payload: cb })
-
 export const adminLogout = () => ({ type: ADMIN_LOGOUT })
