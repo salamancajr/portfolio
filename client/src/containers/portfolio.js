@@ -3,8 +3,10 @@ import Navbar from '../components/Navbar'
 import _ from 'lodash'
 import Loading from '../components/Loading'
 import { connect } from 'react-redux'
-import Modal from '../components/Modal'
 import { fetchProjects } from '../actions'
+import {
+  isMobile
+} from 'react-device-detect'
 
 class Portfolio extends Component {
 state = {
@@ -31,33 +33,65 @@ renderProjects () {
   return _.map(this.props.projects, (project) => {
     return (
     // eslint-disable-next-line
-      <a
-        href={'#'}
+      <div  
         key={project.title}
         id={project.title}
-        className="projects-container__project projects-container__a"
+        className="projects-container__project"
+        onClick={(e) => isMobile && this.flip(e, project.title)}
+        onMouseOver={e => this.flip(e, project.title)}
+        onMouseLeave={e => this.flipInverse(e, project.title)}
       >
-        <label
-          data-toggle="modal"
-          data-target="#description"
-          htmlFor="chex"
-          className="projects-container__label"
-          onClick={this.handleClick.bind(this)}
-        >
-          <img
-            id={project.title}
-            className="projects-container__img"
-            src={project.img}
-            alt={project.title}
-          />
-          <div id={project.title} className="projects-container__heading-tertiary">
-            <span>{project.title}</span>
+        <div className={'cardTurn'} id={`card${project.title}`}>
+          <div
+            className="projects-container__project__front">
+
+            <img
+              id={project.title}
+              className="projects-container__img"
+              src={project.img}
+              alt={project.title}
+            />
+            <div id={project.title} className="projects-container__heading-tertiary">
+              <span>{project.title}</span>
+            </div>
+
           </div>
-        </label>
-      </a>
+          <div className="projects-container__project__back">
+            <div className="projects-container__project__back__description">
+              {project.description}
+            </div>
+            <div className="projects-container__project__back__button-container">
+              {project.githubLink !== 'none' && <a
+                target="_blank"
+                href={project.githubLink}
+                className="projects-container__project__back__button">
+              Github
+              </a>}
+              <a
+                target="_blank"
+                href={project.link}
+                className="projects-container__project__back__button">
+              Link
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     )
   })
 }
+
+flip = _.debounce((e, id) => {
+  document.getElementById(`card${id}`).classList.add('flip')
+  document.getElementById(id).style.zIndex = 1
+}, 0, { leading: true })
+
+flipInverse = _.debounce((e, id) => {
+  document.getElementById(`card${id}`).classList.remove('flip')
+  setTimeout(() => { document.getElementById(id).style.zIndex = 0 }, 400)
+}, 0, { leading: true })
 
 render () {
   const { pickedProject } = this.state
@@ -95,48 +129,6 @@ render () {
           </div>
         </div>
       </div>
-      <Modal control="description">
-        <div class="modal-content modal-container" style={{ padding: '2rem' }}>
-          <h1 style={{ textAlign: 'center', paddingBottom: '1rem', fontWeight: 'bold' }}>
-            {pickedProject.title}
-          </h1>
-          <p style={{ textAlign: 'center', paddingBottom: '1rem', minWidth: '30rem' }}>
-            {pickedProject.description}
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-            <a
-              style={{
-                padding: '1rem 4rem 1rem',
-                borderRadius: '2rem',
-                backgroundColor: 'purple',
-                minWidth: '5rem',
-                border: 'none'
-              }}
-              type="button"
-              target="_blank"
-              href={pickedProject.githubLink}
-              class={`btn btn-dark ${pickedProject.githubLink === 'none' ? 'disabled' : ''}`}
-            >
-              Github
-            </a>
-            <a
-              style={{
-                backgroundColor: 'purple',
-                minWidth: '5rem',
-                border: 'none',
-                padding: '1rem 4rem 1rem',
-                borderRadius: '2rem'
-              }}
-              type="button"
-              target="_blank"
-              href={pickedProject.link}
-              class="btn btn-dark"
-            >
-              Link
-            </a>
-          </div>
-        </div>
-      </Modal>
     </React.Fragment>
   )
 }

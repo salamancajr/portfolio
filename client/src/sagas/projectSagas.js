@@ -31,15 +31,24 @@ function * watchAddProject () {
   yield takeEvery(ADD_PROJECT, addProject)
 }
 
+function * saveData (payload, imgUrl) {
+  const requestPayload = imgUrl ? { ...payload, img: imgUrl } : { ...payload }
+  const response = yield call(api.editProject, requestPayload)
+  if (response.status === 200) {
+    yield put({ type: PROJECTS_SUCCESS, payload: response.data })
+  } else {
+    yield put({ type: API_ERROR })
+  }
+}
+
 function * editProject ({ payload }) {
-  const { status, name } = yield call(api.getPresignedURL, payload.img[0])
-  if (status === 200) {
-    const response = yield call(api.editProject, { ...payload, img: name })
-    if (response.status === 200) {
-      yield put({ type: PROJECTS_SUCCESS, payload: response.data })
-    } else {
-      yield put({ type: API_ERROR })
+  if (typeof payload.img === 'object') {
+    const { status, name } = yield call(api.getPresignedURL, payload.img[0])
+    if (status === 200) {
+      yield (call(saveData, payload, name))
     }
+  } else {
+    yield (call(saveData, payload))
   }
 }
 

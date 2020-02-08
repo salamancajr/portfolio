@@ -34,6 +34,12 @@
 .moveLeft {
   animation: moveToLeft 2s; }
 
+.flip {
+  transform: RotateY(180deg) scale(1.9); }
+  @media (max-width: 25em) {
+    .flip {
+      transform: RotateY(180deg); } }
+
 body {
   box-sizing: border-box; }
 
@@ -108,7 +114,6 @@ p {
   padding: 0rem 1.2rem; }
 
 a:hover {
-  color: #fff;
   text-decoration: none; }
 
 .pointer {
@@ -143,7 +148,6 @@ a:hover {
   max-width: 50rem;
   min-height: 28rem;
   max-height: 28rem;
-  backface-visibility: hidden;
   -webkit-animation-fill-mode: forwards;
   /* Chrome 16+, Safari 4+ */
   -moz-animation-fill-mode: forwards;
@@ -202,17 +206,68 @@ a:hover {
       max-height: 40rem; } }
   .projects-container__label {
     cursor: pointer; }
+  .projects-container .cardTurn {
+    transform-style: preserve-3d;
+    transition: .7s all;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "overlap"; }
   .projects-container__project {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    perspective: 800px;
     position: relative;
-    overflow: hidden;
-    background-color: black;
     color: rgba(255, 255, 255, 0.829);
-    animation-fill-mode: forwards;
     text-align: center;
-    margin-bottom: 1rem;
-    transition: all .5s; }
+    margin-bottom: 1rem; }
+    .projects-container__project__front, .projects-container__project__back {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      overflow: hidden;
+      grid-area: overlap;
+      backface-visibility: hidden;
+      display: flex;
+      z-index: 132224443434343424;
+      font-size: 7px;
+      color: black;
+      flex-direction: column; }
+    .projects-container__project__back {
+      background-color: white;
+      transform: RotateY(180deg);
+      padding: 1rem;
+      display: 'flex'; }
+      @media (max-width: 56.25em) {
+        .projects-container__project__back__description {
+          font-size: .53rem; } }
+      @media (max-width: 37.5em) {
+        .projects-container__project__back__description {
+          font-size: .57rem; } }
+      @media (max-width: 25em) {
+        .projects-container__project__back__description {
+          font-size: 1.15rem; } }
+      .projects-container__project__back__button-container {
+        width: 100%;
+        position: absolute;
+        bottom: .8rem;
+        display: flex;
+        justify-content: space-around;
+        padding-right: 2rem; }
+      .projects-container__project__back__button {
+        border: 2px solid #cccccc;
+        padding: .27rem;
+        width: 3rem;
+        border-radius: 2rem; }
+        @media (max-width: 56.25em) {
+          .projects-container__project__back__button {
+            border: 1px solid #cccccc;
+            width: 3.6rem;
+            padding: .2rem; } }
+        @media (max-width: 25em) {
+          .projects-container__project__back__button {
+            width: 7.1rem;
+            padding: .6rem;
+            font-size: 1.4rem; } }
   .projects-container__heading-tertiary {
+    z-index: -1;
     background-color: #282828;
     padding-top: 4px;
     font-size: .8rem;
@@ -224,7 +279,8 @@ a:hover {
     transition: opacity .2s;
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    color: white; }
     @media (max-width: 75em) {
       .projects-container__heading-tertiary {
         font-size: .9rem; } }
@@ -232,15 +288,10 @@ a:hover {
       .projects-container__heading-tertiary {
         font-size: 1.6rem; } }
   .projects-container__img {
-    position: absolute;
+    z-index: -3;
     width: 100%;
-    height: auto;
-    top: 20%;
-    left: 0;
-    transition: opacity .2s;
-    backface-visibility: hidden;
-    object-fit: cover;
-    transform: scale(1.17); }
+    height: 100%;
+    object-fit: cover; }
   .projects-container__checkbox {
     display: none; }
     .projects-container__checkbox:checked ~ .description-box {
@@ -295,7 +346,8 @@ a:hover {
         width: 95%;
         height: 47%; } }
 
-.down, .up {
+.down,
+.up {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: all .2s;
@@ -306,10 +358,12 @@ a:hover {
   width: 4rem;
   text-align: center;
   background-color: purple; }
-  .down i, .up i {
+  .down i,
+  .up i {
     color: white !important; }
   @media (max-width: 56.25em) {
-    .down, .up {
+    .down,
+    .up {
       margin-left: -5.5rem; } }
 
 .projects-table {

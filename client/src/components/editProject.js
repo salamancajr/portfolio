@@ -9,7 +9,7 @@ import Modal from './Modal'
 
 class EditProject extends Component {
   onSubmit (values) {
-    this.props.editProject({ ...values, img: values.img[0] })
+    this.props.editProject({ ...values, img: values.img })
   }
 
   render () {
