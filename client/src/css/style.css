@@ -208,7 +208,7 @@ a:hover {
     cursor: pointer; }
   .projects-container .cardTurn {
     transform-style: preserve-3d;
-    transition: .7s all;
+    transition: .7s all ease;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
@@ -226,7 +226,7 @@ a:hover {
       grid-area: overlap;
       backface-visibility: hidden;
       display: flex;
-      z-index: 132224443434343424;
+      z-index: 0;
       font-size: 7px;
       color: black;
       flex-direction: column; }
@@ -235,22 +235,20 @@ a:hover {
       transform: RotateY(180deg);
       padding: 1rem;
       display: 'flex'; }
-      @media (max-width: 56.25em) {
-        .projects-container__project__back__description {
-          font-size: .53rem; } }
-      @media (max-width: 37.5em) {
-        .projects-container__project__back__description {
-          font-size: .57rem; } }
-      @media (max-width: 25em) {
-        .projects-container__project__back__description {
-          font-size: 1.15rem; } }
+      .projects-container__project__back__description {
+        height: 90%; }
+        @media (max-width: 56.25em) {
+          .projects-container__project__back__description {
+            font-size: .53rem; } }
+        @media (max-width: 37.5em) {
+          .projects-container__project__back__description {
+            font-size: .57rem; } }
+        @media (max-width: 25em) {
+          .projects-container__project__back__description {
+            font-size: 1.15rem; } }
       .projects-container__project__back__button-container {
-        width: 100%;
-        position: absolute;
-        bottom: .8rem;
         display: flex;
-        justify-content: space-around;
-        padding-right: 2rem; }
+        justify-content: space-around; }
       .projects-container__project__back__button {
         border: 2px solid #cccccc;
         padding: .27rem;

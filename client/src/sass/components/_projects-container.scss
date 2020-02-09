@@ -81,7 +81,7 @@
 
 	.cardTurn {
 		transform-style: preserve-3d;
-		transition: .7s all;
+		transition: .7s all ease;
 		display: grid;
 		grid-template-rows: 1fr;
 		grid-template-columns: 1fr;
@@ -102,7 +102,7 @@
 			grid-area: overlap;
 			backface-visibility: hidden;
 			display: flex;
-			z-index: 132224443434343424;
+			z-index: 0;
 			font-size: 7px;
 			color: black;
 			flex-direction: column;
@@ -115,6 +115,7 @@
 			display: 'flex';
 
 			&__description {
+				height: 90%;
 				@include respond(tab-port) {
 					font-size: .53rem;
 				}
@@ -127,12 +128,8 @@
 			}
 
 			&__button-container {
-				width: 100%;
-				position: absolute;
-				bottom: .8rem;
 				display: flex;
 				justify-content: space-around;
-				padding-right: 2rem;
 			}
 
 			&__button {
