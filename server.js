@@ -20,6 +20,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 
 const bodyParser = require('body-parser')
+app.use(express.static(path.join(__dirname, 'Extras')))
 app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.use(function (err, req, res, next) {
